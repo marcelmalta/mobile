@@ -97,28 +97,22 @@ function renderizarProdutos(lista) {
   container.innerHTML = "";
 
   lista.forEach((p) => {
-    const percentual = (p.estoque / p.estoqueTotal) * 100;
-
     let corEstoque = "text-green-600";
     let textoEstoque = `${p.estoque} unidades disponíveis`;
     let estiloFundo = "";
-    let corBarra = "bg-green-500";
 
     if (p.estoque < 25) {
       corEstoque = "text-white font-bold animate-pulse";
       textoEstoque = `🔥 Restam apenas ${p.estoque} unidades!`;
       estiloFundo = "bg-gradient-to-r from-red-600 to-red-500 text-white px-1 py-0.5 rounded-md mt-1 shadow-md";
-      corBarra = "bg-red-600";
     } else if (p.estoque < 50) {
       corEstoque = "text-black font-semibold";
       textoEstoque = `⚠️ Apenas ${p.estoque} unidades em estoque`;
       estiloFundo = "bg-gradient-to-r from-yellow-300 to-yellow-400 text-black px-1 py-0.5 rounded-md mt-1 shadow-sm";
-      corBarra = "bg-yellow-400";
     } else {
       corEstoque = "text-green-600 font-semibold";
       textoEstoque = `${p.estoque} unidades disponíveis`;
       estiloFundo = "bg-gradient-to-r from-green-200 to-green-300 text-green-800 px-1 py-0.5 rounded-md mt-1";
-      corBarra = "bg-green-500";
     }
 
     const card = document.createElement("div");
@@ -129,17 +123,14 @@ function renderizarProdutos(lista) {
       <div class="absolute top-1 left-1 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
       <img src="${p.imagem}" alt="${p.nome}" class="w-full h-28 object-cover rounded-md mb-1">
       <h2 class="text-[11px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-      <p class="text-gray-400 line-through text-[10px]">R$ ${p.precoAntigo.toFixed(2)}</p>
+      <p class="line-through text-black font-semibold text-[11px]">R$ ${p.precoAntigo.toFixed(2)}</p>
       <p class="text-green-700 font-bold text-sm">R$ ${p.precoAtual.toFixed(2)}</p>
       <span class="text-[10px] text-green-600 font-medium">${p.desconto}</span>
       <p class="text-[10px] text-center mt-1 ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
-      <div class="w-full h-1 bg-gray-200 rounded-full mt-1 overflow-hidden">
-        <div class="${corBarra} h-1 rounded-full transition-all duration-700" style="width: ${percentual}%;"></div>
-      </div>
     `;
 
     card.addEventListener("click", () =>
-      abrirModal(p, textoEstoque, estiloFundo, corEstoque, percentual, corBarra)
+      abrirModal(p, textoEstoque, estiloFundo, corEstoque)
     );
     container.appendChild(card);
   });
@@ -175,7 +166,7 @@ const modal = document.getElementById("productModal");
 const closeModal = document.getElementById("closeModal");
 const modalBox = document.getElementById("modalBox");
 
-function abrirModal(produto, textoEstoque, estiloFundo, corEstoque, percentual, corBarra) {
+function abrirModal(produto, textoEstoque, estiloFundo, corEstoque) {
   document.getElementById("modalImage").src = produto.imagem;
   document.getElementById("modalTitle").textContent = produto.nome;
   document.getElementById("modalOldPrice").textContent = `R$ ${produto.precoAntigo.toFixed(2)}`;
@@ -193,9 +184,6 @@ function abrirModal(produto, textoEstoque, estiloFundo, corEstoque, percentual, 
 
   estoqueModal.innerHTML = `
     <p class="text-sm ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
-    <div class="w-full h-2 bg-gray-200 rounded-full mt-2 overflow-hidden">
-      <div class="${corBarra} h-2 rounded-full transition-all duration-700" style="width: ${percentual}%;"></div>
-    </div>
   `;
 
   modal.classList.remove("hidden");
