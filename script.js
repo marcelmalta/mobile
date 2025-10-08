@@ -43,7 +43,19 @@ const produtos = [
     link: "https://mercadolivre.com/sec/2b4C3vU",
     estoque: 46,
     estoqueTotal: 60
-  }
+  },
+  {
+  nome: "Samsung Galaxy A15 4G 128GB 4GB RAM - Azul-escuro",
+  precoAntigo: 1299.00,
+  precoAtual: 809.10,
+  desconto: "37% OFF",
+  parcelas: "18x R$ 49,94 sem juros",
+  imagem: "https://http2.mlstatic.com/D_Q_NP_2X_729306-MLA85311252159_052025-R.webp",
+  link: "https://mercadolivre.com/sec/1woJsmB",
+  estoque: 50,
+  estoqueTotal: 60
+}
+
 ];
 
 // ===================== FUNÇÃO DE RENDERIZAÇÃO =====================
@@ -55,43 +67,60 @@ function renderizarProdutos(lista) {
   banner.innerHTML = "";
 
   lista.forEach((p, index) => {
-    // === SELOS ===
+    // === SELOS (estoque) ===
     let seloEstoque = "";
     if (p.estoque < 25) {
-      seloEstoque = `<div class='absolute top-1 right-1 bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-md animate-pulse'>🔥 Restam ${p.estoque}</div>`;
+      seloEstoque = `<div class='bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-md animate-pulse'>🔥 Restam ${p.estoque}</div>`;
     } else if (p.estoque < 50) {
-      seloEstoque = `<div class='absolute top-1 right-1 bg-yellow-400 text-black text-[9px] px-1.5 py-0.5 rounded-md'>⚠️ ${p.estoque} unid</div>`;
+      seloEstoque = `<div class='bg-yellow-400 text-black text-[9px] px-1.5 py-0.5 rounded-md'>⚠️ ${p.estoque} unid</div>`;
     } else {
-      seloEstoque = `<div class='absolute top-1 right-1 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md'>${p.estoque} unid</div>`;
+      seloEstoque = `<div class='bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md'>${p.estoque} unid</div>`;
     }
 
-    // === CARD PRINCIPAL (ajustado com imagem centralizada e proporcional) ===
+    // === CARD PRINCIPAL (com hover reveal) ===
     const card = document.createElement("div");
     card.className =
-      "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start";
+      "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden";
+
     card.innerHTML = `
-      <div class="absolute top-1 left-1 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
-      ${seloEstoque}
-      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1">
+      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
         <img src="${p.imagem}" alt="${p.nome}" 
-             class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+             class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute top-0 left-0 right-0 p-1 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div class="bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
+          ${seloEstoque}
+        </div>
       </div>
       <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
       <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo.toFixed(2)}</p>
       <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
       <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
     `;
+
     card.addEventListener("click", () => abrirModal(p));
     container.appendChild(card);
 
-    // === CARD DO BANNER (com efeito neon pulsante) ===
+    // === CARD DO BANNER (agora também clicável e com neon) ===
     const destaque = card.cloneNode(true);
-    destaque.classList.add("w-28", "relative", "animate-[pulse_2s_infinite]");
-    destaque.querySelector("img").classList.add("neon-glow");
+    destaque.classList.add(
+      "w-28",
+      "relative",
+      "animate-[pulse_2s_infinite]",
+      "hover:scale-[1.05]",
+      "transition-transform"
+    );
 
-    // alterna cor do brilho
-    const neonColor = index % 2 === 0 ? "shadow-[0_0_10px_#22d3ee]" : "shadow-[0_0_10px_#22c55e]";
-    destaque.querySelector("img").classList.add(neonColor);
+    // Adiciona brilho neon alternado
+    const img = destaque.querySelector("img");
+    const neonColor = index % 2 === 0 ? "shadow-[0_0_12px_#22d3ee]" : "shadow-[0_0_12px_#22c55e]";
+    img.classList.add(neonColor, "rounded-md");
+
+    // Corrige overlay para também aparecer no hover do banner
+    const overlay = destaque.querySelector("div.absolute");
+    overlay.classList.add("opacity-0", "group-hover:opacity-100", "transition-opacity", "duration-300");
+
+    // Torna clicável
+    destaque.addEventListener("click", () => abrirModal(p));
 
     banner.appendChild(destaque);
   });
