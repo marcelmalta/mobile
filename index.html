@@ -30,6 +30,22 @@
     <p class="text-xs sm:text-sm">As melhores ofertas de celulares do Brasil</p>
   </header>
 
+  <!-- SEÇÃO OFERTAS DO DIA -->
+  <section class="bg-gradient-to-r from-red-600 to-orange-500 text-white py-2 px-3 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+    <div>
+      <h2 class="text-sm sm:text-base font-bold">🔥 OFERTAS DO DIA</h2>
+      <p class="text-[12px] sm:text-sm">Aproveite antes que o tempo acabe!</p>
+    </div>
+    <div id="contador" class="text-lg font-bold mt-1 sm:mt-0">00:00:00</div>
+  </section>
+
+  <!-- BANNER AUTOMÁTICO -->
+  <section class="bg-white py-2 px-2 overflow-x-auto flex gap-3 scrollbar-thin scrollbar-thumb-gray-300 animate-scrollX">
+    <div id="bannerOfertas" class="flex gap-2">
+      <!-- Cards de rolagem automática serão inseridos aqui -->
+    </div>
+  </section>
+
   <!-- FILTROS -->
   <section class="bg-white shadow-sm p-2 flex flex-col sm:flex-row gap-2 items-center justify-center sticky top-[64px] z-20">
     <input id="buscaInput" type="text" placeholder="Buscar celular..." 
@@ -57,7 +73,7 @@
   <main class="p-2 space-y-4 max-w-6xl mx-auto">
 
     <section>
-      <h2 class="text-sm font-semibold mb-2 ml-1">🔥 Ofertas Principais</h2>
+      <h2 class="text-sm font-semibold mb-2 ml-1">📦 Todos os Produtos</h2>
       <div id="listaProdutos" 
            class="flex overflow-x-auto gap-2 pb-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent snap-x snap-mandatory">
         <!-- Cards serão gerados dinamicamente -->
@@ -79,7 +95,7 @@
         <div class="flex-1 flex flex-col gap-2">
           <h2 id="modalTitle" class="text-lg sm:text-xl font-semibold"></h2>
           <div class="flex items-center gap-2">
-            <span id="modalOldPrice" class="line-through text-gray-500 text-sm"></span>
+            <span id="modalOldPrice" class="line-through text-black font-semibold text-sm"></span>
             <span id="modalDiscount" class="text-green-600 font-semibold"></span>
           </div>
           <span id="modalPrice" class="text-3xl font-bold text-green-700"></span>

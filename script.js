@@ -32,69 +32,16 @@ const produtos = [
     link: "https://mercadolivre.com/sec/1WZnS5g",
     estoque: 44,
     estoqueTotal: 60
-  },
-  {
-    nome: "Motorola Moto G84 256GB",
-    precoAntigo: 2499,
-    precoAtual: 1699,
-    desconto: "32% OFF",
-    parcelas: "10x R$ 169,90 sem juros",
-    imagem: "img/motoG84.jpg",
-    link: "https://www.mercadolivre.com.br/",
-    estoque: 47,
-    estoqueTotal: 60
-  },
-  {
-    nome: "iPhone 15 (128 GB)",
-    precoAntigo: 6999,
-    precoAtual: 4999,
-    desconto: "29% OFF",
-    parcelas: "12x R$ 416,58 sem juros",
-    imagem: "img/iphone15.jpg",
-    link: "https://www.mercadolivre.com.br/",
-    estoque: 15,
-    estoqueTotal: 60
-  },
-  {
-    nome: "Realme 12 Pro+ 5G",
-    precoAntigo: 2699,
-    precoAtual: 1899,
-    desconto: "30% OFF",
-    parcelas: "10x R$ 189,90 sem juros",
-    imagem: "img/realme12.jpg",
-    link: "https://www.mercadolivre.com.br/",
-    estoque: 55,
-    estoqueTotal: 60
-  },
-  {
-    nome: "Samsung Galaxy A35 128GB",
-    precoAntigo: 2199,
-    precoAtual: 1499,
-    desconto: "32% OFF",
-    parcelas: "10x R$ 149,90 sem juros",
-    imagem: "img/galaxyA35.jpg",
-    link: "https://www.mercadolivre.com.br/",
-    estoque: 29,
-    estoqueTotal: 60
-  },
-  {
-    nome: "POCO X6 Pro 5G",
-    precoAntigo: 2599,
-    precoAtual: 1799,
-    desconto: "31% OFF",
-    parcelas: "10x R$ 179,90 sem juros",
-    imagem: "img/pocoX6.jpg",
-    link: "https://www.mercadolivre.com.br/",
-    estoque: 9,
-    estoqueTotal: 60
   }
 ];
 
-// ===================== FUNÇÕES DE RENDERIZAÇÃO =====================
+// ===================== FUNÇÃO DE RENDERIZAÇÃO =====================
 const container = document.getElementById("listaProdutos");
+const banner = document.getElementById("bannerOfertas");
 
 function renderizarProdutos(lista) {
   container.innerHTML = "";
+  banner.innerHTML = "";
 
   lista.forEach((p) => {
     let corEstoque = "text-green-600";
@@ -115,10 +62,10 @@ function renderizarProdutos(lista) {
       estiloFundo = "bg-gradient-to-r from-green-200 to-green-300 text-green-800 px-1 py-0.5 rounded-md mt-1";
     }
 
+    // CARD PRINCIPAL
     const card = document.createElement("div");
     card.className =
       "bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer flex-shrink-0 w-36 sm:w-40 flex flex-col items-center p-2 relative snap-start";
-
     card.innerHTML = `
       <div class="absolute top-1 left-1 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
       <img src="${p.imagem}" alt="${p.nome}" class="w-full h-28 object-cover rounded-md mb-1">
@@ -128,11 +75,13 @@ function renderizarProdutos(lista) {
       <span class="text-[10px] text-green-600 font-medium">${p.desconto}</span>
       <p class="text-[10px] text-center mt-1 ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
     `;
-
-    card.addEventListener("click", () =>
-      abrirModal(p, textoEstoque, estiloFundo, corEstoque)
-    );
+    card.addEventListener("click", () => abrirModal(p, textoEstoque, estiloFundo, corEstoque));
     container.appendChild(card);
+
+    // CARD DO BANNER (reaproveitado)
+    const destaque = card.cloneNode(true);
+    destaque.classList.add("w-40", "h-40");
+    banner.appendChild(destaque);
   });
 }
 
@@ -182,9 +131,7 @@ function abrirModal(produto, textoEstoque, estiloFundo, corEstoque) {
     modalBox.querySelector("div.flex-col").appendChild(estoqueModal);
   }
 
-  estoqueModal.innerHTML = `
-    <p class="text-sm ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
-  `;
+  estoqueModal.innerHTML = `<p class="text-sm ${estiloFundo} ${corEstoque}">${textoEstoque}</p>`;
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
@@ -208,5 +155,33 @@ function fecharModal() {
   }, 200);
 }
 
+// ===================== CONTADOR REGRESSIVO =====================
+function iniciarContador() {
+  let tempoRestante = 3 * 60 * 60; // 3 horas
+  const contador = document.getElementById("contador");
+
+  setInterval(() => {
+    const horas = String(Math.floor(tempoRestante / 3600)).padStart(2, "0");
+    const minutos = String(Math.floor((tempoRestante % 3600) / 60)).padStart(2, "0");
+    const segundos = String(tempoRestante % 60).padStart(2, "0");
+    contador.textContent = `${horas}:${minutos}:${segundos}`;
+    if (tempoRestante > 0) tempoRestante--;
+    else tempoRestante = 3 * 60 * 60; // reinicia
+  }, 1000);
+}
+
+// ===================== ANIMAÇÃO BANNER =====================
+function animarBanner() {
+  const lista = document.getElementById("bannerOfertas");
+  let scrollPos = 0;
+  setInterval(() => {
+    scrollPos += 1;
+    if (scrollPos >= lista.scrollWidth - lista.clientWidth) scrollPos = 0;
+    lista.scrollLeft = scrollPos;
+  }, 30);
+}
+
 // ===================== INICIALIZAÇÃO =====================
 renderizarProdutos(produtos);
+iniciarContador();
+animarBanner();
