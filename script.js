@@ -54,8 +54,8 @@ function renderizarProdutos(lista) {
   container.innerHTML = "";
   banner.innerHTML = "";
 
-  lista.forEach((p) => {
-    // Define selo de estoque visual no topo da imagem
+  lista.forEach((p, index) => {
+    // === SELOS ===
     let seloEstoque = "";
     if (p.estoque < 25) {
       seloEstoque = `<div class='absolute top-1 right-1 bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-md animate-pulse'>🔥 Restam ${p.estoque}</div>`;
@@ -65,14 +65,17 @@ function renderizarProdutos(lista) {
       seloEstoque = `<div class='absolute top-1 right-1 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md'>${p.estoque} unid</div>`;
     }
 
-    // CARD PRINCIPAL (menor e otimizado para mobile)
+    // === CARD PRINCIPAL (ajustado com imagem centralizada e proporcional) ===
     const card = document.createElement("div");
     card.className =
       "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start";
     card.innerHTML = `
       <div class="absolute top-1 left-1 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
       ${seloEstoque}
-      <img src="${p.imagem}" alt="${p.nome}" class="w-full h-24 object-cover rounded-md mb-1">
+      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1">
+        <img src="${p.imagem}" alt="${p.nome}" 
+             class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+      </div>
       <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
       <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo.toFixed(2)}</p>
       <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
@@ -81,9 +84,15 @@ function renderizarProdutos(lista) {
     card.addEventListener("click", () => abrirModal(p));
     container.appendChild(card);
 
-    // CARD DO BANNER (versão reduzida)
+    // === CARD DO BANNER (com efeito neon pulsante) ===
     const destaque = card.cloneNode(true);
-    destaque.classList.add("w-28");
+    destaque.classList.add("w-28", "relative", "animate-[pulse_2s_infinite]");
+    destaque.querySelector("img").classList.add("neon-glow");
+
+    // alterna cor do brilho
+    const neonColor = index % 2 === 0 ? "shadow-[0_0_10px_#22d3ee]" : "shadow-[0_0_10px_#22c55e]";
+    destaque.querySelector("img").classList.add(neonColor);
+
     banner.appendChild(destaque);
   });
 }
@@ -154,7 +163,7 @@ function iniciarContador() {
   let tempoRestante = 3 * 60 * 60; // 3 horas
   const contador = document.getElementById("contador");
 
-  if (!contador) return; // proteção caso elemento não exista
+  if (!contador) return;
 
   setInterval(() => {
     const horas = String(Math.floor(tempoRestante / 3600)).padStart(2, "0");
@@ -162,7 +171,7 @@ function iniciarContador() {
     const segundos = String(tempoRestante % 60).padStart(2, "0");
     contador.textContent = `${horas}:${minutos}:${segundos}`;
     if (tempoRestante > 0) tempoRestante--;
-    else tempoRestante = 3 * 60 * 60; // reinicia
+    else tempoRestante = 3 * 60 * 60;
   }, 1000);
 }
 
