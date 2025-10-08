@@ -1,41 +1,38 @@
 // ===================== DADOS DOS PRODUTOS =====================
 const produtos = [
   {
-  nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
-  precoAntigo: 7799,
-  precoAtual: 4404.33,
-  desconto: "43% OFF",
-  parcelas: "21x R$ 233,03 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
-  link: "https://mercadolivre.com/sec/1YrAHb8",
-  estoque: 52,
-  estoqueTotal: 60
-}
-,
+    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    estoque: 52,
+    estoqueTotal: 60
+  },
   {
-  nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
-  precoAntigo: 1099,
-  precoAtual: 629.10,
-  desconto: "42% OFF",
-  parcelas: "18x R$ 38,83 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
-  link: "https://mercadolivre.com/sec/12qtdJ1",
-  estoque: 48,
-  estoqueTotal: 60
-}
-,
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.10,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    estoque: 48,
+    estoqueTotal: 60
+  },
   {
-  nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
-  precoAntigo: 3097,
-  precoAtual: 2395,
-  desconto: "23% OFF",
-  parcelas: "21x R$ 114,05 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-  link: "https://mercadolivre.com/sec/1WZnS5g",
-  estoque: 44,
-  estoqueTotal: 60
-}
-,
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    estoque: 44,
+    estoqueTotal: 60
+  },
   {
     nome: "Motorola Moto G84 256GB",
     precoAntigo: 2499,
@@ -94,7 +91,7 @@ const produtos = [
 ];
 
 // ===================== FUNÇÕES DE RENDERIZAÇÃO =====================
-const container = document.querySelector("main");
+const container = document.getElementById("listaProdutos");
 
 function renderizarProdutos(lista) {
   container.innerHTML = "";
@@ -107,38 +104,37 @@ function renderizarProdutos(lista) {
     let estiloFundo = "";
     let corBarra = "bg-green-500";
 
-    // Define cores conforme o estoque
     if (p.estoque < 25) {
       corEstoque = "text-white font-bold animate-pulse";
       textoEstoque = `🔥 Restam apenas ${p.estoque} unidades!`;
-      estiloFundo = "bg-gradient-to-r from-red-600 to-red-500 text-white px-2 py-1 rounded-md mt-1 shadow-md";
+      estiloFundo = "bg-gradient-to-r from-red-600 to-red-500 text-white px-1 py-0.5 rounded-md mt-1 shadow-md";
       corBarra = "bg-red-600";
     } else if (p.estoque < 50) {
       corEstoque = "text-black font-semibold";
       textoEstoque = `⚠️ Apenas ${p.estoque} unidades em estoque`;
-      estiloFundo = "bg-gradient-to-r from-yellow-300 to-yellow-400 text-black px-2 py-1 rounded-md mt-1 shadow-sm";
+      estiloFundo = "bg-gradient-to-r from-yellow-300 to-yellow-400 text-black px-1 py-0.5 rounded-md mt-1 shadow-sm";
       corBarra = "bg-yellow-400";
     } else {
       corEstoque = "text-green-600 font-semibold";
       textoEstoque = `${p.estoque} unidades disponíveis`;
-      estiloFundo = "bg-gradient-to-r from-green-200 to-green-300 text-green-800 px-2 py-1 rounded-md mt-1";
+      estiloFundo = "bg-gradient-to-r from-green-200 to-green-300 text-green-800 px-1 py-0.5 rounded-md mt-1";
       corBarra = "bg-green-500";
     }
 
     const card = document.createElement("div");
-    card.className = "bg-white rounded-xl shadow hover:shadow-xl hover:-translate-y-1 transition cursor-pointer flex flex-col items-center p-3 relative";
-    card.innerHTML = `
-      <div class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-md">Frete Grátis</div>
-      <img src="${p.imagem}" alt="${p.nome}" class="w-full rounded-lg mb-2">
-      <h2 class="text-sm font-semibold text-center">${p.nome}</h2>
-      <p class="text-gray-500 line-through text-xs">R$ ${p.precoAntigo.toFixed(2)}</p>
-      <p class="text-green-700 font-bold text-lg">R$ ${p.precoAtual.toFixed(2)}</p>
-      <span class="text-xs text-green-600 font-medium">${p.desconto}</span>
-      <p class="text-[12px] ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
+    card.className =
+      "bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer flex-shrink-0 w-36 sm:w-40 flex flex-col items-center p-2 relative snap-start";
 
-      <!-- Barra de progresso -->
-      <div class="w-full h-2 bg-gray-200 rounded-full mt-2 overflow-hidden">
-        <div class="${corBarra} h-2 rounded-full transition-all duration-700" style="width: ${percentual}%;"></div>
+    card.innerHTML = `
+      <div class="absolute top-1 left-1 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
+      <img src="${p.imagem}" alt="${p.nome}" class="w-full h-28 object-cover rounded-md mb-1">
+      <h2 class="text-[11px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
+      <p class="text-gray-400 line-through text-[10px]">R$ ${p.precoAntigo.toFixed(2)}</p>
+      <p class="text-green-700 font-bold text-sm">R$ ${p.precoAtual.toFixed(2)}</p>
+      <span class="text-[10px] text-green-600 font-medium">${p.desconto}</span>
+      <p class="text-[10px] text-center mt-1 ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
+      <div class="w-full h-1 bg-gray-200 rounded-full mt-1 overflow-hidden">
+        <div class="${corBarra} h-1 rounded-full transition-all duration-700" style="width: ${percentual}%;"></div>
       </div>
     `;
 
