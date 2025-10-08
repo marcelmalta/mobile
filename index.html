@@ -19,6 +19,10 @@
       background: #ccc;
       border-radius: 10px;
     }
+    #buscaInput:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
+    }
   </style>
 </head>
 
@@ -44,9 +48,18 @@
       </div>
     </div>
 
-    <div id="barraBusca" class="bg-white hidden border-t border-gray-300 p-2 flex items-center justify-center">
-      <input type="text" id="buscaInput" placeholder="Buscar celular..."
-        class="w-full sm:w-1/2 border border-gray-300 rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none" />
+    <!-- BARRA DE BUSCA MODERNA -->
+    <div id="barraBusca"
+         class="bg-white hidden border-t border-gray-200 p-2 flex items-center justify-center">
+      <div class="relative w-full sm:w-1/2">
+        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">🔍</span>
+        <input
+          type="text"
+          id="buscaInput"
+          placeholder="Buscar celular, marca ou modelo..."
+          class="w-full pl-9 pr-3 py-2 text-[14px] border border-gray-300 rounded-full shadow-sm focus:ring-2 focus:ring-blue-400 outline-none transition-all duration-200"
+        />
+      </div>
     </div>
 
     <div class="bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 text-center text-white text-[13px] font-semibold py-1 animate-pulse">
