@@ -32,6 +32,17 @@ const produtos = [
     link: "https://mercadolivre.com/sec/1WZnS5g",
     estoque: 44,
     estoqueTotal: 60
+  },
+  {
+    nome: "Samsung Tab A9 64GB 4GB RAM Enterprise Edition Tela 8.7” X115 4G Grafite",
+    precoAntigo: 1334.67,
+    precoAtual: 726.75,
+    desconto: "45% OFF",
+    parcelas: "18x R$ 47,50 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_677431-MLU77323209031_062024-F.webp",
+    link: "https://mercadolivre.com/sec/2b4C3vU",
+    estoque: 46,
+    estoqueTotal: 60
   }
 ];
 
@@ -44,43 +55,35 @@ function renderizarProdutos(lista) {
   banner.innerHTML = "";
 
   lista.forEach((p) => {
-    let corEstoque = "text-green-600";
-    let textoEstoque = `${p.estoque} unidades disponíveis`;
-    let estiloFundo = "";
-
+    // Define selo de estoque visual no topo da imagem
+    let seloEstoque = "";
     if (p.estoque < 25) {
-      corEstoque = "text-white font-bold animate-pulse";
-      textoEstoque = `🔥 Restam apenas ${p.estoque} unidades!`;
-      estiloFundo = "bg-gradient-to-r from-red-600 to-red-500 text-white px-1 py-0.5 rounded-md mt-1 shadow-md";
+      seloEstoque = `<div class='absolute top-1 right-1 bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-md animate-pulse'>🔥 Restam ${p.estoque}</div>`;
     } else if (p.estoque < 50) {
-      corEstoque = "text-black font-semibold";
-      textoEstoque = `⚠️ Apenas ${p.estoque} unidades em estoque`;
-      estiloFundo = "bg-gradient-to-r from-yellow-300 to-yellow-400 text-black px-1 py-0.5 rounded-md mt-1 shadow-sm";
+      seloEstoque = `<div class='absolute top-1 right-1 bg-yellow-400 text-black text-[9px] px-1.5 py-0.5 rounded-md'>⚠️ ${p.estoque} unid</div>`;
     } else {
-      corEstoque = "text-green-600 font-semibold";
-      textoEstoque = `${p.estoque} unidades disponíveis`;
-      estiloFundo = "bg-gradient-to-r from-green-200 to-green-300 text-green-800 px-1 py-0.5 rounded-md mt-1";
+      seloEstoque = `<div class='absolute top-1 right-1 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md'>${p.estoque} unid</div>`;
     }
 
-    // CARD PRINCIPAL
+    // CARD PRINCIPAL (menor e otimizado para mobile)
     const card = document.createElement("div");
     card.className =
-      "bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer flex-shrink-0 w-36 sm:w-40 flex flex-col items-center p-2 relative snap-start";
+      "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start";
     card.innerHTML = `
-      <div class="absolute top-1 left-1 bg-green-500 text-white text-[10px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
-      <img src="${p.imagem}" alt="${p.nome}" class="w-full h-28 object-cover rounded-md mb-1">
-      <h2 class="text-[11px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-      <p class="line-through text-black font-semibold text-[11px]">R$ ${p.precoAntigo.toFixed(2)}</p>
-      <p class="text-green-700 font-bold text-sm">R$ ${p.precoAtual.toFixed(2)}</p>
-      <span class="text-[10px] text-green-600 font-medium">${p.desconto}</span>
-      <p class="text-[10px] text-center mt-1 ${estiloFundo} ${corEstoque}">${textoEstoque}</p>
+      <div class="absolute top-1 left-1 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
+      ${seloEstoque}
+      <img src="${p.imagem}" alt="${p.nome}" class="w-full h-24 object-cover rounded-md mb-1">
+      <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
+      <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo.toFixed(2)}</p>
+      <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+      <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
     `;
-    card.addEventListener("click", () => abrirModal(p, textoEstoque, estiloFundo, corEstoque));
+    card.addEventListener("click", () => abrirModal(p));
     container.appendChild(card);
 
-    // CARD DO BANNER (reaproveitado)
+    // CARD DO BANNER (versão reduzida)
     const destaque = card.cloneNode(true);
-    destaque.classList.add("w-40", "h-40");
+    destaque.classList.add("w-28");
     banner.appendChild(destaque);
   });
 }
@@ -115,7 +118,7 @@ const modal = document.getElementById("productModal");
 const closeModal = document.getElementById("closeModal");
 const modalBox = document.getElementById("modalBox");
 
-function abrirModal(produto, textoEstoque, estiloFundo, corEstoque) {
+function abrirModal(produto) {
   document.getElementById("modalImage").src = produto.imagem;
   document.getElementById("modalTitle").textContent = produto.nome;
   document.getElementById("modalOldPrice").textContent = `R$ ${produto.precoAntigo.toFixed(2)}`;
@@ -123,15 +126,6 @@ function abrirModal(produto, textoEstoque, estiloFundo, corEstoque) {
   document.getElementById("modalPrice").textContent = `R$ ${produto.precoAtual.toFixed(2)}`;
   document.getElementById("modalParcelas").textContent = produto.parcelas;
   document.getElementById("modalLink").href = produto.link;
-
-  let estoqueModal = document.getElementById("estoqueModal");
-  if (!estoqueModal) {
-    estoqueModal = document.createElement("div");
-    estoqueModal.id = "estoqueModal";
-    modalBox.querySelector("div.flex-col").appendChild(estoqueModal);
-  }
-
-  estoqueModal.innerHTML = `<p class="text-sm ${estiloFundo} ${corEstoque}">${textoEstoque}</p>`;
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
@@ -160,6 +154,8 @@ function iniciarContador() {
   let tempoRestante = 3 * 60 * 60; // 3 horas
   const contador = document.getElementById("contador");
 
+  if (!contador) return; // proteção caso elemento não exista
+
   setInterval(() => {
     const horas = String(Math.floor(tempoRestante / 3600)).padStart(2, "0");
     const minutos = String(Math.floor((tempoRestante % 3600) / 60)).padStart(2, "0");
@@ -173,6 +169,7 @@ function iniciarContador() {
 // ===================== ANIMAÇÃO BANNER =====================
 function animarBanner() {
   const lista = document.getElementById("bannerOfertas");
+  if (!lista) return;
   let scrollPos = 0;
   setInterval(() => {
     scrollPos += 1;
