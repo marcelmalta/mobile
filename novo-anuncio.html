@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Novo Anúncio — Ofertas Relâmpago</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    ::-webkit-scrollbar { height:6px; width:6px; }
+    ::-webkit-scrollbar-thumb { background:#3f3f46; border-radius:10px; }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen">
+
+  <!-- HEADER (dark) -->
+  <header class="sticky top-0 z-50 shadow-lg">
+    <div class="bg-gray-800 text-gray-300 text-[11px] flex justify-center gap-6 py-1 font-medium">
+      <div class="flex items-center gap-1"><span>🛡️</span><span>Site Seguro</span></div>
+      <div class="flex items-center gap-1"><span>🚚</span><span>Entrega Garantida</span></div>
+      <div class="flex items-center gap-1"><span>⏰</span><span>Ofertas Limitadas</span></div>
+    </div>
+    <div class="bg-gray-900/90 backdrop-blur flex items-center justify-between px-3 py-3 border-b border-gray-700">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl font-extrabold text-yellow-400">📱</span>
+        <h1 class="text-lg sm:text-xl font-extrabold tracking-tight">Ofertas Relâmpago</h1>
+      </div>
+      <a href="index.html" class="text-yellow-400 text-sm sm:text-base font-semibold hover:underline">← Voltar</a>
+    </div>
+    <div class="bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-600 text-center text-gray-900 text-[13px] font-bold py-1">
+      Preencha os dados abaixo para publicar seu anúncio.
+    </div>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main class="max-w-3xl mx-auto p-3 sm:p-5">
+    <section class="bg-gray-850 bg-[#1f2937] rounded-2xl shadow-xl border border-gray-700 p-4 sm:p-6">
+      <h2 class="text-lg sm:text-xl font-bold mb-1">📢 Publicar novo anúncio</h2>
+      <p class="text-sm text-gray-300 mb-4">
+        Informe os dados do aparelho, formas de pagamento, local/entrega e a imagem do produto. Após o envio, exibiremos a confirmação de sucesso.
+      </p>
+
+      <!-- PASSOS -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[12px] text-gray-300 mb-5">
+        <div class="bg-gray-800 rounded-md p-2 border border-gray-700"><strong>1.</strong> Produto</div>
+        <div class="bg-gray-800 rounded-md p-2 border border-gray-700"><strong>2.</strong> Preço & Pagamento</div>
+        <div class="bg-gray-800 rounded-md p-2 border border-gray-700"><strong>3.</strong> Entrega & Envio</div>
+      </div>
+
+      <form id="anuncioForm" class="grid gap-5">
+
+        <!-- ==================== PRODUTO ==================== -->
+        <div class="grid gap-4">
+          <!-- Nome do aparelho -->
+          <div>
+            <label class="text-xs font-medium text-gray-400">Nome do aparelho *</label>
+            <div class="mt-1 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input id="nome" list="listaAparelhos" required
+                     class="p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md w-full placeholder-gray-500"
+                     placeholder="Ex.: Samsung Galaxy S23 256GB" />
+              <input id="modeloOutro"
+                     class="p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md w-full placeholder-gray-500"
+                     placeholder="Outro modelo (opcional)" />
+            </div>
+            <datalist id="listaAparelhos">
+              <!-- Apple -->
+              <option>Apple iPhone 11 64GB</option>
+              <option>Apple iPhone 12 128GB</option>
+              <option>Apple iPhone 13 128GB</option>
+              <option>Apple iPhone 14 128GB</option>
+              <option>Apple iPhone 15 128GB</option>
+              <option>Apple iPhone 16 128GB</option>
+              <!-- Samsung -->
+              <option>Samsung Galaxy S21 128GB</option>
+              <option>Samsung Galaxy S22 256GB</option>
+              <option>Samsung Galaxy S23 256GB</option>
+              <option>Samsung Galaxy S24 256GB</option>
+              <option>Samsung Galaxy A15 128GB</option>
+              <option>Samsung Galaxy A34 128GB</option>
+              <option>Samsung Galaxy A35 128GB</option>
+              <!-- Motorola -->
+              <option>Motorola Moto G54 256GB</option>
+              <option>Motorola Moto G84 256GB</option>
+              <option>Motorola Edge 40 256GB</option>
+              <!-- Xiaomi / POCO / Redmi -->
+              <option>Xiaomi Redmi Note 13 128GB</option>
+              <option>Xiaomi Redmi Note 13 Pro 256GB</option>
+              <option>POCO X6 Pro 256GB</option>
+              <option>POCO X7 Pro 512GB</option>
+              <!-- Realme -->
+              <option>Realme 12 256GB</option>
+              <option>Realme 12 Pro+ 256GB</option>
+            </datalist>
+          </div>
+
+          <!-- Condição + Nota fiscal -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label class="flex flex-col">
+              <span class="text-xs font-medium text-gray-400">Condição</span>
+              <select id="condicao" class="mt-1 p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md">
+                <option value="">Selecione</option>
+                <option value="Novo">Novo</option>
+                <option value="Seminovo">Seminovo</option>
+                <option value="Usado">Usado</option>
+              </select>
+            </label>
+            <label class="flex flex-col">
+              <span class="text-xs font-medium text-gray-400">Nota fiscal</span>
+              <select id="notaFiscal" class="mt-1 p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md">
+                <option value="">Selecione</option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <!-- ==================== PREÇO (DESTAQUE) & PAGAMENTOS ==================== -->
+        <div class="grid gap-4">
+          <!-- Preço Atual (super destaque) -->
+          <div class="bg-gray-800 border border-yellow-500/50 rounded-xl p-4">
+            <label class="block text-sm font-bold text-yellow-400 tracking-wide mb-2">💰 Preço atual *</label>
+            <div class="flex items-center gap-2">
+              <span class="text-yellow-400 text-xl font-extrabold">R$</span>
+              <input id="precoAtual" type="number" required min="0" step="0.01"
+                     class="flex-1 text-lg font-bold p-3 border-2 border-yellow-500/70 focus:border-yellow-400 outline-none bg-gray-900 text-gray-100 rounded-md placeholder-gray-500"
+                     placeholder="Ex.: 3599.00" />
+            </div>
+            <p class="text-[12px] text-gray-400 mt-2">Informe o valor total à vista ou base para negociação.</p>
+          </div>
+
+          <!-- Formas de pagamento aceitas -->
+          <div>
+            <label class="text-xs font-medium text-gray-400">Formas de pagamento aceitas *</label>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <label class="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-md px-3 py-2 cursor-pointer hover:border-yellow-500/50">
+                <input type="checkbox" name="pagamento" value="PIX">
+                <span>PIX</span>
+              </label>
+              <label class="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-md px-3 py-2 cursor-pointer hover:border-yellow-500/50">
+                <input type="checkbox" name="pagamento" value="Cartão">
+                <span>Cartão de crédito</span>
+              </label>
+              <label class="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-md px-3 py-2 cursor-pointer hover:border-yellow-500/50">
+                <input type="checkbox" name="pagamento" value="Dinheiro">
+                <span>Dinheiro</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== LOCAL & ENTREGA ==================== -->
+        <div class="grid gap-4">
+          <!-- Local -->
+          <div>
+            <label class="text-xs font-medium text-gray-400">Local (Cidade - UF) *</label>
+            <div class="mt-1 grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <select id="uf" class="p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md" required>
+                <option value="">Selecione o estado</option>
+                <option value="AC">Acre (AC)</option>
+                <option value="AL">Alagoas (AL)</option>
+                <option value="AP">Amapá (AP)</option>
+                <option value="AM">Amazonas (AM)</option>
+                <option value="BA">Bahia (BA)</option>
+                <option value="CE">Ceará (CE)</option>
+                <option value="DF">Distrito Federal (DF)</option>
+                <option value="ES">Espírito Santo (ES)</option>
+                <option value="GO">Goiás (GO)</option>
+                <option value="MA">Maranhão (MA)</option>
+                <option value="MT">Mato Grosso (MT)</option>
+                <option value="MS">Mato Grosso do Sul (MS)</option>
+                <option value="MG">Minas Gerais (MG)</option>
+                <option value="PA">Pará (PA)</option>
+                <option value="PB">Paraíba (PB)</option>
+                <option value="PR">Paraná (PR)</option>
+                <option value="PE">Pernambuco (PE)</option>
+                <option value="PI">Piauí (PI)</option>
+                <option value="RJ">Rio de Janeiro (RJ)</option>
+                <option value="RN">Rio Grande do Norte (RN)</option>
+                <option value="RS">Rio Grande do Sul (RS)</option>
+                <option value="RO">Rondônia (RO)</option>
+                <option value="RR">Roraima (RR)</option>
+                <option value="SC">Santa Catarina (SC)</option>
+                <option value="SP">São Paulo (SP)</option>
+                <option value="SE">Sergipe (SE)</option>
+                <option value="TO">Tocantins (TO)</option>
+              </select>
+              <input id="cidade" list="listaCidades"
+                     class="p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md placeholder-gray-500"
+                     placeholder="Digite ou selecione a cidade" required />
+            </div>
+            <datalist id="listaCidades"></datalist>
+          </div>
+
+          <!-- Entrega (múltipla) -->
+          <div>
+            <label class="text-xs font-medium text-gray-400">Tipo de entrega *</label>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <label class="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-md px-3 py-2 cursor-pointer hover:border-yellow-500/50">
+                <input type="checkbox" name="entregaTipo" value="Encontro público">
+                <span>Encontro público</span>
+              </label>
+              <label class="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-md px-3 py-2 cursor-pointer hover:border-yellow-500/50">
+                <input type="checkbox" name="entregaTipo" value="Entrega">
+                <span>Entrega</span>
+              </label>
+              <label class="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-md px-3 py-2 cursor-pointer hover:border-yellow-500/50">
+                <input type="checkbox" name="entregaTipo" value="Retirada">
+                <span>Retirada</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== IMAGEM & DESCRIÇÃO ==================== -->
+        <div class="grid gap-4">
+          <!-- Upload -->
+          <div>
+            <span class="text-xs font-medium text-gray-400">Imagem (arquivo) *</span>
+            <input id="imagemFile" type="file" accept="image/*"
+                   class="block mt-1 p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md" required />
+            <div id="previewWrap" class="mt-2 hidden">
+              <p class="text-xs text-gray-400 mb-1">Preview:</p>
+              <img id="preview" class="w-36 h-36 object-cover rounded-md border border-gray-700" alt="preview" />
+            </div>
+          </div>
+
+          <!-- Descrição -->
+          <label class="flex flex-col">
+            <span class="text-xs font-medium text-gray-400">Descrição curta</span>
+            <textarea id="descricao" rows="2"
+                      class="mt-1 p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md placeholder-gray-500"
+                      placeholder="Condição, acessórios, nota fiscal, etc."></textarea>
+          </label>
+        </div>
+
+        <!-- ==================== CONTATO ==================== -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label class="flex flex-col">
+            <span class="text-xs font-medium text-gray-400">Contato WhatsApp *</span>
+            <input id="contato" required
+                   class="mt-1 p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md placeholder-gray-500"
+                   placeholder="Ex: https://wa.me/5581999999999" />
+          </label>
+          <label class="flex flex-col">
+            <span class="text-xs font-medium text-gray-400">Quantidade</span>
+            <input id="estoque" type="number" min="1" step="1"
+                   class="mt-1 p-2 border border-gray-700 bg-gray-800 text-gray-100 rounded-md"
+                   value="1" />
+          </label>
+        </div>
+
+        <!-- ==================== AÇÕES ==================== -->
+        <div class="flex flex-wrap gap-2 mt-1">
+          <button id="btnUpload" type="button"
+                  class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold px-5 py-2 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-yellow-300">
+            📤 Enviar anúncio
+          </button>
+          <button id="btnSimular" type="button"
+                  class="bg-gray-700 hover:bg-gray-600 text-gray-100 px-4 py-2 rounded-md">
+            ⚠️ Simular
+          </button>
+          <a id="btnVoltar" class="ml-auto text-sm text-yellow-400 hover:underline" href="index.html">← Voltar à home</a>
+        </div>
+
+        <!-- CONFIRMAÇÃO PÚBLICA -->
+        <div id="confirmacaoPublica" class="mt-4 hidden">
+          <div class="bg-emerald-900/30 border border-emerald-700 rounded-md p-3 text-emerald-300 text-sm">
+            ✅ Seu anúncio foi enviado com sucesso e será analisado em breve. Obrigado!
+          </div>
+        </div>
+
+        <!-- ÁREA ADMIN (visível somente com ?admin=1) -->
+        <div id="resultado" class="mt-4 hidden">
+          <h3 class="font-semibold mb-2">🔐 JSON gerado (admin) — cole no <code>script.js</code>:</h3>
+          <textarea id="jsonOutput" rows="10"
+                    class="w-full p-2 border border-gray-700 bg-gray-900 text-gray-100 rounded-md font-mono text-sm"></textarea>
+          <div class="flex gap-2 mt-2">
+            <button id="copiar" class="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-md">📋 Copiar</button>
+            <button id="abrirPreview" class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md">🔎 Preview</button>
+          </div>
+          <p class="text-xs text-gray-400 mt-2">Dica: o JSON também é impresso no console (DevTools).</p>
+        </div>
+
+        <div id="msg" class="mt-1 text-sm text-gray-300"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // ====== Flags ======
+    const params = new URLSearchParams(location.search);
+    const authToken = params.get('auth') || '';
+    const isAdmin = params.get('admin') === '1';
+
+    // ====== Refs ======
+    const inputFile = document.getElementById('imagemFile');
+    const previewWrap = document.getElementById('previewWrap');
+    const preview = document.getElementById('preview');
+    const btnUpload = document.getElementById('btnUpload');
+    const btnSimular = document.getElementById('btnSimular');
+    const confirmacaoPublica = document.getElementById('confirmacaoPublica');
+    const resultado = document.getElementById('resultado');
+    const jsonOutput = document.getElementById('jsonOutput');
+    const copiar = document.getElementById('copiar');
+    const abrirPreview = document.getElementById('abrirPreview');
+    const msg = document.getElementById('msg');
+
+    const nomeEl = document.getElementById('nome');
+    const modeloOutroEl = document.getElementById('modeloOutro');
+    const ufEl = document.getElementById('uf');
+    const cidadeEl = document.getElementById('cidade');
+    const listaCidades = document.getElementById('listaCidades');
+
+    // ====== CIDADES por UF (sugestões; usuário pode digitar outra) ======
+    const cidadesPorUF = {
+      "AC": ["Rio Branco", "Cruzeiro do Sul", "Sena Madureira"],
+      "AL": ["Maceió", "Arapiraca", "Palmeira dos Índios"],
+      "AP": ["Macapá", "Santana", "Laranjal do Jari"],
+      "AM": ["Manaus", "Itacoatiara", "Parintins"],
+      "BA": ["Salvador", "Feira de Santana", "Vitória da Conquista", "Camaçari"],
+      "CE": ["Fortaleza", "Caucaia", "Juazeiro do Norte", "Maracanaú", "Sobral"],
+      "DF": ["Brasília", "Taguatinga", "Ceilândia", "Águas Claras", "Gama"],
+      "ES": ["Vitória", "Vila Velha", "Serra", "Cariacica"],
+      "GO": ["Goiânia", "Aparecida de Goiânia", "Anápolis"],
+      "MA": ["São Luís", "Imperatriz", "Caxias"],
+      "MT": ["Cuiabá", "Várzea Grande", "Rondonópolis"],
+      "MS": ["Campo Grande", "Dourados", "Três Lagoas"],
+      "MG": ["Belo Horizonte", "Contagem", "Uberlândia", "Juiz de Fora", "Betim"],
+      "PA": ["Belém", "Ananindeua", "Santarém"],
+      "PB": ["João Pessoa", "Campina Grande", "Patos"],
+      "PR": ["Curitiba", "Londrina", "Maringá", "Ponta Grossa", "Cascavel"],
+      "PE": ["Recife", "Olinda", "Jaboatão dos Guararapes", "Caruaru", "Petrolina"],
+      "PI": ["Teresina", "Parnaíba", "Picos"],
+      "RJ": ["Rio de Janeiro", "Niterói", "Duque de Caxias", "Nova Iguaçu", "Campos dos Goytacazes"],
+      "RN": ["Natal", "Mossoró", "Parnamirim"],
+      "RS": ["Porto Alegre", "Caxias do Sul", "Pelotas", "Canoas", "Santa Maria"],
+      "RO": ["Porto Velho", "Ji-Paraná", "Ariquemes"],
+      "RR": ["Boa Vista", "Rorainópolis", "Cantá"],
+      "SC": ["Florianópolis", "Joinville", "Blumenau", "Itajaí", "Chapecó"],
+      "SP": ["São Paulo", "Campinas", "Santos", "São José dos Campos", "Ribeirão Preto"],
+      "SE": ["Aracaju", "Nossa Senhora do Socorro", "Lagarto"],
+      "TO": ["Palmas", "Araguaína", "Gurupi"]
+    };
+
+    function atualizarCidadesUF() {
+      const uf = ufEl.value;
+      const cidades = cidadesPorUF[uf] || [];
+      listaCidades.innerHTML = '';
+      cidades.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        listaCidades.appendChild(opt);
+      });
+      cidadeEl.value = '';
+      cidadeEl.placeholder = cidades.length ? "Digite ou selecione a cidade" : "Digite sua cidade";
+    }
+    ufEl.addEventListener('change', atualizarCidadesUF);
+
+    // ====== Preview imagem ======
+    inputFile.addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if (!f) { previewWrap.classList.add('hidden'); return; }
+      const url = URL.createObjectURL(f);
+      preview.src = url;
+      previewWrap.classList.remove('hidden');
+    });
+
+    // ====== Normalizar Whats ======
+    function normalizarWhats(v) {
+      if (!v) return "";
+      const clean = v.replace(/[^\d]/g, "");
+      if (v.startsWith("http")) return v;
+      if (clean.length >= 10) return `https://wa.me/${clean}`;
+      return v;
+    }
+
+    // ====== JSON ======
+    function montarJSON(urlImagem) {
+      const nome = (modeloOutroEl.value.trim() || nomeEl.value.trim());
+      const precoAtual = Number(document.getElementById('precoAtual').value) || 0;
+      const condicao = document.getElementById('condicao').value;
+      const notaFiscal = document.getElementById('notaFiscal').value;
+
+      const pagamentos = Array.from(document.querySelectorAll('input[name="pagamento"]:checked')).map(e => e.value);
+      const entregas = Array.from(document.querySelectorAll('input[name="entregaTipo"]:checked')).map(e => e.value);
+
+      const uf = ufEl.value;
+      const cidade = cidadeEl.value.trim();
+      const local = (cidade && uf) ? `${cidade} - ${uf}` : (cidade || uf || '');
+
+      const contatoRaw = document.getElementById('contato').value.trim();
+      const contato = normalizarWhats(contatoRaw);
+
+      const estoque = Number(document.getElementById('estoque').value) || 1;
+      const descricao = document.getElementById('descricao').value.trim();
+
+      const obj = {
+        nome,
+        precoAntigo: 0,     // mantido para compatibilidade do script.js
+        precoAtual,
+        desconto: "",       // mantido para compatibilidade do script.js
+        parcelas: "",       // opcional
+        imagem: urlImagem,  // URL do R2
+        link: "",           // opcional (ex: ML)
+        estoque,
+        estoqueTotal: estoque,
+        local,
+        contato,
+        descricao,
+        condicao,
+        notaFiscal,
+        entregas,           // array (múltiplas)
+        pagamentos          // array (múltiplas)
+      };
+      return obj;
+    }
+
+    // ====== Upload real para /upload ======
+    async function enviarUploadEGerarJSON() {
+      const nome = (modeloOutroEl.value.trim() || nomeEl.value.trim());
+      const precoAtual = document.getElementById('precoAtual').value.trim();
+      if (!nome || !precoAtual) { msg.textContent = 'Informe o nome e o preço atual.'; return; }
+
+      if (!ufEl.value || !cidadeEl.value.trim()) {
+        msg.textContent = 'Selecione o estado (UF) e a cidade.';
+        return;
+      }
+
+      const temEntrega = document.querySelectorAll('input[name="entregaTipo"]:checked').length > 0;
+      if (!temEntrega) { msg.textContent = 'Selecione pelo menos um tipo de entrega.'; return; }
+
+      const temPagamento = document.querySelectorAll('input[name="pagamento"]:checked').length > 0;
+      if (!temPagamento) { msg.textContent = 'Selecione pelo menos uma forma de pagamento.'; return; }
+
+      const file = inputFile.files[0];
+      if (!file) { msg.textContent = 'Selecione uma imagem.'; return; }
+
+      const fd = new FormData();
+      fd.append('file', file);
+
+      const headers = {};
+      if (authToken) headers['x-auth-token'] = authToken;
+
+      msg.textContent = '⏳ Enviando imagem...';
+      try {
+        // Troque por URL absoluta se o backend estiver em outro domínio:
+        // const UPLOAD_URL = 'https://api.seudominio.com/upload';
+        const UPLOAD_URL = '/upload';
+
+        const res = await fetch(UPLOAD_URL, {
+          method: 'POST',
+          body: fd,
+          headers
+        });
+
+        if (!res.ok) {
+          const text = await res.text().catch(()=>null);
+          throw new Error(text || ('Upload falhou: ' + res.status));
+        }
+
+        const data = await res.json();
+        if (!data.url) throw new Error('Resposta inválida do servidor: falta url');
+
+        const obj = montarJSON(data.url);
+        console.log('[NOVO ANÚNCIO GERADO]', obj);
+        msg.textContent = '';
+        confirmacaoPublica.classList.remove('hidden');
+
+        if (isAdmin) {
+          jsonOutput.value = JSON.stringify(obj, null, 2);
+          resultado.classList.remove('hidden');
+          window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+      } catch (err) {
+        console.error(err);
+        msg.textContent = '⚠️ Erro no upload: ' + (err.message || err);
+      }
+    }
+
+    // ====== Simular sem backend ======
+    function simularGeracao() {
+      msg.textContent = '';
+      const file = inputFile.files[0];
+      if (!file) { msg.textContent = 'Selecione uma imagem para simular.'; return; }
+      const fakeUrl = URL.createObjectURL(file);
+      const obj = montarJSON(fakeUrl);
+      console.log('[NOVO ANÚNCIO (SIMULAÇÃO)]', obj);
+      confirmacaoPublica.classList.remove('hidden');
+      if (isAdmin) {
+        jsonOutput.value = JSON.stringify(obj, null, 2);
+        resultado.classList.remove('hidden');
+      }
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    // ====== Eventos ======
+    document.getElementById('btnUpload').addEventListener('click', enviarUploadEGerarJSON);
+    document.getElementById('btnSimular').addEventListener('click', simularGeracao);
+
+    // Preview imagem
+    inputFile.addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if (!f) { previewWrap.classList.add('hidden'); return; }
+      const url = URL.createObjectURL(f);
+      preview.src = url;
+      previewWrap.classList.remove('hidden');
+    });
+
+    // Copiar / Preview admin
+    copiar?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(jsonOutput.value);
+        msg.textContent = '📋 JSON copiado para a área de transferência!';
+      } catch (e) {
+        msg.textContent = '⚠️ Não foi possível copiar automaticamente. Selecione e copie manualmente.';
+      }
+    });
+
+    abrirPreview?.addEventListener('click', () => {
+      try {
+        const obj = JSON.parse(jsonOutput.value);
+        const win = window.open('', '_blank');
+        win.document.write(`
+          <html><head><title>Preview - ${obj.nome}</title>
+          <meta name="viewport" content="width=device-width,initial-scale=1"></head>
+          <body style="font-family:Arial;padding:20px;background:#111;color:#eee">
+            <h2>${obj.nome}</h2>
+            <img src="${obj.imagem}" style="max-width:300px;border:1px solid #333;border-radius:8px">
+            <p><strong>Preço:</strong> R$ ${obj.precoAtual}</p>
+            <p><strong>Condição:</strong> ${obj.condicao || '-'}</p>
+            <p><strong>Nota fiscal:</strong> ${obj.notaFiscal || '-'}</p>
+            <p><strong>Pagamentos:</strong> ${(obj.pagamentos||[]).join(', ') || '-'}</p>
+            <p><strong>Entrega:</strong> ${(obj.entregas||[]).join(', ') || '-'}</p>
+            <p><strong>Local:</strong> ${obj.local || '-'}</p>
+            <p><strong>Contato:</strong> ${obj.contato || '-'}</p>
+            <p>${obj.descricao || ''}</p>
+          </body></html>
+        `);
+      } catch (e) {
+        msg.textContent = 'JSON inválido.';
+      }
+    });
+
+    // Inicialização
+    function initAdminBlock() {
+      // se admin=1, manter bloco "resultado" pronto para uso após envio
+      if (isAdmin) {
+        // nada extra a fazer agora; renderização ocorre após upload/simulação
+      }
+    }
+    initAdminBlock();
+  </script>
+</body>
+</html>
