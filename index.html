@@ -40,7 +40,6 @@
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
- <!-- HEADER PROFISSIONAL -->
 <header class="sticky top-0 z-50 shadow-md">
   <!-- Faixa superior -->
   <div class="bg-gray-900 text-gray-200 text-[11px] flex justify-center gap-6 py-1 font-medium">
@@ -49,19 +48,30 @@
     <div class="flex items-center gap-1"><span>⏰</span><span>Ofertas Limitadas</span></div>
   </div>
 
-  <!-- Banner Sellulares -->
-  <div class="bg-black flex justify-center items-center">
-    <img src="banner-sellulares.png" alt="Sellulares.com" class="w-full max-h-[150px] object-contain">
+  <!-- Banner + ícones -->
+  <div class="bg-black flex items-center justify-between px-3 py-2 animate-fade-in">
+    <!-- Banner responsivo -->
+    <div class="flex-1 flex justify-center">
+      <img src="banner-sellulares-desktop.png" alt="Sellulares.com"
+           class="hidden sm:block w-full max-h-[150px] object-contain">
+      <img src="banner-sellulares-mobile.png" alt="Sellulares.com"
+           class="block sm:hidden w-full max-h-[180px] object-contain">
+    </div>
+    <!-- Ações -->
+    <div class="ml-3 flex items-center gap-3">
+      <button id="btnBusca" class="text-white text-xl hover:scale-110 transition" aria-label="Buscar">🔍</button>
+      <button class="text-white text-xl hover:scale-110 transition" aria-label="Favoritos">❤️</button>
+      <button class="text-white text-xl hover:scale-110 transition" aria-label="Carrinho">🛒</button>
+    </div>
   </div>
 
-  <!-- BARRA DE BUSCA -->
-  <div id="barraBusca"
-       class="bg-white hidden border-t border-gray-200 p-2 flex items-center justify-center">
+  <!-- BARRA DE BUSCA (compatível com applyFilters: id='q') -->
+  <div id="barraBusca" class="bg-white hidden border-t border-gray-200 p-2 flex items-center justify-center">
     <div class="relative w-full sm:w-1/2">
-      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">🔍</span>
+      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">🔍</span>
       <input
         type="text"
-        id="buscaInput"
+        id="q"
         placeholder="Buscar celular, marca ou modelo..."
         class="w-full pl-9 pr-3 py-2 text-[14px] border border-gray-300 rounded-full shadow-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all duration-200"
       />
@@ -73,6 +83,11 @@
     🔥 Promoções relâmpago atualizadas a cada hora!
   </div>
 </header>
+
+<style>
+@keyframes fadeIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+.animate-fade-in { animation: fadeIn 1.2s ease-in-out }
+</style>
 
 <!-- SEÇÃO OFERTAS DO DIA -->
   <section class="bg-gradient-to-r from-red-600 to-orange-500 text-white py-2 px-3 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
