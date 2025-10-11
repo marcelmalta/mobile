@@ -295,25 +295,104 @@ function aplicarFiltros() {
   const termo = document.getElementById("buscaInput").value.toLowerCase();
   const marca = document.getElementById("filtroMarca").value;
   const faixa = document.getElementById("filtroPreco").value;
+  const estado = document.getElementById("filtroEstado").value;
+  const cidade = document.getElementById("filtroCidade").value;
 
   const filtrados = produtos.filter((p) => {
     const nomeOk = p.nome.toLowerCase().includes(termo);
     const marcaOk = marca ? p.nome.toLowerCase().includes(marca.toLowerCase()) : true;
-    let precoOk = true;
 
+    let precoOk = true;
     if (faixa === "1") precoOk = p.precoAtual <= 2000;
     else if (faixa === "2") precoOk = p.precoAtual > 2000 && p.precoAtual <= 4000;
     else if (faixa === "3") precoOk = p.precoAtual > 4000;
 
-    return nomeOk && marcaOk && precoOk;
+    const estadoOk = estado ? p.estado === estado : true;
+    const cidadeOk = cidade ? p.cidade === cidade : true;
+
+    return nomeOk && marcaOk && precoOk && estadoOk && cidadeOk;
   });
 
   renderizarProdutos(filtrados);
+  atualizarTituloLocalizacao(estado, cidade);
 }
 
+// ===================== GERAR FILTROS DE LOCALIZAÇÃO =====================
+function gerarFiltrosDeLocalizacao() {
+  const filtroEstado = document.getElementById("filtroEstado");
+  const filtroCidade = document.getElementById("filtroCidade");
+
+  // limpar selects
+  filtroEstado.innerHTML = '<option value="">Todos os estados</option>';
+  filtroCidade.innerHTML = '<option value="">Todas as cidades</option>';
+
+  // gerar lista única de estados dos produtos
+  const estadosUnicos = [...new Set(produtos.map((p) => p.estado).filter(Boolean))].sort();
+
+  // preencher estados
+  estadosUnicos.forEach((estado) => {
+    const opt = document.createElement("option");
+    opt.value = estado;
+    opt.textContent = estado;
+    filtroEstado.appendChild(opt);
+  });
+
+  // quando mudar estado → gerar cidades
+  filtroEstado.addEventListener("change", () => {
+    const estadoSel = filtroEstado.value;
+    filtroCidade.innerHTML = '<option value="">Todas as cidades</option>';
+
+    if (estadoSel) {
+      const cidades = [
+        ...new Set(
+          produtos
+            .filter((p) => p.estado === estadoSel)
+            .map((p) => p.cidade)
+            .filter(Boolean)
+        ),
+      ].sort();
+
+      cidades.forEach((cidade) => {
+        const opt = document.createElement("option");
+        opt.value = cidade;
+        opt.textContent = cidade;
+        filtroCidade.appendChild(opt);
+      });
+    }
+
+    aplicarFiltros();
+  });
+}
+
+// ===================== TÍTULO DINÂMICO =====================
+function atualizarTituloLocalizacao(estado, cidade) {
+  const barraTitulo = document.querySelector(
+    ".bg-gradient-to-r.from-emerald-600.to-emerald-400"
+  );
+
+  if (!barraTitulo) return;
+
+  if (estado && cidade) {
+    barraTitulo.textContent = `📍 Anúncios em ${estado} – ${cidade}`;
+  } else if (estado) {
+    barraTitulo.textContent = `📍 Anúncios em ${estado}`;
+  } else {
+    barraTitulo.textContent = "📍 Anúncios da sua cidade";
+  }
+}
+
+// ===================== EVENTOS =====================
 document.getElementById("buscaInput").addEventListener("input", aplicarFiltros);
 document.getElementById("filtroMarca").addEventListener("change", aplicarFiltros);
 document.getElementById("filtroPreco").addEventListener("change", aplicarFiltros);
+document.getElementById("filtroCidade").addEventListener("change", aplicarFiltros);
+
+// ===================== INICIALIZAÇÃO =====================
+window.addEventListener("DOMContentLoaded", () => {
+  gerarFiltrosDeLocalizacao();
+  atualizarTituloLocalizacao(); // inicia com título padrão
+});
+
 
 // ===================== MODAL =====================
 const modal = document.getElementById("productModal");

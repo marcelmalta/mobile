@@ -120,40 +120,98 @@
 </style>
 
 
-<!-- SEÇÃO OFERTAS DO DIA -->
-  <section class="bg-gradient-to-r from-red-600 to-orange-500 text-white py-2 px-3 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+<!-- SEÇÃO OFERTAS DO MERCADO LIVRE -->
+<section class="bg-[#fff159] text-[#3483fa] py-2 px-3 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left border-b border-yellow-400 shadow">
+  <div class="flex items-center gap-2">
+    <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" alt="Mercado Livre" class="h-5 sm:h-6">
     <div>
-      <h2 class="text-sm sm:text-base font-bold">🔥 OFERTAS DO DIA</h2>
-      <p class="text-[12px] sm:text-sm">Aproveite antes que o tempo acabe!</p>
+      <h2 class="text-sm sm:text-base font-extrabold tracking-tight">🔥 Ofertas do Mercado Livre</h2>
+      <p class="text-[12px] sm:text-sm text-[#2d3277] font-medium">Aproveite descontos exclusivos agora!</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- BANNER AUTOMÁTICO -->
-  <section class="bg-white py-2 px-2 overflow-x-auto flex gap-3 scrollbar-thin scrollbar-thumb-gray-300">
-    <div id="bannerOfertas" class="flex gap-2">
-      <!-- Cards do banner -->
+<!-- BANNER AUTOMÁTICO -->
+<section class="bg-white py-2 px-2 overflow-x-auto flex gap-3 scrollbar-thin scrollbar-thumb-gray-300">
+  <div id="bannerOfertas" class="flex gap-2">
+    <!-- Cards do banner Mercado Livre -->
+  </div>
+</section>
+
+<!-- SEÇÃO FILTROS E ANÚNCIOS DA SUA CIDADE -->
+<section class="bg-white shadow-md border-b border-gray-200 sticky top-[64px] z-20">
+  <!-- Faixa de título -->
+  <div class="bg-gradient-to-r from-emerald-600 to-emerald-400 text-white text-center font-semibold text-sm sm:text-base py-1.5 tracking-wide shadow-inner">
+    📍 Anúncios da sua cidade
+  </div>
+
+  <!-- Filtros -->
+  <div class="p-3 flex flex-col sm:flex-row flex-wrap gap-3 items-center justify-center">
+    
+    <!-- Filtro por Estado -->
+    <div class="flex flex-col items-start">
+      <label for="filtroEstado" class="text-[12px] font-semibold text-gray-700 mb-1 ml-1">Estado</label>
+      <select id="filtroEstado"
+        class="border-2 border-emerald-500 rounded-lg px-3 py-2.5 w-[180px] sm:w-[200px] text-[14px] font-semibold text-gray-800 bg-emerald-50 hover:bg-emerald-100 focus:ring-2 focus:ring-emerald-400 focus:border-emerald-600 transition">
+        <option value="">Todos os estados</option>
+        <option value="AL">Alagoas (AL)</option>
+        <option value="BA">Bahia (BA)</option>
+        <option value="CE">Ceará (CE)</option>
+        <option value="DF">Distrito Federal (DF)</option>
+        <option value="GO">Goiás (GO)</option>
+        <option value="MG">Minas Gerais (MG)</option>
+        <option value="PE">Pernambuco (PE)</option>
+        <option value="PB">Paraíba (PB)</option>
+        <option value="RJ">Rio de Janeiro (RJ)</option>
+        <option value="RN">Rio Grande do Norte (RN)</option>
+        <option value="SP">São Paulo (SP)</option>
+        <option value="RS">Rio Grande do Sul (RS)</option>
+        <option value="SC">Santa Catarina (SC)</option>
+        <option value="PR">Paraná (PR)</option>
+      </select>
     </div>
-  </section>
 
-  <!-- FILTROS MAIS COMPACTOS -->
-  <section class="bg-white shadow-sm p-2 flex flex-col sm:flex-row gap-2 items-center justify-center sticky top-[64px] z-20">
-    <select id="filtroMarca" class="border border-gray-300 rounded-md p-1.5 w-full sm:w-1/4 text-[13px]">
-      <option value="">Todas as marcas</option>
-      <option value="Apple">Apple</option>
-      <option value="Samsung">Samsung</option>
-      <option value="Xiaomi">Xiaomi</option>
-      <option value="Motorola">Motorola</option>
-      <option value="Realme">Realme</option>
-      <option value="POCO">POCO</option>
-    </select>
+    <!-- Subfiltro de Cidade -->
+    <div class="flex flex-col items-start">
+      <label for="filtroCidade" class="text-[12px] font-semibold text-gray-700 mb-1 ml-1">Cidade</label>
+      <select id="filtroCidade"
+        class="border border-gray-300 rounded-lg px-3 py-2.5 w-[180px] sm:w-[200px] text-[13px] bg-gray-50 hover:bg-gray-100 focus:ring-2 focus:ring-emerald-400 focus:border-emerald-500 transition">
+        <option value="">Todas as cidades</option>
+        <!-- Cidades serão carregadas dinamicamente via JS -->
+      </select>
+    </div>
 
-    <select id="filtroPreco" class="border border-gray-300 rounded-md p-1.5 w-full sm:w-1/4 text-[13px]">
-      <option value="">Todos os preços</option>
-      <option value="1">Até R$ 2000</option>
-      <option value="2">R$ 2000 – R$ 4000</option>
-      <option value="3">Acima de R$ 4000</option>
-    </select>
-  </section>
+    <!-- Filtro por Marca -->
+    <div class="flex flex-col items-start">
+      <label for="filtroMarca" class="text-[12px] font-semibold text-gray-700 mb-1 ml-1">Marca</label>
+      <select id="filtroMarca"
+        class="border border-gray-300 rounded-lg px-3 py-2.5 w-[160px] sm:w-[180px] text-[13px] bg-gray-50 hover:bg-gray-100 focus:ring-2 focus:ring-emerald-400 focus:border-emerald-500 transition">
+        <option value="">Todas as marcas</option>
+        <option value="Apple">Apple</option>
+        <option value="Samsung">Samsung</option>
+        <option value="Xiaomi">Xiaomi</option>
+        <option value="Motorola">Motorola</option>
+        <option value="Realme">Realme</option>
+        <option value="POCO">POCO</option>
+      </select>
+    </div>
+
+    <!-- Filtro por Preço -->
+    <div class="flex flex-col items-start">
+      <label for="filtroPreco" class="text-[12px] font-semibold text-gray-700 mb-1 ml-1">Faixa de Preço</label>
+      <select id="filtroPreco"
+        class="border border-gray-300 rounded-lg px-3 py-2.5 w-[160px] sm:w-[180px] text-[13px] bg-gray-50 hover:bg-gray-100 focus:ring-2 focus:ring-emerald-400 focus:border-emerald-500 transition">
+        <option value="">Todos os preços</option>
+        <option value="1">Até R$ 2000</option>
+        <option value="2">R$ 2000 – R$ 4000</option>
+        <option value="3">Acima de R$ 4000</option>
+      </select>
+    </div>
+
+  </div>
+</section>
+
+
 
   <!-- LISTA DE PRODUTOS -->
   <main class="p-2 space-y-4 max-w-6xl mx-auto">
