@@ -40,6 +40,7 @@
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
+ <!-- HEADER PROFISSIONAL -->
 <header class="sticky top-0 z-50 shadow-md">
   <!-- Faixa superior -->
   <div class="bg-gray-900 text-gray-200 text-[11px] flex justify-center gap-6 py-1 font-medium">
@@ -48,33 +49,44 @@
     <div class="flex items-center gap-1"><span>⏰</span><span>Ofertas Limitadas</span></div>
   </div>
 
-  <!-- Banner + ícones -->
-  <div class="bg-black flex items-center justify-between px-3 py-2 animate-fade-in">
-    <!-- Banner responsivo -->
-    <div class="flex-1 flex justify-center">
-      <img src="banner-sellulares-desktop.png" alt="Sellulares.com"
-           class="hidden sm:block w-full max-h-[150px] object-contain">
-      <img src="banner-sellulares-mobile.png" alt="Sellulares.com"
-           class="block sm:hidden w-full max-h-[180px] object-contain">
+  <!-- Banner + barra de busca e botão -->
+  <div class="bg-black px-3 py-2 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <!-- Logo responsivo -->
+    <div class="flex-1 flex justify-center sm:justify-start">
+      <img 
+        src="banner-sellulares-desktop.png"
+        alt="Sellulares.com"
+        class="hidden sm:block w-[80%] max-h-[110px] object-contain animate-fade-in"
+      >
+      <img 
+        src="banner-sellulares-mobile.png"
+        alt="Sellulares.com"
+        class="block sm:hidden w-full max-h-[130px] object-contain animate-fade-in"
+      >
     </div>
-    <!-- Ações -->
-    <div class="ml-3 flex items-center gap-3">
-      <button id="btnBusca" class="text-white text-xl hover:scale-110 transition" aria-label="Buscar">🔍</button>
-      <button class="text-white text-xl hover:scale-110 transition" aria-label="Favoritos">❤️</button>
-      <button class="text-white text-xl hover:scale-110 transition" aria-label="Carrinho">🛒</button>
-    </div>
-  </div>
 
-  <!-- BARRA DE BUSCA (compatível com applyFilters: id='q') -->
-  <div id="barraBusca" class="bg-white hidden border-t border-gray-200 p-2 flex items-center justify-center">
-    <div class="relative w-full sm:w-1/2">
-      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">🔍</span>
-      <input
-        type="text"
-        id="q"
-        placeholder="Buscar celular, marca ou modelo..."
-        class="w-full pl-9 pr-3 py-2 text-[14px] border border-gray-300 rounded-full shadow-sm focus:ring-2 focus:ring-emerald-500 outline-none transition-all duration-200"
-      />
+    <!-- Barra de busca -->
+    <div class="flex-1 flex justify-center sm:justify-center w-full sm:w-auto">
+      <div class="relative w-full sm:w-[320px] md:w-[360px]">
+        <input
+          type="text"
+          id="buscaInput"
+          placeholder="🔍 Buscar celular, marca ou modelo..."
+          class="w-full pl-4 pr-12 py-2.5 text-[14px] bg-neutral-900 text-white placeholder-gray-400 border border-gray-700 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+        />
+        <button id="btnBusca"
+          class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full px-3 py-1.5 text-sm font-semibold shadow">
+          Buscar
+        </button>
+      </div>
+    </div>
+
+    <!-- Botão Faça seu anúncio -->
+    <div class="flex-1 flex justify-center sm:justify-end">
+      <a href="novo-anuncio.html"
+         class="inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-sm rounded-full hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all">
+        📢 Faça seu anúncio
+      </a>
     </div>
   </div>
 
@@ -84,10 +96,29 @@
   </div>
 </header>
 
+<!-- CSS da animação -->
 <style>
-@keyframes fadeIn { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
-.animate-fade-in { animation: fadeIn 1.2s ease-in-out }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 1.2s ease-in-out;
+}
 </style>
+
+
+<!-- CSS da animação -->
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 1.2s ease-in-out;
+}
+</style>
+
 
 <!-- SEÇÃO OFERTAS DO DIA -->
   <section class="bg-gradient-to-r from-red-600 to-orange-500 text-white py-2 px-3 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
