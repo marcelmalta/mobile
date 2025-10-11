@@ -40,84 +40,68 @@
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
- <!-- HEADER PROFISSIONAL -->
+ <!-- HEADER OTIMIZADO PARA MOBILE -->
 <header class="sticky top-0 z-50 shadow-md">
   <!-- Faixa superior -->
-  <div class="bg-gray-900 text-gray-200 text-[11px] flex justify-center gap-6 py-1 font-medium">
+  <div class="bg-gray-900 text-gray-200 text-[10px] sm:text-[11px] flex justify-center gap-4 sm:gap-6 py-0.5 sm:py-1 font-medium">
     <div class="flex items-center gap-1"><span>🛡️</span><span>Site Seguro</span></div>
     <div class="flex items-center gap-1"><span>🚚</span><span>Entrega Garantida</span></div>
-    <div class="flex items-center gap-1"><span>⏰</span><span>Ofertas Limitadas</span></div>
   </div>
 
-  <!-- Banner + barra de busca e botão -->
-  <div class="bg-black px-3 py-2 flex flex-col sm:flex-row items-center justify-between gap-2">
-    <!-- Logo responsivo -->
-    <div class="flex-1 flex justify-center sm:justify-start">
+  <!-- Container principal -->
+  <div class="bg-black px-2 py-1 sm:py-2 flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-2">
+    <!-- Logo -->
+    <div class="flex justify-center sm:justify-start">
       <img 
         src="banner-sellulares-desktop.png"
         alt="Sellulares.com"
-        class="hidden sm:block w-[80%] max-h-[110px] object-contain animate-fade-in"
+        class="hidden sm:block w-[70%] max-h-[90px] object-contain animate-fade-in"
       >
       <img 
         src="banner-sellulares-mobile.png"
         alt="Sellulares.com"
-        class="block sm:hidden w-full max-h-[130px] object-contain animate-fade-in"
+        class="block sm:hidden w-[85%] max-h-[80px] object-contain animate-fade-in"
       >
     </div>
 
-    <!-- Barra de busca -->
-    <div class="flex-1 flex justify-center sm:justify-center w-full sm:w-auto">
-      <div class="relative w-full sm:w-[320px] md:w-[360px]">
+    <!-- Linha de busca + botão anúncio no mobile -->
+    <div class="flex w-full items-center justify-center gap-2 sm:w-auto sm:flex-row">
+      <div class="relative w-full sm:w-[280px] md:w-[340px]">
         <input
           type="text"
           id="buscaInput"
-          placeholder="🔍 Buscar celular, marca ou modelo..."
-          class="w-full pl-4 pr-12 py-2.5 text-[14px] bg-neutral-900 text-white placeholder-gray-400 border border-gray-700 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+          placeholder="🔍 Buscar..."
+          class="w-full pl-3 pr-10 py-1.5 text-[13px] bg-neutral-900 text-white placeholder-gray-400 border border-gray-700 rounded-full shadow-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all"
         />
         <button id="btnBusca"
-          class="absolute right-1.5 top-1/2 -translate-y-1/2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full px-3 py-1.5 text-sm font-semibold shadow">
-          Buscar
+          class="absolute right-1 top-1/2 -translate-y-1/2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full px-2 py-0.5 text-[12px] font-semibold shadow">
+          OK
         </button>
       </div>
-    </div>
 
-    <!-- Botão Faça seu anúncio -->
-    <div class="flex-1 flex justify-center sm:justify-end">
       <a href="novo-anuncio.html"
-         class="inline-flex items-center justify-center px-4 py-2.5 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-sm rounded-full hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all">
-        📢 Faça seu anúncio
+         class="hidden sm:inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-[13px] rounded-full hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all whitespace-nowrap">
+        📢 Anunciar
       </a>
     </div>
   </div>
 
-  <!-- Faixa animada -->
-  <div class="bg-gradient-to-r from-emerald-600 via-yellow-400 to-emerald-600 text-center text-white text-[13px] font-semibold py-1 animate-pulse">
-    🔥 Promoções relâmpago atualizadas a cada hora!
+  <!-- Faixa animada reduzida -->
+  <div class="bg-gradient-to-r from-emerald-600 via-yellow-400 to-emerald-600 text-center text-white text-[11px] sm:text-[13px] font-semibold py-0.5 sm:py-1 animate-pulse">
+    🔥 Ofertas atualizadas a cada hora!
   </div>
 </header>
 
-<!-- CSS da animação -->
 <style>
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-in {
-  animation: fadeIn 1.2s ease-in-out;
+  animation: fadeIn 1s ease-in-out;
 }
 </style>
 
-
-<!-- CSS da animação -->
-<style>
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fadeIn 1.2s ease-in-out;
-}
-</style>
 
 
 <!-- SEÇÃO OFERTAS DO MERCADO LIVRE -->
