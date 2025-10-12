@@ -214,12 +214,10 @@ function renderizarProdutosUsuarios(lista) {
     .forEach(p => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-lg shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden";
+        "bg-white rounded-lg shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[3px] relative snap-start group overflow-hidden";
 
-      // remove partes do nome que mencionem 'usado', 'nota', etc.
-      const nomeLimpo = p.nome
-        .replace(/-.*$/g, "")  // remove tudo após hífen
-        .trim();
+      // Limpa o nome (remove informações após o hífen)
+      const nomeLimpo = p.nome.replace(/-.*$/g, "").trim();
 
       const selo =
         p.condicao === "Novo"
@@ -227,16 +225,16 @@ function renderizarProdutosUsuarios(lista) {
           : "bg-yellow-400 text-black";
 
       card.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-14 overflow-hidden mb-1 relative">
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-0.5 relative">
           <img src="${p.imagem}" alt="${nomeLimpo}" 
-               class="max-h-14 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+               class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
           <div class="absolute top-0 left-0 ${selo} text-[7px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
         </div>
-        <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-8 leading-tight text-gray-800">
+        <h2 class="text-[8.5px] font-semibold text-center line-clamp-2 h-7 leading-tight text-gray-800 mt-[1px]">
           ${nomeLimpo}
         </h2>
-        <p class="text-green-700 font-extrabold text-[11px] mt-0.5">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[8px] font-bold text-gray-700">${p.cidade || ""}</span>
+        <p class="text-green-700 font-extrabold text-[10px] mt-[1px]">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[7.5px] font-bold text-gray-700 mt-[1px]">${p.cidade || ""}</span>
       `;
 
       card.addEventListener("click", () => abrirUserModal(p));
