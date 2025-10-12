@@ -189,13 +189,13 @@ function abrirUserModal(p) {
   modalHTML.addEventListener("click", (e) => e.target === modalHTML && modalHTML.remove());
 }
 
-// ===================== FILTROS / BUSCA =====================
+// ===================== FILTROS E BUSCA (MODAL UNIFICADO) =====================
 function aplicarFiltros() {
   const termo = document.getElementById("buscaInput")?.value.toLowerCase() || "";
-  const marca = document.getElementById("filtroMarca").value;
-  const faixa = document.getElementById("filtroPreco").value;
-  const estado = document.getElementById("filtroEstado").value;
-  const cidade = document.getElementById("filtroCidade").value;
+  const marca = document.getElementById("filtroMarca")?.value || "";
+  const faixa = document.getElementById("filtroPreco")?.value || "";
+  const estado = document.getElementById("filtroEstado")?.value || "";
+  const cidade = document.getElementById("filtroCidade")?.value || "";
 
   const filtrados = produtos.filter((p) => {
     const nomeOk = p.nome.toLowerCase().includes(termo);
@@ -211,50 +211,50 @@ function aplicarFiltros() {
 
   renderizarMercadoLivre(filtrados);
   renderizarProdutosUsuarios(filtrados);
+
+  // destaca botão se filtros ativos
+  const btn = document.getElementById("btnBuscaFlutuante");
+  if (termo || marca || faixa || estado || cidade)
+    btn.classList.add("from-yellow-400", "to-yellow-500", "text-black");
+  else btn.classList.remove("from-yellow-400", "to-yellow-500", "text-black");
 }
 
-// ===================== BUSCA FLUTUANTE =====================
+// ===================== MODAL DE BUSCA/FILTRO FLUTUANTE =====================
 const btnBuscaFlutuante = document.getElementById("btnBuscaFlutuante");
 const modalBusca = document.getElementById("modalBusca");
 const fecharBusca = document.getElementById("fecharBusca");
-const inputBusca = document.getElementById("buscaInput");
+const aplicar = document.getElementById("btnAplicarFiltros");
 
-if (btnBuscaFlutuante && modalBusca && inputBusca) {
-  btnBuscaFlutuante.addEventListener("click", () => {
-    modalBusca.classList.remove("hidden");
-    setTimeout(() => {
-      modalBusca.classList.add("flex", "opacity-100");
-      modalBusca.classList.remove("opacity-0");
-      const box = modalBusca.querySelector("div");
-      box.classList.remove("scale-95");
-      box.classList.add("scale-100");
-      inputBusca.focus();
-    }, 10);
-  });
-
-  const fechar = () => {
+function abrirModalBusca() {
+  modalBusca.classList.remove("hidden");
+  setTimeout(() => {
+    modalBusca.classList.add("flex", "opacity-100");
+    modalBusca.classList.remove("opacity-0");
     const box = modalBusca.querySelector("div");
-    box.classList.remove("scale-100");
-    box.classList.add("scale-95");
-    modalBusca.classList.remove("opacity-100");
-    modalBusca.classList.add("opacity-0");
-    setTimeout(() => {
-      modalBusca.classList.add("hidden");
-      modalBusca.classList.remove("flex");
-    }, 200);
-  };
-
-  fecharBusca.addEventListener("click", fechar);
-  modalBusca.addEventListener("click", (e) => {
-    if (e.target === modalBusca) fechar();
-  });
-
-  inputBusca.addEventListener("input", aplicarFiltros);
+    box.classList.remove("scale-95");
+    box.classList.add("scale-100");
+  }, 10);
 }
 
-// ===================== INIT =====================
+function fecharModalBusca() {
+  const box = modalBusca.querySelector("div");
+  box.classList.remove("scale-100");
+  box.classList.add("scale-95");
+  modalBusca.classList.remove("opacity-100");
+  modalBusca.classList.add("opacity-0");
+  setTimeout(() => {
+    modalBusca.classList.add("hidden");
+    modalBusca.classList.remove("flex");
+  }, 200);
+}
+
+btnBuscaFlutuante.addEventListener("click", abrirModalBusca);
+fecharBusca.addEventListener("click", fecharModalBusca);
+modalBusca.addEventListener("click", (e) => { if (e.target === modalBusca) fecharModalBusca(); });
+aplicar.addEventListener("click", () => { aplicarFiltros(); fecharModalBusca(); });
+
+// ===================== INICIALIZAÇÃO =====================
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
   renderizarProdutosUsuarios(produtos);
-  animarBanner();
 });
