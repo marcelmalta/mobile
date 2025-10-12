@@ -701,6 +701,25 @@ function abrirUserModal(p) {
   overlay.addEventListener("click", (e) => e.target === overlay && overlay.remove());
 }
 
+// ===================== COMPARTILHAR OFERTA =====================
+document.addEventListener("click", (e) => {
+  if (e.target.id === "btnCompartilhar") {
+    const link = document.getElementById("modalLink").href;
+    const titulo = document.getElementById("modalTitle").textContent;
+
+    if (navigator.share) {
+      navigator.share({
+        title: "Oferta no Mercado Livre",
+        text: `Confira este produto: ${titulo}`,
+        url: link,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(link);
+      alert("🔗 Link copiado para a área de transferência!");
+    }
+  }
+});
+
 // ===================== FILTROS FUNCIONAIS (fix) =====================
 function aplicarFiltros() {
   const busca = (document.getElementById("buscaInput")?.value || "").toLowerCase();
