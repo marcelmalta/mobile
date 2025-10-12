@@ -34,8 +34,214 @@ const produtos = [
     tipo: "mercadolivre",
     estoque: 44,
   },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+    estoque: 52,
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.10,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+    estoque: 48,
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+    estoque: 44,
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+    estoque: 52,
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.10,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+    estoque: 48,
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+    estoque: 44,
+  },{
+    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+    estoque: 52,
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.10,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+    estoque: 48,
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+    estoque: 44,
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+    estoque: 52,
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.10,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+    estoque: 48,
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+    estoque: 44,
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+    estoque: 52,
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.10,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+    estoque: 48,
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+    estoque: 44,
+  }
 
   // -------- USUÁRIOS --------
+  ,{
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    notaFiscal: "Sim",
+    entrega: "Retirada e envio por correio",
+    pagamento: ["Pix", "Dinheiro"],
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
+    contato: "5582981234567",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    notaFiscal: "Sim",
+    entrega: "Retirada em mãos ou envio",
+    pagamento: ["Pix", "Cartão", "Dinheiro"],
+    descricao: "Novo, lacrado, comprado na Samsung Store. Garantia de 12 meses.",
+    contato: "5581998765432",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/67/673559570274079.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    notaFiscal: "Sim",
+    entrega: "Retirada e envio por correio",
+    pagamento: ["Pix", "Dinheiro"],
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
+    contato: "5582981234567",
+  },
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
@@ -67,7 +273,7 @@ const produtos = [
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://img.olx.com.br/images/53/532591699253297.webp",
+    imagem: "https://img.olx.com.br/images/67/673559570274079.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -77,25 +283,11 @@ const produtos = [
     pagamento: ["Pix", "Dinheiro"],
     descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
     contato: "5582981234567",
-  },
-  {
-    nome: "Samsung A54 5G 256GB - novo lacrado",
-    precoAtual: 2100,
-    imagem: "https://img.olx.com.br/images/90/905528093143612.webp",
-    tipo: "usuario",
-    estado: "PE",
-    cidade: "Recife",
-    condicao: "Novo",
-    notaFiscal: "Sim",
-    entrega: "Retirada em mãos ou envio",
-    pagamento: ["Pix", "Cartão", "Dinheiro"],
-    descricao: "Novo, lacrado, comprado na Samsung Store. Garantia de 12 meses.",
-    contato: "5581998765432",
   },
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://img.olx.com.br/images/91/919584936361489.webp",
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -109,35 +301,7 @@ const produtos = [
   {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://img.olx.com.br/images/38/388564338573980.webp",
-    tipo: "usuario",
-    estado: "PE",
-    cidade: "Recife",
-    condicao: "Novo",
-    notaFiscal: "Sim",
-    entrega: "Retirada em mãos ou envio",
-    pagamento: ["Pix", "Cartão", "Dinheiro"],
-    descricao: "Novo, lacrado, comprado na Samsung Store. Garantia de 12 meses.",
-    contato: "5581998765432",
-  },
-  {
-    nome: "iPhone 13 128GB - usado, com nota fiscal",
-    precoAtual: 2950,
-    imagem: "https://img.olx.com.br/images/74/746587812535897.webp",
-    tipo: "usuario",
-    estado: "AL",
-    cidade: "Maceió",
-    condicao: "Usado",
-    notaFiscal: "Sim",
-    entrega: "Retirada e envio por correio",
-    pagamento: ["Pix", "Dinheiro"],
-    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
-    contato: "5582981234567",
-  },
-  {
-    nome: "Samsung A54 5G 256GB - novo lacrado",
-    precoAtual: 2100,
-    imagem: "https://img.olx.com.br/images/50/506580574199923.webp",
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
@@ -163,9 +327,23 @@ const produtos = [
     contato: "5582981234567",
   },
   {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    notaFiscal: "Sim",
+    entrega: "Retirada e envio por correio",
+    pagamento: ["Pix", "Dinheiro"],
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
+    contato: "5582981234567",
+  },
+  {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://img.olx.com.br/images/38/387599579785456.webp",
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
@@ -176,6 +354,20 @@ const produtos = [
     descricao: "Novo, lacrado, comprado na Samsung Store. Garantia de 12 meses.",
     contato: "5581998765432",
   },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/67/673559570274079.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    notaFiscal: "Sim",
+    entrega: "Retirada e envio por correio",
+    pagamento: ["Pix", "Dinheiro"],
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
+    contato: "5582981234567",
+  }
 ];
 
 // ===================== ELEMENTOS =====================
@@ -185,40 +377,48 @@ const banner = document.getElementById("bannerOfertas");
 // ===================== RENDER MERCADO LIVRE =====================
 function renderizarMercadoLivre(lista) {
   banner.innerHTML = "";
-  lista.filter(p => p.tipo === "mercadolivre").forEach(p => {
-    const destaque = document.createElement("div");
-    destaque.className =
-      "bg-white rounded-lg shadow flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform hover:scale-105";
-    destaque.innerHTML = `
-      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-        <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
-        <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">
-          Frete Grátis
+  lista
+    .filter((p) => p.tipo === "mercadolivre")
+    .forEach((p, i) => {
+      const destaque = document.createElement("div");
+      destaque.className =
+        "bg-white rounded-lg border border-yellow-300 shadow-lg hover:shadow-yellow-400 flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start cursor-pointer transition-transform hover:scale-105";
+
+      destaque.innerHTML = `
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
+          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">
+            Frete Grátis
+          </div>
         </div>
-      </div>
-      <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-      <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
-      <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-      <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
-    `;
-    destaque.addEventListener("click", () => abrirModal(p));
-    banner.appendChild(destaque);
-  });
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
+        <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+        <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+      `;
+
+      // brilho alternado
+      destaque.style.boxShadow =
+        i % 2 === 0
+          ? "0 0 12px rgba(250,204,21,0.6)" // amarelo
+          : "0 0 12px rgba(59,130,246,0.6)"; // azul
+
+      destaque.addEventListener("click", () => abrirModal(p));
+      banner.appendChild(destaque);
+    });
 }
 
 // ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
   container.innerHTML = "";
   lista
-    .filter(p => p.tipo === "usuario")
-    .forEach(p => {
+    .filter((p) => p.tipo === "usuario")
+    .forEach((p) => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-md shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start group overflow-hidden";
+        "bg-white rounded-md shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start overflow-hidden";
 
-      // remove partes desnecessárias do nome
       const nomeLimpo = p.nome.replace(/-.*$/g, "").trim();
-
       const selo =
         p.condicao === "Novo"
           ? "bg-green-500 text-white"
@@ -226,8 +426,7 @@ function renderizarProdutosUsuarios(lista) {
 
       card.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-[1px] relative">
-          <img src="${p.imagem}" alt="${nomeLimpo}" 
-               class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
+          <img src="${p.imagem}" alt="${nomeLimpo}" class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
           <div class="absolute top-0 left-0 ${selo} text-[6.5px] px-[2px] py-[1px] rounded-br-md">${p.condicao}</div>
         </div>
         <h2 class="text-[8.5px] font-semibold text-center leading-tight text-gray-800 h-[25px]">
@@ -236,7 +435,6 @@ function renderizarProdutosUsuarios(lista) {
         <p class="text-green-700 font-extrabold text-[10px] mt-0">R$ ${p.precoAtual.toFixed(2)}</p>
         <span class="text-[9px] font-bold text-emerald-700 mt-0.5">${p.cidade || ""}</span>
       `;
-
       card.addEventListener("click", () => abrirUserModal(p));
       container.appendChild(card);
     });
@@ -315,72 +513,26 @@ function abrirUserModal(p) {
   modalHTML.addEventListener("click", (e) => e.target === modalHTML && modalHTML.remove());
 }
 
-// ===================== FILTROS E BUSCA (MODAL UNIFICADO) =====================
-function aplicarFiltros() {
-  const termo = document.getElementById("buscaInput")?.value.toLowerCase() || "";
-  const marca = document.getElementById("filtroMarca")?.value || "";
-  const faixa = document.getElementById("filtroPreco")?.value || "";
-  const estado = document.getElementById("filtroEstado")?.value || "";
-  const cidade = document.getElementById("filtroCidade")?.value || "";
+// ===================== ANIMAÇÃO DO CARROSSEL MERCADO LIVRE =====================
+function animarBanner() {
+  const lista = document.getElementById("bannerOfertas");
+  if (!lista) return;
 
-  const filtrados = produtos.filter((p) => {
-    const nomeOk = p.nome.toLowerCase().includes(termo);
-    const marcaOk = marca ? p.nome.toLowerCase().includes(marca.toLowerCase()) : true;
-    let precoOk = true;
-    if (faixa === "1") precoOk = p.precoAtual <= 2000;
-    else if (faixa === "2") precoOk = p.precoAtual > 2000 && p.precoAtual <= 4000;
-    else if (faixa === "3") precoOk = p.precoAtual > 4000;
-    const estadoOk = estado ? p.estado === estado : true;
-    const cidadeOk = cidade ? p.cidade === cidade : true;
-    return nomeOk && marcaOk && precoOk && estadoOk && cidadeOk;
-  });
+  let scrollPos = 0;
+  let direcao = 1;
 
-  renderizarMercadoLivre(filtrados);
-  renderizarProdutosUsuarios(filtrados);
+  setInterval(() => {
+    scrollPos += 0.8 * direcao;
+    lista.scrollLeft = scrollPos;
 
-  // destaca botão se filtros ativos
-  const btn = document.getElementById("btnBuscaFlutuante");
-  if (termo || marca || faixa || estado || cidade)
-    btn.classList.add("from-yellow-400", "to-yellow-500", "text-black");
-  else btn.classList.remove("from-yellow-400", "to-yellow-500", "text-black");
+    if (scrollPos >= lista.scrollWidth - lista.clientWidth) direcao = -1;
+    else if (scrollPos <= 0) direcao = 1;
+  }, 40);
 }
-
-// ===================== MODAL DE BUSCA/FILTRO FLUTUANTE =====================
-const btnBuscaFlutuante = document.getElementById("btnBuscaFlutuante");
-const modalBusca = document.getElementById("modalBusca");
-const fecharBusca = document.getElementById("fecharBusca");
-const aplicar = document.getElementById("btnAplicarFiltros");
-
-function abrirModalBusca() {
-  modalBusca.classList.remove("hidden");
-  setTimeout(() => {
-    modalBusca.classList.add("flex", "opacity-100");
-    modalBusca.classList.remove("opacity-0");
-    const box = modalBusca.querySelector("div");
-    box.classList.remove("scale-95");
-    box.classList.add("scale-100");
-  }, 10);
-}
-
-function fecharModalBusca() {
-  const box = modalBusca.querySelector("div");
-  box.classList.remove("scale-100");
-  box.classList.add("scale-95");
-  modalBusca.classList.remove("opacity-100");
-  modalBusca.classList.add("opacity-0");
-  setTimeout(() => {
-    modalBusca.classList.add("hidden");
-    modalBusca.classList.remove("flex");
-  }, 200);
-}
-
-btnBuscaFlutuante.addEventListener("click", abrirModalBusca);
-fecharBusca.addEventListener("click", fecharModalBusca);
-modalBusca.addEventListener("click", (e) => { if (e.target === modalBusca) fecharModalBusca(); });
-aplicar.addEventListener("click", () => { aplicarFiltros(); fecharModalBusca(); });
 
 // ===================== INICIALIZAÇÃO =====================
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
   renderizarProdutosUsuarios(produtos);
+  animarBanner();
 });
