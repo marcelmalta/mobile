@@ -68,7 +68,7 @@
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
-  <!-- HEADER OTIMIZADO SEM BARRA DE BUSCA -->
+  <!-- HEADER SUPER OTIMIZADO -->
 <header class="sticky top-0 z-50 shadow-md">
   <!-- Faixa superior -->
   <div class="bg-gray-900 text-gray-200 text-[10px] flex justify-center gap-4 py-0.5 font-medium">
@@ -96,75 +96,78 @@
       📢 Anunciar
     </a>
   </div>
-
-  <!-- Faixa animada -->
-  <div class="bg-gradient-to-r from-emerald-600 via-yellow-400 to-emerald-600 text-center text-white text-[11px] sm:text-[13px] font-semibold py-0.5 animate-pulse">
-    🔥 Ofertas atualizadas a cada hora!
-  </div>
 </header>
 
-  <!-- SEÇÃO OFERTAS MERCADO LIVRE -->
-  <section class="bg-[#fff159] text-[#3483fa] py-1 px-3 flex items-center justify-center sm:justify-between border-b border-yellow-400 shadow">
-    <div class="flex items-center gap-2">
-      <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-5 sm:h-6">
-      <h2 class="text-sm sm:text-base font-extrabold">🔥 Ofertas do Mercado Livre</h2>
-    </div>
-  </section>
+<!-- SEÇÃO OFERTAS DO MERCADO LIVRE (agora com efeito pulsante e gradiente) -->
+<section class="bg-gradient-to-r from-[#fff159] via-[#ffe680] to-[#fff159] text-[#3483fa] py-1.5 px-3 flex items-center justify-center sm:justify-between border-b border-yellow-400 shadow animate-pulse">
+  <div class="flex items-center gap-2">
+    <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
+         class="h-5 sm:h-6">
+    <h2 class="text-sm sm:text-base font-extrabold tracking-tight">
+      🔥 Ofertas do Mercado Livre
+    </h2>
+  </div>
+</section>
 
   <!-- BANNER AUTOMÁTICO -->
   <section class="bg-white py-2 px-2 overflow-x-auto flex gap-3 scrollbar-thin scrollbar-thumb-gray-300">
     <div id="bannerOfertas" class="flex gap-2"></div>
   </section>
 
-  <!-- FILTROS RECOLHÍVEIS -->
-<section class="bg-white shadow-md border-b border-gray-200 sticky top-[58px] sm:top-[68px] z-30">
-  <!-- Título fixo -->
-  <div class="titulo-localizacao bg-gradient-to-r from-emerald-600 to-emerald-400 text-white text-center font-semibold text-[12px] sm:text-[14px] py-1 tracking-wide shadow-inner">
+  <!-- SEÇÃO FILTROS COMPACTA EM 2 LINHAS -->
+<section class="bg-white shadow-md border-b border-gray-200 sticky top-[60px] sm:top-[70px] z-30">
+  <div class="bg-gradient-to-r from-emerald-600 to-emerald-400 text-white text-center font-semibold text-[12px] sm:text-[14px] py-1 shadow-inner">
     📍 Anúncios da sua cidade
   </div>
 
-  <!-- Botão de abrir filtros -->
-  <div class="flex justify-center py-1.5 bg-gray-50 border-t border-gray-100">
-    <button id="btnToggleFiltros" class="bg-emerald-600 text-white font-semibold text-[13px] px-4 py-1.5 rounded-full shadow hover:bg-emerald-500 transition flex items-center gap-2">
-      ⚙️ Filtros
-    </button>
-  </div>
+  <div class="p-2 grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 text-[12px] sm:text-[13px]">
+    <select id="filtroEstado"
+      class="border border-emerald-500 rounded-md px-2 py-1.5 font-medium bg-emerald-50 hover:bg-emerald-100 focus:ring-1 focus:ring-emerald-400 w-full sm:w-[180px]">
+      <option value="">Estado</option>
+    </select>
 
-  <!-- Área recolhível dos filtros -->
-  <div id="areaFiltros" class="hidden bg-white py-2 border-t border-gray-100">
-    <div class="p-2 flex flex-wrap justify-center gap-2 sm:gap-3 text-[12px] sm:text-[13px]">
-      
-      <!-- Filtro Estado -->
-      <select id="filtroEstado" class="border border-emerald-500 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-emerald-50 hover:bg-emerald-100 focus:ring-1 focus:ring-emerald-400">
-        <option value="">Estado</option>
-      </select>
+    <select id="filtroCidade"
+      class="border border-gray-300 rounded-md px-2 py-1.5 font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400 w-full sm:w-[180px]">
+      <option value="">Cidade</option>
+    </select>
 
-      <!-- Filtro Cidade -->
-      <select id="filtroCidade" class="border border-gray-300 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400">
-        <option value="">Cidade</option>
-      </select>
+    <select id="filtroMarca"
+      class="border border-gray-300 rounded-md px-2 py-1.5 font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400 w-full sm:w-[180px]">
+      <option value="">Marca</option>
+      <option>Apple</option>
+      <option>Samsung</option>
+      <option>Xiaomi</option>
+      <option>Motorola</option>
+      <option>Realme</option>
+      <option>POCO</option>
+    </select>
 
-      <!-- Filtro Marca -->
-      <select id="filtroMarca" class="border border-gray-300 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400">
-        <option value="">Marca</option>
-        <option>Apple</option>
-        <option>Samsung</option>
-        <option>Xiaomi</option>
-        <option>Motorola</option>
-        <option>Realme</option>
-        <option>POCO</option>
-      </select>
-
-      <!-- Filtro Preço -->
-      <select id="filtroPreco" class="border border-gray-300 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400">
-        <option value="">Preço</option>
-        <option value="1">Até R$ 2000</option>
-        <option value="2">R$ 2000 – R$ 4000</option>
-        <option value="3">Acima de R$ 4000</option>
-      </select>
-    </div>
+    <select id="filtroPreco"
+      class="border border-gray-300 rounded-md px-2 py-1.5 font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400 w-full sm:w-[180px]">
+      <option value="">Preço</option>
+      <option value="1">Até R$ 2000</option>
+      <option value="2">R$ 2000 – R$ 4000</option>
+      <option value="3">Acima de R$ 4000</option>
+    </select>
   </div>
 </section>
+
+<!-- BOTÃO FLUTUANTE MOBILE - BUSCA -->
+<button id="btnBuscaFlutuante"
+  class="fixed bottom-20 left-4 bg-emerald-600 text-white rounded-full p-3 shadow-lg hover:bg-emerald-500 transition flex items-center justify-center z-50">
+  🔍
+</button>
+
+<!-- MODAL DE BUSCA COM EFEITO BLUR E ANIMAÇÃO -->
+<div id="modalBusca" class="hidden fixed inset-0 backdrop-blur-sm bg-black/40 z-50 items-center justify-center opacity-0 transition-opacity duration-300">
+  <div class="bg-white rounded-full shadow-md flex items-center px-3 py-2 w-[90%] max-w-sm transform scale-95 transition-all duration-300">
+    <span class="text-gray-400 mr-2 text-lg">🔍</span>
+    <input type="text" id="buscaInput" placeholder="Buscar celular, marca ou modelo..."
+      class="flex-1 outline-none text-sm placeholder-gray-400">
+    <button id="fecharBusca" class="text-gray-500 text-lg ml-2 hover:text-red-500 transition">✖</button>
+  </div>
+</div>
+
 
 <!-- SCRIPT PARA ABRIR/FECHAR FILTROS -->
 <script>

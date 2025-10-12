@@ -34,97 +34,8 @@ const produtos = [
     tipo: "mercadolivre",
     estoque: 44,
   },
-  {
-    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
-    precoAntigo: 7799,
-    precoAtual: 4404.33,
-    desconto: "43% OFF",
-    parcelas: "21x R$ 233,03 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
-    link: "https://mercadolivre.com/sec/1YrAHb8",
-    tipo: "mercadolivre",
-    estoque: 52,
-  },
-  {
-    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
-    precoAntigo: 1099,
-    precoAtual: 629.10,
-    desconto: "42% OFF",
-    parcelas: "18x R$ 38,83 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
-    link: "https://mercadolivre.com/sec/12qtdJ1",
-    tipo: "mercadolivre",
-    estoque: 48,
-  },
-  {
-    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
-    precoAntigo: 3097,
-    precoAtual: 2395,
-    desconto: "23% OFF",
-    parcelas: "21x R$ 114,05 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-    link: "https://mercadolivre.com/sec/1WZnS5g",
-    tipo: "mercadolivre",
-    estoque: 44,
-  },
 
   // -------- USUÁRIOS --------
-  {
-    nome: "iPhone 13 128GB - usado, com nota fiscal",
-    precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-    tipo: "usuario",
-    estado: "AL",
-    cidade: "Maceió",
-    condicao: "Usado",
-    notaFiscal: "Sim",
-    entrega: "Retirada e envio por correio",
-    pagamento: ["Pix", "Dinheiro"],
-    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
-    contato: "5582981234567",
-  },
-  {
-    nome: "Samsung A54 5G 256GB - novo lacrado",
-    precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-    tipo: "usuario",
-    estado: "PE",
-    cidade: "Recife",
-    condicao: "Novo",
-    notaFiscal: "Sim",
-    entrega: "Retirada em mãos ou envio",
-    pagamento: ["Pix", "Cartão", "Dinheiro"],
-    descricao: "Novo, lacrado, comprado na Samsung Store. Garantia de 12 meses.",
-    contato: "5581998765432",
-  },
-  {
-    nome: "iPhone 13 128GB - usado, com nota fiscal",
-    precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-    tipo: "usuario",
-    estado: "AL",
-    cidade: "Maceió",
-    condicao: "Usado",
-    notaFiscal: "Sim",
-    entrega: "Retirada e envio por correio",
-    pagamento: ["Pix", "Dinheiro"],
-    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%. Acompanha nota e caixa original.",
-    contato: "5582981234567",
-  },
-  {
-    nome: "Samsung A54 5G 256GB - novo lacrado",
-    precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-    tipo: "usuario",
-    estado: "PE",
-    cidade: "Recife",
-    condicao: "Novo",
-    notaFiscal: "Sim",
-    entrega: "Retirada em mãos ou envio",
-    pagamento: ["Pix", "Cartão", "Dinheiro"],
-    descricao: "Novo, lacrado, comprado na Samsung Store. Garantia de 12 meses.",
-    contato: "5581998765432",
-  },
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
@@ -162,69 +73,47 @@ const banner = document.getElementById("bannerOfertas");
 // ===================== RENDER MERCADO LIVRE =====================
 function renderizarMercadoLivre(lista) {
   banner.innerHTML = "";
-
-  lista
-    .filter((p) => p.tipo === "mercadolivre")
-    .forEach((p) => {
-      const destaque = document.createElement("div");
-      destaque.className =
-        "bg-white rounded-lg shadow flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform hover:scale-105";
-
-      destaque.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" 
-               class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
-
-          <!-- selo frete grátis -->
-          <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">
-            Frete Grátis
-          </div>
+  lista.filter(p => p.tipo === "mercadolivre").forEach(p => {
+    const destaque = document.createElement("div");
+    destaque.className =
+      "bg-white rounded-lg shadow flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform hover:scale-105";
+    destaque.innerHTML = `
+      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
+        <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">
+          Frete Grátis
         </div>
-
-        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-        <p class="line-through text-black font-semibold text-[10px]">
-          R$ ${p.precoAntigo?.toFixed(2) || ""}
-        </p>
-        <p class="text-green-700 font-bold text-[12px]">
-          R$ ${p.precoAtual.toFixed(2)}
-        </p>
-        <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
-      `;
-
-      destaque.addEventListener("click", () => abrirModal(p));
-      banner.appendChild(destaque);
-    });
+      </div>
+      <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
+      <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+      <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+      <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+    `;
+    destaque.addEventListener("click", () => abrirModal(p));
+    banner.appendChild(destaque);
+  });
 }
 
 // ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
   container.innerHTML = "";
-
-  lista
-    .filter((p) => p.tipo === "usuario")
-    .forEach((p) => {
-      const card = document.createElement("div");
-      card.className =
-        "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-24 sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden";
-
-      const selo =
-        p.condicao === "Novo"
-          ? "bg-green-500 text-white"
-          : "bg-yellow-400 text-black";
-
-      card.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-16 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-16 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
-          <div class="absolute top-0 left-0 ${selo} text-[8px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
-        </div>
-        <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-        <p class="text-green-700 font-bold text-[11px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[8px] text-gray-500">${p.cidade || ""}</span>
-      `;
-
-      card.addEventListener("click", () => abrirUserModal(p));
-      container.appendChild(card);
-    });
+  lista.filter(p => p.tipo === "usuario").forEach(p => {
+    const card = document.createElement("div");
+    card.className =
+      "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-24 sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden";
+    const selo = p.condicao === "Novo" ? "bg-green-500 text-white" : "bg-yellow-400 text-black";
+    card.innerHTML = `
+      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-16 overflow-hidden mb-1 relative">
+        <img src="${p.imagem}" alt="${p.nome}" class="max-h-16 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+        <div class="absolute top-0 left-0 ${selo} text-[8px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
+      </div>
+      <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
+      <p class="text-green-700 font-bold text-[11px]">R$ ${p.precoAtual.toFixed(2)}</p>
+      <span class="text-[8px] text-gray-500">${p.cidade || ""}</span>
+    `;
+    card.addEventListener("click", () => abrirUserModal(p));
+    container.appendChild(card);
+  });
 }
 
 // ===================== MODAL MERCADO LIVRE =====================
@@ -265,7 +154,6 @@ function fecharModal() {
 
 // ===================== MODAL USUÁRIO =====================
 function abrirUserModal(p) {
-  // Cria o modal dinamicamente
   const modalHTML = document.createElement("div");
   modalHTML.className =
     "fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-3";
@@ -281,17 +169,14 @@ function abrirUserModal(p) {
           <span class="text-[12px] bg-emerald-100 px-2 py-1 rounded-md">${p.condicao}</span>
           <span class="text-[12px] bg-yellow-100 px-2 py-1 rounded-md">Nota fiscal: ${p.notaFiscal}</span>
         </div>
-
         <div class="w-full mt-3 text-sm text-gray-700 space-y-1">
           <p><strong>📦 Entrega:</strong> ${p.entrega}</p>
           <p><strong>💳 Pagamento:</strong> ${p.pagamento.join(", ")}</p>
           <p><strong>🕒 Online há:</strong> ${Math.floor(Math.random() * 4) + 1} horas</p>
         </div>
-
         <div class="mt-3 text-gray-600 text-[14px] bg-gray-50 border rounded-md p-3 w-full">
           <strong>📝 Descrição:</strong><br>${p.descricao}
         </div>
-
         <a href="https://wa.me/${p.contato}" target="_blank"
           class="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-full shadow-md flex items-center gap-2">
           💬 Falar com o vendedor no WhatsApp
@@ -299,19 +184,14 @@ function abrirUserModal(p) {
       </div>
     </div>
   `;
-
   document.body.appendChild(modalHTML);
-
-  // Fecha modal
   modalHTML.querySelector("button").addEventListener("click", () => modalHTML.remove());
-  modalHTML.addEventListener("click", (e) => {
-    if (e.target === modalHTML) modalHTML.remove();
-  });
+  modalHTML.addEventListener("click", (e) => e.target === modalHTML && modalHTML.remove());
 }
 
-// ===================== FILTROS, CONTADOR, ANIMAÇÃO =====================
+// ===================== FILTROS / BUSCA =====================
 function aplicarFiltros() {
-  const termo = document.getElementById("buscaInput").value.toLowerCase();
+  const termo = document.getElementById("buscaInput")?.value.toLowerCase() || "";
   const marca = document.getElementById("filtroMarca").value;
   const faixa = document.getElementById("filtroPreco").value;
   const estado = document.getElementById("filtroEstado").value;
@@ -333,34 +213,48 @@ function aplicarFiltros() {
   renderizarProdutosUsuarios(filtrados);
 }
 
-function iniciarContador() {
-  let tempo = 3 * 60 * 60;
-  const el = document.getElementById("contador");
-  if (!el) return;
-  setInterval(() => {
-    const h = String(Math.floor(tempo / 3600)).padStart(2, "0");
-    const m = String(Math.floor((tempo % 3600) / 60)).padStart(2, "0");
-    const s = String(tempo % 60).padStart(2, "0");
-    el.textContent = `${h}:${m}:${s}`;
-    tempo = tempo > 0 ? tempo - 1 : 3 * 60 * 60;
-  }, 1000);
-}
+// ===================== BUSCA FLUTUANTE =====================
+const btnBuscaFlutuante = document.getElementById("btnBuscaFlutuante");
+const modalBusca = document.getElementById("modalBusca");
+const fecharBusca = document.getElementById("fecharBusca");
+const inputBusca = document.getElementById("buscaInput");
 
-function animarBanner() {
-  const lista = document.getElementById("bannerOfertas");
-  if (!lista) return;
-  let scrollPos = 0;
-  setInterval(() => {
-    scrollPos += 1;
-    if (scrollPos >= lista.scrollWidth - lista.clientWidth) scrollPos = 0;
-    lista.scrollLeft = scrollPos;
-  }, 30);
+if (btnBuscaFlutuante && modalBusca && inputBusca) {
+  btnBuscaFlutuante.addEventListener("click", () => {
+    modalBusca.classList.remove("hidden");
+    setTimeout(() => {
+      modalBusca.classList.add("flex", "opacity-100");
+      modalBusca.classList.remove("opacity-0");
+      const box = modalBusca.querySelector("div");
+      box.classList.remove("scale-95");
+      box.classList.add("scale-100");
+      inputBusca.focus();
+    }, 10);
+  });
+
+  const fechar = () => {
+    const box = modalBusca.querySelector("div");
+    box.classList.remove("scale-100");
+    box.classList.add("scale-95");
+    modalBusca.classList.remove("opacity-100");
+    modalBusca.classList.add("opacity-0");
+    setTimeout(() => {
+      modalBusca.classList.add("hidden");
+      modalBusca.classList.remove("flex");
+    }, 200);
+  };
+
+  fecharBusca.addEventListener("click", fechar);
+  modalBusca.addEventListener("click", (e) => {
+    if (e.target === modalBusca) fechar();
+  });
+
+  inputBusca.addEventListener("input", aplicarFiltros);
 }
 
 // ===================== INIT =====================
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
   renderizarProdutosUsuarios(produtos);
-  iniciarContador();
   animarBanner();
 });
