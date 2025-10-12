@@ -38,6 +38,12 @@
     }
     .animate-anunciados { animation: anunciadosPulse 3s infinite ease-in-out; }
 
+    /* === Pulsar dos botões flutuantes === */
+    @keyframes dualPulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(250, 204, 21, 0.6); }
+      50% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.6); }
+    }
+
     /* === Botão flutuante "Anunciar" (amarelo) === */
     .botao-flutuante {
       position: fixed;
@@ -56,16 +62,14 @@
       font-size: 14px;
       z-index: 60;
       transition: all 0.3s ease;
-      animation: aparecer 0.5s ease-in-out;
+      animation: aparecer 0.5s ease-in-out, dualPulse 3s infinite ease-in-out;
     }
-    .botao-flutuante:hover { transform: scale(1.05); box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
+    .botao-flutuante:hover { transform: scale(1.05); box-shadow: 0 0 16px rgba(250, 204, 21, 0.8); }
 
     @keyframes aparecer {
       from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    @media (min-width: 641px) { .botao-flutuante { display: none; } }
 
     /* === Botão flutuante "Buscar / Filtrar" (preto, simétrico ao de anunciar) === */
     #btnBuscaFlutuante {
@@ -85,10 +89,25 @@
       font-size: 14px;
       z-index: 60;
       transition: all 0.3s ease;
-      animation: aparecer 0.5s ease-in-out;
+      animation: aparecer 0.5s ease-in-out, dualPulse 3s infinite ease-in-out;
     }
-    #btnBuscaFlutuante:hover { transform: scale(1.05); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3); }
-    @media (min-width: 641px) { #btnBuscaFlutuante { display: none; } }
+    #btnBuscaFlutuante:hover { transform: scale(1.05); box-shadow: 0 0 16px rgba(59, 130, 246, 0.8); }
+
+    /* --- Exibir ambos os botões também no desktop --- */
+    @media (min-width: 641px) {
+      #btnBuscaFlutuante {
+        display: flex !important;
+        bottom: 25px;
+        left: 25px;
+        transform: scale(0.9);
+      }
+      .botao-flutuante {
+        display: flex !important;
+        bottom: 25px;
+        right: 25px;
+        transform: scale(0.9);
+      }
+    }
   </style>
 </head>
 
