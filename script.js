@@ -39,7 +39,7 @@ const produtos = [
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -53,7 +53,7 @@ const produtos = [
   {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
@@ -67,7 +67,7 @@ const produtos = [
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/53/532591699253297.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -81,7 +81,7 @@ const produtos = [
   {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/90/905528093143612.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
@@ -95,7 +95,7 @@ const produtos = [
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/91/919584936361489.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -109,7 +109,7 @@ const produtos = [
   {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/38/388564338573980.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
@@ -123,7 +123,7 @@ const produtos = [
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/74/746587812535897.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -137,7 +137,7 @@ const produtos = [
   {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/50/506580574199923.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
@@ -151,7 +151,7 @@ const produtos = [
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
     precoAtual: 2950,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/67/673559570274079.webp",
     tipo: "usuario",
     estado: "AL",
     cidade: "Maceió",
@@ -165,7 +165,7 @@ const produtos = [
   {
     nome: "Samsung A54 5G 256GB - novo lacrado",
     precoAtual: 2100,
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    imagem: "https://img.olx.com.br/images/38/387599579785456.webp",
     tipo: "usuario",
     estado: "PE",
     cidade: "Recife",
