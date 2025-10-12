@@ -114,22 +114,35 @@
     <div id="bannerOfertas" class="flex gap-2"></div>
   </section>
 
-  <!-- FILTROS -->
-  <section class="bg-white shadow-md border-b border-gray-200 sticky top-[60px] sm:top-[70px] z-30">
-    <!-- Título fixo -->
-    <div class="titulo-localizacao bg-gradient-to-r from-emerald-600 to-emerald-400 text-white text-center font-semibold text-[12px] sm:text-[14px] py-1 fixed top-[50px] sm:top-[65px] left-0 w-full z-40 shadow">
-      📍 Anúncios da sua cidade
-    </div>
+  <!-- FILTROS RECOLHÍVEIS -->
+<section class="bg-white shadow-md border-b border-gray-200 sticky top-[58px] sm:top-[68px] z-30">
+  <!-- Título fixo -->
+  <div class="titulo-localizacao bg-gradient-to-r from-emerald-600 to-emerald-400 text-white text-center font-semibold text-[12px] sm:text-[14px] py-1 tracking-wide shadow-inner">
+    📍 Anúncios da sua cidade
+  </div>
 
-    <div class="filtros-container p-2 sm:p-3 mt-5 flex flex-wrap justify-center gap-2 sm:gap-3 text-[12px] sm:text-[13px]">
+  <!-- Botão de abrir filtros -->
+  <div class="flex justify-center py-1.5 bg-gray-50 border-t border-gray-100">
+    <button id="btnToggleFiltros" class="bg-emerald-600 text-white font-semibold text-[13px] px-4 py-1.5 rounded-full shadow hover:bg-emerald-500 transition flex items-center gap-2">
+      ⚙️ Filtros
+    </button>
+  </div>
+
+  <!-- Área recolhível dos filtros -->
+  <div id="areaFiltros" class="hidden bg-white py-2 border-t border-gray-100">
+    <div class="p-2 flex flex-wrap justify-center gap-2 sm:gap-3 text-[12px] sm:text-[13px]">
+      
+      <!-- Filtro Estado -->
       <select id="filtroEstado" class="border border-emerald-500 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-emerald-50 hover:bg-emerald-100 focus:ring-1 focus:ring-emerald-400">
         <option value="">Estado</option>
       </select>
 
+      <!-- Filtro Cidade -->
       <select id="filtroCidade" class="border border-gray-300 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400">
         <option value="">Cidade</option>
       </select>
 
+      <!-- Filtro Marca -->
       <select id="filtroMarca" class="border border-gray-300 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400">
         <option value="">Marca</option>
         <option>Apple</option>
@@ -140,6 +153,7 @@
         <option>POCO</option>
       </select>
 
+      <!-- Filtro Preço -->
       <select id="filtroPreco" class="border border-gray-300 rounded-md px-2 py-1.5 w-[47%] sm:w-[180px] font-medium bg-gray-50 hover:bg-gray-100 focus:ring-1 focus:ring-emerald-400">
         <option value="">Preço</option>
         <option value="1">Até R$ 2000</option>
@@ -147,7 +161,22 @@
         <option value="3">Acima de R$ 4000</option>
       </select>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- SCRIPT PARA ABRIR/FECHAR FILTROS -->
+<script>
+  const btnToggleFiltros = document.getElementById("btnToggleFiltros");
+  const areaFiltros = document.getElementById("areaFiltros");
+  if (btnToggleFiltros && areaFiltros) {
+    btnToggleFiltros.addEventListener("click", () => {
+      areaFiltros.classList.toggle("hidden");
+      btnToggleFiltros.classList.toggle("bg-emerald-700");
+      btnToggleFiltros.textContent = areaFiltros.classList.contains("hidden") ? "⚙️ Filtros" : "❌ Fechar";
+    });
+  }
+</script>
+
 
   <!-- LISTA DE PRODUTOS -->
   <main class="p-2 space-y-4 max-w-6xl mx-auto">
