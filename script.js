@@ -375,6 +375,7 @@ const container = document.getElementById("listaProdutos");
 const banner = document.getElementById("bannerOfertas");
 
 // ===================== RENDER MERCADO LIVRE =====================
+// ===================== RENDER MERCADO LIVRE =====================
 function renderizarMercadoLivre(lista) {
   banner.innerHTML = "";
   lista
@@ -382,11 +383,12 @@ function renderizarMercadoLivre(lista) {
     .forEach((p, i) => {
       const destaque = document.createElement("div");
       destaque.className =
-        "bg-white rounded-lg border border-yellow-300 shadow-lg hover:shadow-yellow-400 flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start cursor-pointer transition-transform hover:scale-105";
+        "bg-white rounded-lg border border-black shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform duration-300";
 
       destaque.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-20 object-contain rounded-md transition-transform duration-300">
           <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">
             Frete Grátis
           </div>
@@ -397,15 +399,44 @@ function renderizarMercadoLivre(lista) {
         <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
       `;
 
-      // brilho alternado
-      destaque.style.boxShadow =
-        i % 2 === 0
-          ? "0 0 12px rgba(250,204,21,0.6)" // amarelo
-          : "0 0 12px rgba(59,130,246,0.6)"; // azul
+      // === BRILHO DOURADO PULSANTE ===
+      destaque.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.7)";
+      destaque.style.animation = "mlPulse 2.8s infinite ease-in-out";
+
+      // === EFEITO INTERATIVO (hover/toque) ===
+      destaque.addEventListener("mouseenter", () => {
+        destaque.style.transform = "scale(1.05)";
+        destaque.style.boxShadow = "0 0 18px rgba(250, 204, 21, 0.9)";
+      });
+      destaque.addEventListener("mouseleave", () => {
+        destaque.style.transform = "scale(1)";
+        destaque.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.7)";
+      });
+      destaque.addEventListener("touchstart", () => {
+        destaque.style.transform = "scale(1.05)";
+        destaque.style.boxShadow = "0 0 18px rgba(250, 204, 21, 0.9)";
+      }, { passive: true });
+      destaque.addEventListener("touchend", () => {
+        destaque.style.transform = "scale(1)";
+        destaque.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.7)";
+      }, { passive: true });
 
       destaque.addEventListener("click", () => abrirModal(p));
       banner.appendChild(destaque);
     });
+
+  // === ANIMAÇÃO GLOBAL DO PULSO DOURADO (definida uma vez) ===
+  if (!document.getElementById("mlPulseKeyframes")) {
+    const style = document.createElement("style");
+    style.id = "mlPulseKeyframes";
+    style.textContent = `
+      @keyframes mlPulse {
+        0%, 100% { box-shadow: 0 0 8px rgba(250, 204, 21, 0.6); }
+        50% { box-shadow: 0 0 16px rgba(250, 204, 21, 1); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
 }
 
 // ===================== RENDER USUÁRIOS =====================
