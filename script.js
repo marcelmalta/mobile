@@ -514,20 +514,48 @@ function abrirUserModal(p) {
 }
 
 // ===================== ANIMAÇÃO DO CARROSSEL MERCADO LIVRE =====================
+// ===================== ANIMAÇÃO DO CARROSSEL MERCADO LIVRE =====================
+let _bannerLoopStarted = false;
+
 function animarBanner() {
-  const lista = document.getElementById("bannerOfertas");
-  if (!lista) return;
+  if (_bannerLoopStarted) return; // evita loops duplicados
+  const inner = document.getElementById("bannerOfertas");
+  if (!inner) return;
 
-  let scrollPos = 0;
-  let direcao = 1;
+  const scroller = inner.parentElement; // a <section> tem overflow-x-auto
+  if (!scroller) return;
 
-  setInterval(() => {
-    scrollPos += 0.8 * direcao;
-    lista.scrollLeft = scrollPos;
+  // Se não há conteúdo o suficiente pra rolar, não inicia
+  if (inner.scrollWidth <= scroller.clientWidth) return;
 
-    if (scrollPos >= lista.scrollWidth - lista.clientWidth) direcao = -1;
-    else if (scrollPos <= 0) direcao = 1;
-  }, 40);
+  let pos = 0;
+  let dir = 1;          // 1 = direita, -1 = esquerda
+  let running = true;   // pausa quando o usuário interage
+
+  // Pausa/retoma em hover/toque
+  const pause = () => (running = false);
+  const resume = () => (running = true);
+
+  scroller.addEventListener("pointerenter", pause);
+  scroller.addEventListener("pointerleave", resume);
+  scroller.addEventListener("touchstart", pause, { passive: true });
+  scroller.addEventListener("touchend", resume);
+
+  function tick() {
+    if (running) {
+      pos += 0.6 * dir; // velocidade
+      scroller.scrollLeft = pos;
+
+      // Inverte sentido nas extremidades
+      const max = inner.scrollWidth - scroller.clientWidth;
+      if (pos >= max - 1) dir = -1;
+      else if (pos <= 0) dir = 1;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  _bannerLoopStarted = true;
+  requestAnimationFrame(tick);
 }
 
 // ===================== INICIALIZAÇÃO =====================
