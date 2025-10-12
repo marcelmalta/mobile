@@ -165,32 +165,29 @@ function renderizarMercadoLivre(lista) {
 
   lista
     .filter((p) => p.tipo === "mercadolivre")
-    .forEach((p, index) => {
+    .forEach((p) => {
       const destaque = document.createElement("div");
       destaque.className =
         "bg-white rounded-lg shadow flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform hover:scale-105";
 
-      // === SELOS ===
-      let seloEstoque = "";
-      if (p.estoque < 25) {
-        seloEstoque = `<div class='bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-md animate-pulse'>🔥 Restam ${p.estoque}</div>`;
-      } else if (p.estoque < 50) {
-        seloEstoque = `<div class='bg-yellow-400 text-black text-[9px] px-1.5 py-0.5 rounded-md'>⚠️ ${p.estoque} unid</div>`;
-      } else {
-        seloEstoque = `<div class='bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md'>${p.estoque} unid</div>`;
-      }
-
       destaque.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110 shadow-[0_0_10px_#22c55e]">
-          <div class="absolute top-0 left-0 right-0 p-1 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div class="bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-md">Frete Grátis</div>
-            ${seloEstoque}
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+
+          <!-- selo frete grátis -->
+          <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">
+            Frete Grátis
           </div>
         </div>
+
         <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-        <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
-        <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+        <p class="line-through text-black font-semibold text-[10px]">
+          R$ ${p.precoAntigo?.toFixed(2) || ""}
+        </p>
+        <p class="text-green-700 font-bold text-[12px]">
+          R$ ${p.precoAtual.toFixed(2)}
+        </p>
         <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
       `;
 
