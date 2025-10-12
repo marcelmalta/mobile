@@ -214,9 +214,9 @@ function renderizarProdutosUsuarios(lista) {
     .forEach(p => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-lg shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[3px] relative snap-start group overflow-hidden";
+        "bg-white rounded-md shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[2px] relative snap-start group overflow-hidden";
 
-      // Limpa o nome (remove informações após o hífen)
+      // limpa o nome (remove “- usado...” etc.)
       const nomeLimpo = p.nome.replace(/-.*$/g, "").trim();
 
       const selo =
@@ -225,16 +225,16 @@ function renderizarProdutosUsuarios(lista) {
           : "bg-yellow-400 text-black";
 
       card.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-0.5 relative">
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-[2px] relative">
           <img src="${p.imagem}" alt="${nomeLimpo}" 
                class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
           <div class="absolute top-0 left-0 ${selo} text-[7px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
         </div>
-        <h2 class="text-[8.5px] font-semibold text-center line-clamp-2 h-7 leading-tight text-gray-800 mt-[1px]">
+        <h2 class="text-[9px] font-semibold text-center line-clamp-2 leading-tight text-gray-800 h-[30px]">
           ${nomeLimpo}
         </h2>
-        <p class="text-green-700 font-extrabold text-[10px] mt-[1px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[7.5px] font-bold text-gray-700 mt-[1px]">${p.cidade || ""}</span>
+        <p class="text-green-700 font-extrabold text-[11px] mt-[1px]">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[9.5px] font-bold text-emerald-700 mt-[2px]">${p.cidade || ""}</span>
       `;
 
       card.addEventListener("click", () => abrirUserModal(p));
