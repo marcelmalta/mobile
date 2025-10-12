@@ -214,7 +214,12 @@ function renderizarProdutosUsuarios(lista) {
     .forEach(p => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-lg shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden"; 
+        "bg-white rounded-lg shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden";
+
+      // remove partes do nome que mencionem 'usado', 'nota', etc.
+      const nomeLimpo = p.nome
+        .replace(/-.*$/g, "")  // remove tudo após hífen
+        .trim();
 
       const selo =
         p.condicao === "Novo"
@@ -223,13 +228,15 @@ function renderizarProdutosUsuarios(lista) {
 
       card.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-14 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" 
+          <img src="${p.imagem}" alt="${nomeLimpo}" 
                class="max-h-14 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
           <div class="absolute top-0 left-0 ${selo} text-[7px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
         </div>
-        <h2 class="text-[8px] font-semibold text-center line-clamp-2 h-8 leading-tight">${p.nome}</h2>
-        <p class="text-green-700 font-bold text-[10px] mt-0.5">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[7px] text-gray-500">${p.cidade || ""}</span>
+        <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-8 leading-tight text-gray-800">
+          ${nomeLimpo}
+        </h2>
+        <p class="text-green-700 font-extrabold text-[11px] mt-0.5">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[8px] font-bold text-gray-700">${p.cidade || ""}</span>
       `;
 
       card.addEventListener("click", () => abrirUserModal(p));
