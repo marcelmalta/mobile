@@ -66,13 +66,21 @@ const produtos = [
   },
 ];
 
-// ===================== ELEMENTOS =====================
+// ===================== HELPERS & ELEMENTOS =====================
 const container = document.getElementById("listaProdutos");
 const banner = document.getElementById("bannerOfertas");
+const btnBuscaFlutuante = document.getElementById("btnBuscaFlutuante");
+
+// Pequeno helper para inserir depois de um nó
+function insertAfter(newNode, referenceNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
 
 // ===================== RENDER MERCADO LIVRE =====================
 function renderizarMercadoLivre(lista) {
+  if (!banner) return;
   banner.innerHTML = "";
+
   lista
     .filter((p) => p.tipo === "mercadolivre")
     .forEach((p) => {
@@ -86,42 +94,22 @@ function renderizarMercadoLivre(lista) {
           <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Frete Grátis</div>
         </div>
         <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-        <p class="line-through text-black font-semibold text-[10px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+        <p class="line-through text-black font-semibold text-[10px]">${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}</p>
         <p class="text-green-700 font-bold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+        <span class="text-[9px] text-green-600 font-medium">${p.desconto || ""}</span>
       `;
 
-      destaque.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.7)";
-      destaque.style.animation = "mlPulse 2.8s infinite ease-in-out";
-
-      destaque.addEventListener("mouseenter", () => {
-        destaque.style.transform = "scale(1.05)";
-        destaque.style.boxShadow = "0 0 18px rgba(250, 204, 21, 0.9)";
-      });
-      destaque.addEventListener("mouseleave", () => {
-        destaque.style.transform = "scale(1)";
-        destaque.style.boxShadow = "0 0 10px rgba(250, 204, 21, 0.7)";
-      });
-
+      destaque.addEventListener("mouseenter", () => (destaque.style.transform = "scale(1.05)"));
+      destaque.addEventListener("mouseleave", () => (destaque.style.transform = "scale(1)"));
       destaque.addEventListener("click", () => abrirModal(p));
+
       banner.appendChild(destaque);
     });
-
-  if (!document.getElementById("mlPulseKeyframes")) {
-    const style = document.createElement("style");
-    style.id = "mlPulseKeyframes";
-    style.textContent = `
-      @keyframes mlPulse {
-        0%, 100% { box-shadow: 0 0 8px rgba(250, 204, 21, 0.6); }
-        50% { box-shadow: 0 0 16px rgba(250, 204, 21, 1); }
-      }
-    `;
-    document.head.appendChild(style);
-  }
 }
 
 // ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
+  if (!container) return;
   container.innerHTML = "";
 
   lista
@@ -137,8 +125,8 @@ function renderizarProdutosUsuarios(lista) {
 
       card.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-[1px] relative">
-          <img src="${p.imagem}" alt="${nomeLimpo}" class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
-          <div class="absolute top-0 left-0 ${selo} text-[6.5px] px-[2px] py-[1px] rounded-br-md">${p.condicao}</div>
+          <img src="${p.imagem}" alt="${nomeLimpo}" class="max-h-12 object-contain rounded-md transition-transform duration-300">
+          <div class="absolute top-0 left-0 ${selo} text-[6.5px] px-[2px] py-[1px] rounded-br-md">${p.condicao || ""}</div>
         </div>
         <h2 class="text-[8.5px] font-semibold text-center leading-tight text-gray-800 h-[25px]">${nomeLimpo}</h2>
         <p class="text-green-700 font-extrabold text-[10px] mt-0">R$ ${p.precoAtual.toFixed(2)}</p>
@@ -156,15 +144,22 @@ const closeModal = document.getElementById("closeModal");
 const modalBox = document.getElementById("modalBox");
 
 function abrirModal(produto) {
-  document.getElementById("modalImage").src = produto.imagem;
-  document.getElementById("modalTitle").textContent = produto.nome;
-  document.getElementById("modalOldPrice").textContent = produto.precoAntigo
-    ? `R$ ${produto.precoAntigo.toFixed(2)}`
-    : "";
-  document.getElementById("modalDiscount").textContent = produto.desconto;
-  document.getElementById("modalPrice").textContent = `R$ ${produto.precoAtual.toFixed(2)}`;
-  document.getElementById("modalParcelas").textContent = produto.parcelas || "";
-  document.getElementById("modalLink").href = produto.link || "#";
+  if (!modal || !modalBox) return;
+  const img = document.getElementById("modalImage");
+  const title = document.getElementById("modalTitle");
+  const oldPrice = document.getElementById("modalOldPrice");
+  const discount = document.getElementById("modalDiscount");
+  const price = document.getElementById("modalPrice");
+  const parcelas = document.getElementById("modalParcelas");
+  const link = document.getElementById("modalLink");
+
+  if (img) img.src = produto.imagem;
+  if (title) title.textContent = produto.nome;
+  if (oldPrice) oldPrice.textContent = produto.precoAntigo ? `R$ ${produto.precoAntigo.toFixed(2)}` : "";
+  if (discount) discount.textContent = produto.desconto || "";
+  if (price) price.textContent = `R$ ${produto.precoAtual.toFixed(2)}`;
+  if (parcelas) parcelas.textContent = produto.parcelas || "";
+  if (link) link.href = produto.link || "#";
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
@@ -174,10 +169,8 @@ function abrirModal(produto) {
   }, 50);
 }
 
-closeModal?.addEventListener("click", fecharModal);
-modal?.addEventListener("click", (e) => e.target === modal && fecharModal());
-
 function fecharModal() {
+  if (!modal || !modalBox) return;
   modalBox.classList.add("scale-95", "opacity-0");
   modalBox.classList.remove("scale-100", "opacity-100");
   setTimeout(() => {
@@ -185,13 +178,15 @@ function fecharModal() {
     modal.classList.remove("flex");
   }, 200);
 }
+closeModal?.addEventListener("click", fecharModal);
+modal?.addEventListener("click", (e) => e.target === modal && fecharModal());
 
-// ===================== MODAL USUÁRIO =====================
+// ===================== MODAL USUÁRIO (WhatsApp) =====================
 function abrirUserModal(p) {
-  const modalHTML = document.createElement("div");
-  modalHTML.className =
-    "fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-3";
-  modalHTML.innerHTML = `
+  const overlay = document.createElement("div");
+  overlay.className =
+    "fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-3";
+  overlay.innerHTML = `
     <div class="bg-white rounded-2xl w-full max-w-md p-5 relative shadow-2xl overflow-y-auto max-h-[90vh]">
       <button class="absolute top-2 right-3 text-gray-600 hover:text-black text-2xl font-bold">✖</button>
       <div class="flex flex-col items-center gap-3">
@@ -200,124 +195,121 @@ function abrirUserModal(p) {
         <p class="text-green-700 font-extrabold text-2xl">R$ ${p.precoAtual.toFixed(2)}</p>
         <div class="flex flex-wrap justify-center gap-2 mt-2">
           <span class="text-[12px] bg-gray-100 px-2 py-1 rounded-md">📍 ${p.cidade || ""} - ${p.estado || ""}</span>
-          <span class="text-[12px] bg-emerald-100 px-2 py-1 rounded-md">${p.condicao}</span>
-          <span class="text-[12px] bg-yellow-100 px-2 py-1 rounded-md">Nota fiscal: ${p.notaFiscal}</span>
+          <span class="text-[12px] bg-emerald-100 px-2 py-1 rounded-md">${p.condicao || ""}</span>
         </div>
         <div class="w-full mt-3 text-sm text-gray-700 space-y-1">
-          <p><strong>📦 Entrega:</strong> ${p.entrega}</p>
-          <p><strong>💳 Pagamento:</strong> ${p.pagamento.join(", ")}</p>
+          ${p.entrega ? `<p><strong>📦 Entrega:</strong> ${p.entrega}</p>` : ""}
+          ${p.pagamento ? `<p><strong>💳 Pagamento:</strong> ${Array.isArray(p.pagamento) ? p.pagamento.join(", ") : p.pagamento}</p>` : ""}
         </div>
-        <div class="mt-3 text-gray-600 text-[14px] bg-gray-50 border rounded-md p-3 w-full">
-          <strong>📝 Descrição:</strong><br>${p.descricao}
-        </div>
-        <a href="https://wa.me/${p.contato}" target="_blank"
+        ${p.descricao ? `<div class="mt-3 text-gray-600 text-[14px] bg-gray-50 border rounded-md p-3 w-full"><strong>📝 Descrição:</strong><br>${p.descricao}</div>` : ""}
+        <a href="https://wa.me/${p.contato || ""}" target="_blank"
           class="mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-4 py-2 rounded-full shadow-md flex items-center gap-2">
           💬 Falar com o vendedor no WhatsApp
         </a>
       </div>
     </div>
   `;
-  document.body.appendChild(modalHTML);
-  modalHTML.querySelector("button").addEventListener("click", () => modalHTML.remove());
-  modalHTML.addEventListener("click", (e) => e.target === modalHTML && modalHTML.remove());
+  document.body.appendChild(overlay);
+  overlay.querySelector("button").addEventListener("click", () => overlay.remove());
+  overlay.addEventListener("click", (e) => e.target === overlay && overlay.remove());
 }
 
-// ===================== BOTÃO FLUTUANTE PRETO (BUSCAR) =====================
-const btnBusca = document.getElementById("btnBuscaFlutuante");
-const modalBusca = document.getElementById("modalBusca");
-const fecharBusca = document.getElementById("fecharBusca");
+// ===================== BARRA DE FILTROS (INJETADA) =====================
+function criarBarraFiltros() {
+  try {
+    const bannerSection = banner?.parentElement; // a <section> com overflow-x
+    if (!bannerSection) return;
 
-btnBusca.classList.add(
-  "bg-black",
-  "text-white",
-  "bottom-20",
-  "right-auto",
-  "left-4",
-  "font-bold",
-  "px-5",
-  "py-3",
-  "rounded-full",
-  "shadow-xl",
-  "flex",
-  "items-center",
-  "gap-2"
-);
+    // Evita duplicar se já existe
+    if (document.getElementById("barraFiltros")) return;
 
-btnBusca.addEventListener("click", () => {
-  modalBusca.classList.remove("hidden");
-  setTimeout(() => {
-    modalBusca.classList.add("flex", "opacity-100");
-    modalBusca.classList.remove("opacity-0");
-  }, 50);
-});
+    const barra = document.createElement("div");
+    barra.id = "barraFiltros";
+    barra.className = "hidden bg-white border border-gray-200 rounded-md mx-2 mt-2 p-2 flex flex-wrap items-center justify-center gap-2 shadow-md max-w-6xl mx-auto";
 
-fecharBusca.addEventListener("click", () => {
-  modalBusca.classList.remove("opacity-100");
-  modalBusca.classList.add("opacity-0");
-  setTimeout(() => modalBusca.classList.add("hidden"), 300);
-});
+    barra.innerHTML = `
+      <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..." 
+        class="border rounded-md px-2 py-1 text-sm w-[150px] focus:ring-1 focus:ring-emerald-400 outline-none" />
+      <select id="filtroMarca" class="border rounded-md px-2 py-1 text-sm bg-gray-50">
+        <option value="">Marca</option><option>Apple</option><option>Samsung</option><option>Xiaomi</option><option>Motorola</option><option>Realme</option><option>POCO</option>
+      </select>
+      <select id="filtroEstado" class="border rounded-md px-2 py-1 text-sm bg-gray-50">
+        <option value="">Estado</option>
+      </select>
+      <select id="filtroPreco" class="border rounded-md px-2 py-1 text-sm bg-gray-50">
+        <option value="">Preço</option><option value="1">Até R$ 2000</option><option value="2">R$ 2000–R$ 4000</option><option value="3">+ R$ 4000</option>
+      </select>
+      <button id="btnLimpar" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-md px-2 py-1 text-xs font-semibold text-gray-700 transition">✖ Limpar</button>
+    `;
 
-// ===================== FILTROS =====================
-function aplicarFiltros() {
-  const termo = document.getElementById("buscaInput").value.toLowerCase();
-  const uf = document.getElementById("filtroEstado").value;
-  const cidade = document.getElementById("filtroCidade").value;
-  const marca = document.getElementById("filtroMarca").value;
-  const faixa = document.getElementById("filtroPreco").value;
+    insertAfter(barra, bannerSection); // coloca a barra logo após a seção do banner
 
-  const filtrados = produtos.filter(p => {
-    const nomeMatch = !termo || p.nome.toLowerCase().includes(termo);
-    const estadoMatch = !uf || p.estado === uf;
-    const cidadeMatch = !cidade || p.cidade === cidade;
-    const marcaMatch = !marca || p.nome.toLowerCase().includes(marca.toLowerCase());
+    // Preenche UFs dinamicamente a partir dos anúncios de usuários
+    const ufSet = Array.from(new Set(produtos.filter(p => p.tipo === "usuario" && p.estado).map(p => p.estado)));
+    const ufSel = barra.querySelector("#filtroEstado");
+    ufSet.forEach(uf => {
+      const opt = document.createElement("option");
+      opt.value = uf;
+      opt.textContent = uf;
+      ufSel.appendChild(opt);
+    });
 
-    let precoMatch = true;
-    if (faixa === "1") precoMatch = p.precoAtual <= 2000;
-    if (faixa === "2") precoMatch = p.precoAtual > 2000 && p.precoAtual <= 4000;
-    if (faixa === "3") precoMatch = p.precoAtual > 4000;
-
-    return nomeMatch && estadoMatch && cidadeMatch && marcaMatch && precoMatch;
-  });
-
-  renderizarMercadoLivre(filtrados);
-  renderizarProdutosUsuarios(filtrados);
-
-  modalBusca.classList.remove("opacity-100");
-  modalBusca.classList.add("opacity-0");
-  setTimeout(() => modalBusca.classList.add("hidden"), 300);
-}
-
-document.getElementById("btnAplicarFiltros").addEventListener("click", aplicarFiltros);
-
-function preencherFiltros() {
-  const estados = [...new Set(produtos.filter(p=>p.tipo==="usuario").map(p => p.estado))];
-  const cidades = [...new Set(produtos.filter(p=>p.tipo==="usuario").map(p => p.cidade))];
-  const filtroEstado = document.getElementById("filtroEstado");
-  const filtroCidade = document.getElementById("filtroCidade");
-
-  estados.forEach(uf => {
-    const opt = document.createElement("option");
-    opt.value = uf;
-    opt.textContent = uf;
-    filtroEstado.appendChild(opt);
-  });
-
-  filtroEstado.addEventListener("change", () => {
-    filtroCidade.innerHTML = "<option value=''>Cidade</option>";
-    produtos
-      .filter(p => p.estado === filtroEstado.value)
-      .forEach(p => {
-        const opt = document.createElement("option");
-        opt.value = p.cidade;
-        opt.textContent = p.cidade;
-        filtroCidade.appendChild(opt);
+    // Liga o botão flutuante preto para abrir/fechar a barra
+    if (btnBuscaFlutuante) {
+      btnBuscaFlutuante.addEventListener("click", () => {
+        barra.classList.toggle("hidden");
       });
-  });
+    }
+
+    // Liga os filtros
+    const buscaInput = barra.querySelector("#buscaInput");
+    const filtroMarca = barra.querySelector("#filtroMarca");
+    const filtroEstado = barra.querySelector("#filtroEstado");
+    const filtroPreco = barra.querySelector("#filtroPreco");
+    const btnLimpar = barra.querySelector("#btnLimpar");
+
+    function aplicarFiltros() {
+      const busca = (buscaInput.value || "").toLowerCase();
+      const marca = filtroMarca.value;
+      const estado = filtroEstado.value;
+      const preco = filtroPreco.value;
+
+      const filtrados = produtos.filter(p => {
+        // Texto/Marca
+        if (busca && !p.nome.toLowerCase().includes(busca)) return false;
+        if (marca && !p.nome.toLowerCase().includes(marca.toLowerCase())) return false;
+        // UF (só faz sentido para tipo usuario)
+        if (estado && p.tipo === "usuario" && p.estado !== estado) return false;
+        // Preço
+        if (preco === "1" && p.precoAtual > 2000) return false;
+        if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false;
+        if (preco === "3" && p.precoAtual < 4000) return false;
+        return true;
+      });
+
+      renderizarMercadoLivre(filtrados);
+      renderizarProdutosUsuarios(filtrados);
+    }
+
+    [buscaInput, filtroMarca, filtroEstado, filtroPreco].forEach(el => {
+      el.addEventListener("input", aplicarFiltros);
+    });
+
+    btnLimpar.addEventListener("click", () => {
+      buscaInput.value = "";
+      filtroMarca.value = "";
+      filtroEstado.value = "";
+      filtroPreco.value = "";
+      aplicarFiltros();
+    });
+
+  } catch (e) {
+    console.error("Erro ao criar barra de filtros:", e);
+  }
 }
 
 // ===================== ANIMAÇÃO DO CARROSSEL MERCADO LIVRE =====================
 let _bannerLoopStarted = false;
-
 function animarBanner() {
   if (_bannerLoopStarted) return;
   const inner = document.getElementById("bannerOfertas");
@@ -346,8 +338,13 @@ function animarBanner() {
 
 // ===================== INICIALIZAÇÃO =====================
 window.addEventListener("DOMContentLoaded", () => {
+  // Render inicial
   renderizarMercadoLivre(produtos);
   renderizarProdutosUsuarios(produtos);
+
+  // Carrossel
   animarBanner();
-  preencherFiltros();
+
+  // Cria a barra de filtros compacta (sem alterar HTML)
+  criarBarraFiltros();
 });
