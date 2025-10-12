@@ -209,23 +209,32 @@ function renderizarMercadoLivre(lista) {
 // ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
   container.innerHTML = "";
-  lista.filter(p => p.tipo === "usuario").forEach(p => {
-    const card = document.createElement("div");
-    card.className =
-      "bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-24 sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden";
-    const selo = p.condicao === "Novo" ? "bg-green-500 text-white" : "bg-yellow-400 text-black";
-    card.innerHTML = `
-      <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-16 overflow-hidden mb-1 relative">
-        <img src="${p.imagem}" alt="${p.nome}" class="max-h-16 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
-        <div class="absolute top-0 left-0 ${selo} text-[8px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
-      </div>
-      <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-8">${p.nome}</h2>
-      <p class="text-green-700 font-bold text-[11px]">R$ ${p.precoAtual.toFixed(2)}</p>
-      <span class="text-[8px] text-gray-500">${p.cidade || ""}</span>
-    `;
-    card.addEventListener("click", () => abrirUserModal(p));
-    container.appendChild(card);
-  });
+  lista
+    .filter(p => p.tipo === "usuario")
+    .forEach(p => {
+      const card = document.createElement("div");
+      card.className =
+        "bg-white rounded-lg shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-1 relative snap-start group overflow-hidden"; 
+
+      const selo =
+        p.condicao === "Novo"
+          ? "bg-green-500 text-white"
+          : "bg-yellow-400 text-black";
+
+      card.innerHTML = `
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-14 overflow-hidden mb-1 relative">
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-14 object-contain rounded-md transition-transform duration-300 group-hover:scale-110">
+          <div class="absolute top-0 left-0 ${selo} text-[7px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
+        </div>
+        <h2 class="text-[8px] font-semibold text-center line-clamp-2 h-8 leading-tight">${p.nome}</h2>
+        <p class="text-green-700 font-bold text-[10px] mt-0.5">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[7px] text-gray-500">${p.cidade || ""}</span>
+      `;
+
+      card.addEventListener("click", () => abrirUserModal(p));
+      container.appendChild(card);
+    });
 }
 
 // ===================== MODAL MERCADO LIVRE =====================
