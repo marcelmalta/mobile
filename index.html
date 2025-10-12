@@ -37,6 +37,23 @@
   transition: all 0.3s ease;
 }
 
+/* === Brilho sincronizado dourado/azulado para "Todos os Produtos Anunciados" === */
+@keyframes anunciadosPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3), inset 0 0 6px rgba(250, 204, 21, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(250, 204, 21, 0.7), inset 0 0 10px rgba(59, 130, 246, 0.6);
+    filter: brightness(1.15);
+  }
+}
+
+.animate-anunciados {
+  animation: anunciadosPulse 3s infinite ease-in-out;
+  transition: all 0.3s ease;
+}
+
     /* Botão flutuante de "Anunciar" no mobile */
     .botao-flutuante {
       position: fixed;
@@ -172,9 +189,9 @@
   <!-- LISTA DE PRODUTOS -->
 <main class="p-2 space-y-4 max-w-6xl mx-auto">
   <section>
-    <h2 class="text-sm sm:text-base font-bold text-white bg-black py-1.5 px-3 rounded-md text-center shadow-md">
-      📦 Todos os Produtos Anunciados
-    </h2>
+    <h2 class="text-sm sm:text-base font-bold text-white bg-black py-1.5 px-3 rounded-md text-center shadow-md animate-anunciados">
+  📦 Todos os Produtos Anunciados
+</h2>
     <div id="listaProdutos" class="flex overflow-x-auto gap-2 pb-2 scrollbar-thin scrollbar-thumb-gray-300 flex-wrap justify-center mt-2"></div>
   </section>
 </main>
