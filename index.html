@@ -37,6 +37,27 @@
   transition: all 0.3s ease;
 }
 
+/* === Brilho alternado azul/dourado suave nos cards de usuários === */
+@keyframes glowUserPulse {
+  0% {
+    box-shadow: 0 0 6px rgba(250, 204, 21, 0.4), 0 0 10px rgba(59, 130, 246, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 16px rgba(250, 204, 21, 0.5);
+    filter: brightness(1.1);
+  }
+  100% {
+    box-shadow: 0 0 6px rgba(250, 204, 21, 0.4), 0 0 10px rgba(59, 130, 246, 0.3);
+    filter: brightness(1);
+  }
+}
+
+.glow-user {
+  animation: glowUserPulse 3s infinite ease-in-out;
+  transition: all 0.3s ease;
+}
+
 /* === Brilho sincronizado dourado/azulado para "Todos os Produtos Anunciados" === */
 @keyframes anunciadosPulse {
   0%, 100% {
@@ -82,6 +103,7 @@
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
+  
   <!-- HEADER SUPER OTIMIZADO -->
   <header class="sticky top-0 z-50 shadow-md">
     <!-- Faixa superior -->
