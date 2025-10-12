@@ -440,19 +440,17 @@ function renderizarMercadoLivre(lista) {
 }
 
 // ===================== RENDER USUÁRIOS =====================
-// ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
   container.innerHTML = "";
+
   lista
     .filter((p) => p.tipo === "usuario")
     .forEach((p, i) => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-md border border-black shadow-md hover:shadow-lg transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start overflow-hidden";
+        "bg-white rounded-md border border-black shadow-md hover:shadow-lg transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start overflow-hidden glow-user";
 
-      // remove partes desnecessárias do nome
       const nomeLimpo = p.nome.replace(/-.*$/g, "").trim();
-
       const selo =
         p.condicao === "Novo"
           ? "bg-green-500 text-white"
@@ -471,28 +469,10 @@ function renderizarProdutosUsuarios(lista) {
         <span class="text-[9px] font-bold text-emerald-700 mt-0.5">${p.cidade || ""}</span>
       `;
 
-      // === EFEITO VISUAL: brilho pulsante alternado (azul e amarelo) ===
-      const corSombra = i % 2 === 0
-        ? "0 0 10px rgba(250, 204, 21, 0.6)" // amarelo
-        : "0 0 10px rgba(59, 130, 246, 0.6)"; // azul
-      card.style.boxShadow = `${corSombra}`;
-      card.style.animation = "pulseLight 2.5s infinite";
-
       card.addEventListener("click", () => abrirUserModal(p));
       container.appendChild(card);
     });
-
-  // === ANIMAÇÃO DO PULSO DE LUZ ===
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes pulseLight {
-      0%, 100% { box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); }
-      50% { box-shadow: 0 0 12px rgba(250, 204, 21, 0.8); }
-    }
-  `;
-  document.head.appendChild(style);
 }
-
 
 // ===================== MODAL MERCADO LIVRE =====================
 const modal = document.getElementById("productModal");
