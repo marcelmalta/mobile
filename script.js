@@ -214,9 +214,9 @@ function renderizarProdutosUsuarios(lista) {
     .forEach(p => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-md shadow hover:shadow-lg transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[2px] relative snap-start group overflow-hidden";
+        "bg-white rounded-md shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start group overflow-hidden";
 
-      // limpa o nome (remove “- usado...” etc.)
+      // remove partes desnecessárias do nome
       const nomeLimpo = p.nome.replace(/-.*$/g, "").trim();
 
       const selo =
@@ -225,16 +225,16 @@ function renderizarProdutosUsuarios(lista) {
           : "bg-yellow-400 text-black";
 
       card.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-[2px] relative">
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-[1px] relative">
           <img src="${p.imagem}" alt="${nomeLimpo}" 
                class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
-          <div class="absolute top-0 left-0 ${selo} text-[7px] px-1 py-0.5 rounded-br-md">${p.condicao}</div>
+          <div class="absolute top-0 left-0 ${selo} text-[6.5px] px-[2px] py-[1px] rounded-br-md">${p.condicao}</div>
         </div>
-        <h2 class="text-[9px] font-semibold text-center line-clamp-2 leading-tight text-gray-800 h-[30px]">
+        <h2 class="text-[8.5px] font-semibold text-center leading-tight text-gray-800 h-[25px]">
           ${nomeLimpo}
         </h2>
-        <p class="text-green-700 font-extrabold text-[11px] mt-[1px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9.5px] font-bold text-emerald-700 mt-[2px]">${p.cidade || ""}</span>
+        <p class="text-green-700 font-extrabold text-[10px] mt-0">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[9px] font-bold text-emerald-700 mt-0.5">${p.cidade || ""}</span>
       `;
 
       card.addEventListener("click", () => abrirUserModal(p));
