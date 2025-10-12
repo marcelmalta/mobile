@@ -44,6 +44,58 @@
       50% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.6); }
     }
 
+/* === Reflexo dourado-esverdeado + borda metálica na barra de título === */
+h2.animate-anunciados {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to right, #111, #000);
+  border: 1.5px solid rgba(250, 204, 21, 0.7); /* borda dourada */
+  box-shadow:
+    0 0 10px rgba(250, 204, 21, 0.4),
+    inset 0 0 6px rgba(250, 204, 21, 0.3);
+  transition: all 0.3s ease;
+}
+
+h2.animate-anunciados:hover {
+  box-shadow:
+    0 0 16px rgba(250, 204, 21, 0.7),
+    inset 0 0 10px rgba(250, 204, 21, 0.5);
+}
+
+/* Reflexo animado */
+h2.animate-anunciados::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(250, 204, 21, 0.4),
+    rgba(16, 185, 129, 0.3),
+    transparent
+  );
+  transform: skewX(-25deg);
+  opacity: 0;
+  animation: reflexoTitulo 8s ease-in-out infinite;
+}
+
+@keyframes reflexoTitulo {
+  0%, 80% {
+    left: -60%;
+    opacity: 0;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    left: 130%;
+    opacity: 0;
+  }
+}
+
     /* === Botão flutuante "Anunciar" (amarelo) === */
     .botao-flutuante {
       position: fixed;
