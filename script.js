@@ -701,16 +701,16 @@ function abrirUserModal(p) {
   overlay.addEventListener("click", (e) => e.target === overlay && overlay.remove());
 }
 
-// ===================== FILTROS COMPACTOS =====================
+// ===================== FILTROS FUNCIONAIS (fix) =====================
 function aplicarFiltros() {
-  const busca = document.getElementById("buscaInput")?.value?.toLowerCase() || "";
-  const marca = document.getElementById("filtroMarca")?.value || "";
+  const busca = (document.getElementById("buscaInput")?.value || "").toLowerCase();
+  const marca = (document.getElementById("filtroMarca")?.value || "").toLowerCase();
   const estado = document.getElementById("filtroEstado")?.value || "";
   const preco = document.getElementById("filtroPreco")?.value || "";
 
   const filtrados = produtos.filter(p => {
     if (busca && !p.nome.toLowerCase().includes(busca)) return false;
-    if (marca && !p.nome.toLowerCase().includes(marca.toLowerCase())) return false;
+    if (marca && !p.nome.toLowerCase().includes(marca)) return false;
     if (estado && p.tipo === "usuario" && p.estado !== estado) return false;
     if (preco === "1" && p.precoAtual > 2000) return false;
     if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false;
@@ -718,21 +718,49 @@ function aplicarFiltros() {
     return true;
   });
 
-  renderizarMercadoLivre(filtrados);
-  renderizarProdutosUsuarios(filtrados);
+  const ml = filtrados.filter(p => p.tipo === "mercadolivre");
+  const user = filtrados.filter(p => p.tipo === "usuario");
+
+  // Render Mercado Livre
+  banner.innerHTML = "";
+  if (ml.length) {
+    renderizarMercadoLivre(ml);
+  } else {
+    banner.innerHTML = `
+      <div class="w-full text-center text-xs text-gray-600 py-2">
+        Nenhuma oferta do Mercado Livre para os filtros selecionados.
+      </div>`;
+  }
+
+  // Render Usuários
+  container.innerHTML = "";
+  if (user.length) {
+    renderizarProdutosUsuarios(user);
+  } else {
+    container.innerHTML = `
+      <div class="w-full text-center text-sm text-gray-700 py-4">
+        Nenhum anúncio de usuário encontrado com esses filtros.
+      </div>`;
+  }
+
+  // reseta rolagem da faixa do ML
+  const scroller = document.getElementById("bannerOfertas")?.parentElement;
+  if (scroller) scroller.scrollLeft = 0;
 }
 
-// ===================== BOTÃO 🔍 SCROLL ATÉ FILTROS =====================
+// ===================== BOTÃO 🔍 SCROLL ATÉ O TOPO =====================
 btnBusca.addEventListener("click", () => {
   const barra = document.getElementById("barraFiltros");
   if (!barra) return;
+
+  // Exibe/oculta a barra de filtros
   barra.classList.toggle("hidden");
-  const headerOffset = 70;
-  const top = barra.getBoundingClientRect().top + window.scrollY - headerOffset;
-  window.scrollTo({ top, behavior: "smooth" });
+
+  // Faz o scroll até o topo da página
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS =====================
+// ===================== CRIAR BARRA DE FILTROS (fix) =====================
 function criarBarraFiltros() {
   const main = document.querySelector("main");
   const barra = document.createElement("div");
@@ -754,15 +782,16 @@ function criarBarraFiltros() {
   `;
   main.parentNode.insertBefore(barra, main);
 
-  // eventos
-  ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach(id =>
-    document.getElementById(id).addEventListener("input", aplicarFiltros)
-  );
+  // listeners robustos: input + change
+  ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach(id => {
+    const el = document.getElementById(id);
+    ["input", "change"].forEach(evt => el.addEventListener(evt, aplicarFiltros));
+  });
 }
-
 // ===================== INIT =====================
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
   renderizarProdutosUsuarios(produtos);
   criarBarraFiltros();
 });
+
