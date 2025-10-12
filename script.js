@@ -409,16 +409,19 @@ function renderizarMercadoLivre(lista) {
 }
 
 // ===================== RENDER USUÁRIOS =====================
+// ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
   container.innerHTML = "";
   lista
     .filter((p) => p.tipo === "usuario")
-    .forEach((p) => {
+    .forEach((p, i) => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-md shadow hover:shadow-md transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start overflow-hidden";
+        "bg-white rounded-md border border-black shadow-md hover:shadow-lg transition cursor-pointer flex-shrink-0 w-[22%] sm:w-28 flex flex-col items-center p-[1px] relative snap-start overflow-hidden";
 
+      // remove partes desnecessárias do nome
       const nomeLimpo = p.nome.replace(/-.*$/g, "").trim();
+
       const selo =
         p.condicao === "Novo"
           ? "bg-green-500 text-white"
@@ -426,7 +429,8 @@ function renderizarProdutosUsuarios(lista) {
 
       card.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-12 overflow-hidden mb-[1px] relative">
-          <img src="${p.imagem}" alt="${nomeLimpo}" class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
+          <img src="${p.imagem}" alt="${nomeLimpo}" 
+               class="max-h-12 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
           <div class="absolute top-0 left-0 ${selo} text-[6.5px] px-[2px] py-[1px] rounded-br-md">${p.condicao}</div>
         </div>
         <h2 class="text-[8.5px] font-semibold text-center leading-tight text-gray-800 h-[25px]">
@@ -435,10 +439,29 @@ function renderizarProdutosUsuarios(lista) {
         <p class="text-green-700 font-extrabold text-[10px] mt-0">R$ ${p.precoAtual.toFixed(2)}</p>
         <span class="text-[9px] font-bold text-emerald-700 mt-0.5">${p.cidade || ""}</span>
       `;
+
+      // === EFEITO VISUAL: brilho pulsante alternado (azul e amarelo) ===
+      const corSombra = i % 2 === 0
+        ? "0 0 10px rgba(250, 204, 21, 0.6)" // amarelo
+        : "0 0 10px rgba(59, 130, 246, 0.6)"; // azul
+      card.style.boxShadow = `${corSombra}`;
+      card.style.animation = "pulseLight 2.5s infinite";
+
       card.addEventListener("click", () => abrirUserModal(p));
       container.appendChild(card);
     });
+
+  // === ANIMAÇÃO DO PULSO DE LUZ ===
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes pulseLight {
+      0%, 100% { box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); }
+      50% { box-shadow: 0 0 12px rgba(250, 204, 21, 0.8); }
+    }
+  `;
+  document.head.appendChild(style);
 }
+
 
 // ===================== MODAL MERCADO LIVRE =====================
 const modal = document.getElementById("productModal");
@@ -557,6 +580,7 @@ function animarBanner() {
   _bannerLoopStarted = true;
   requestAnimationFrame(tick);
 }
+
 
 // ===================== INICIALIZAÇÃO =====================
 window.addEventListener("DOMContentLoaded", () => {
