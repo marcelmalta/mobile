@@ -18,64 +18,27 @@
     }
     .animate-fade-in { animation: fadeIn 1s ease-in-out; }
 
-    /* === Animação de brilho pulsante dourado sincronizado === */
-@keyframes mlBarPulse {
-  0%, 100% {
-    box-shadow: 0 0 8px rgba(250, 204, 21, 0.4),
-                inset 0 0 6px rgba(250, 204, 21, 0.3);
-    filter: brightness(1);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(250, 204, 21, 0.8),
-                inset 0 0 8px rgba(250, 204, 21, 0.6);
-    filter: brightness(1.15);
-  }
-}
+    /* === Animações de brilho e pulsar === */
+    @keyframes mlBarPulse {
+      0%, 100% { box-shadow: 0 0 8px rgba(250, 204, 21, 0.4), inset 0 0 6px rgba(250, 204, 21, 0.3); filter: brightness(1); }
+      50% { box-shadow: 0 0 16px rgba(250, 204, 21, 0.8), inset 0 0 8px rgba(250, 204, 21, 0.6); filter: brightness(1.15); }
+    }
+    .animate-ml-bar { animation: mlBarPulse 2.8s infinite ease-in-out; }
 
-.animate-ml-bar {
-  animation: mlBarPulse 2.8s infinite ease-in-out;
-  transition: all 0.3s ease;
-}
+    @keyframes glowUserPulse {
+      0% { box-shadow: 0 0 6px rgba(250, 204, 21, 0.4), 0 0 10px rgba(59, 130, 246, 0.3); filter: brightness(1); }
+      50% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 16px rgba(250, 204, 21, 0.5); filter: brightness(1.1); }
+      100% { box-shadow: 0 0 6px rgba(250, 204, 21, 0.4), 0 0 10px rgba(59, 130, 246, 0.3); filter: brightness(1); }
+    }
+    .glow-user { animation: glowUserPulse 3s infinite ease-in-out; }
 
-/* === Brilho alternado azul/dourado suave nos cards de usuários === */
-@keyframes glowUserPulse {
-  0% {
-    box-shadow: 0 0 6px rgba(250, 204, 21, 0.4), 0 0 10px rgba(59, 130, 246, 0.3);
-    filter: brightness(1);
-  }
-  50% {
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.6), 0 0 16px rgba(250, 204, 21, 0.5);
-    filter: brightness(1.1);
-  }
-  100% {
-    box-shadow: 0 0 6px rgba(250, 204, 21, 0.4), 0 0 10px rgba(59, 130, 246, 0.3);
-    filter: brightness(1);
-  }
-}
+    @keyframes anunciadosPulse {
+      0%, 100% { box-shadow: 0 0 8px rgba(59, 130, 246, 0.3), inset 0 0 6px rgba(250, 204, 21, 0.3); filter: brightness(1); }
+      50% { box-shadow: 0 0 16px rgba(250, 204, 21, 0.7), inset 0 0 10px rgba(59, 130, 246, 0.6); filter: brightness(1.15); }
+    }
+    .animate-anunciados { animation: anunciadosPulse 3s infinite ease-in-out; }
 
-.glow-user {
-  animation: glowUserPulse 3s infinite ease-in-out;
-  transition: all 0.3s ease;
-}
-
-/* === Brilho sincronizado dourado/azulado para "Todos os Produtos Anunciados" === */
-@keyframes anunciadosPulse {
-  0%, 100% {
-    box-shadow: 0 0 8px rgba(59, 130, 246, 0.3), inset 0 0 6px rgba(250, 204, 21, 0.3);
-    filter: brightness(1);
-  }
-  50% {
-    box-shadow: 0 0 16px rgba(250, 204, 21, 0.7), inset 0 0 10px rgba(59, 130, 246, 0.6);
-    filter: brightness(1.15);
-  }
-}
-
-.animate-anunciados {
-  animation: anunciadosPulse 3s infinite ease-in-out;
-  transition: all 0.3s ease;
-}
-
-    /* Botão flutuante de "Anunciar" no mobile */
+    /* === Botão flutuante "Anunciar" (amarelo) === */
     .botao-flutuante {
       position: fixed;
       bottom: 18px;
@@ -96,35 +59,52 @@
       animation: aparecer 0.5s ease-in-out;
     }
     .botao-flutuante:hover { transform: scale(1.05); box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
-    @keyframes aparecer { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (min-width: 641px) { .botao-flutuante { display: none; } }
+
+    /* === Botão flutuante "Buscar / Filtrar" (preto, simétrico ao de anunciar) === */
+    #btnBuscaFlutuante {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      background: linear-gradient(to right, #111, #000);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 9999px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 16px;
+      font-size: 14px;
+      z-index: 60;
+      transition: all 0.3s ease;
+      animation: aparecer 0.5s ease-in-out;
+    }
+    #btnBuscaFlutuante:hover { transform: scale(1.05); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3); }
+    @media (min-width: 641px) { #btnBuscaFlutuante { display: none; } }
   </style>
 </head>
 
 <body class="bg-gray-100 text-gray-900 font-sans">
 
-  
-  <!-- HEADER SUPER OTIMIZADO -->
+  <!-- HEADER -->
   <header class="sticky top-0 z-50 shadow-md">
-    <!-- Faixa superior -->
     <div class="bg-gray-900 text-gray-200 text-[10px] flex justify-center gap-4 py-0.5 font-medium">
       <span>🛡️ Site Seguro</span>
       <span>🚚 Entrega Garantida</span>
     </div>
 
-    <!-- Logo e botão anunciar -->
     <div class="bg-black px-2 py-1 sm:py-2 flex flex-col sm:flex-row items-center justify-between">
       <div class="flex justify-center sm:justify-start">
-        <img 
-          src="banner-sellulares-desktop.png" 
-          alt="Sellulares.com"
-          class="hidden sm:block w-[70%] max-h-[70px] object-contain animate-fade-in"
-        >
-        <img 
-          src="banner-sellulares-mobile.png" 
-          alt="Sellulares.com"
-          class="block sm:hidden w-[85%] max-h-[60px] object-contain animate-fade-in"
-        >
+        <img src="banner-sellulares-desktop.png" alt="Sellulares.com" class="hidden sm:block w-[70%] max-h-[70px] object-contain animate-fade-in">
+        <img src="banner-sellulares-mobile.png" alt="Sellulares.com" class="block sm:hidden w-[85%] max-h-[60px] object-contain animate-fade-in">
       </div>
 
       <a href="novo-anuncio.html"
@@ -134,31 +114,23 @@
     </div>
   </header>
 
-  <!-- SEÇÃO OFERTAS DO MERCADO LIVRE (com brilho pulsante dourado sincronizado) -->
-<section class="ofertas-ml bg-gradient-to-r from-[#fff159] via-[#ffe680] to-[#fff159] text-[#3483fa] py-1.5 px-3 flex items-center justify-center sm:justify-between border-b border-yellow-400 shadow animate-ml-bar">
-  <div class="flex items-center gap-2">
-    <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
-         class="h-5 sm:h-6">
-    <h2 class="text-sm sm:text-base font-extrabold tracking-tight">
-      🔥 Ofertas do Mercado Livre
-    </h2>
-  </div>
-</section>
+  <!-- OFERTAS DO MERCADO LIVRE -->
+  <section class="ofertas-ml bg-gradient-to-r from-[#fff159] via-[#ffe680] to-[#fff159] text-[#3483fa] py-1.5 px-3 flex items-center justify-center sm:justify-between border-b border-yellow-400 shadow animate-ml-bar">
+    <div class="flex items-center gap-2">
+      <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-5 sm:h-6">
+      <h2 class="text-sm sm:text-base font-extrabold tracking-tight">🔥 Ofertas do Mercado Livre</h2>
+    </div>
+  </section>
 
   <!-- BANNER AUTOMÁTICO -->
   <section class="bg-white py-2 px-2 overflow-x-auto flex gap-3 scrollbar-thin scrollbar-thumb-gray-300">
     <div id="bannerOfertas" class="flex gap-2"></div>
   </section>
 
-  <!-- (REMOVIDA) Seção de filtros fixa para liberar espaço -->
+  <!-- BOTÃO FLUTUANTE PRETO -->
+  <button id="btnBuscaFlutuante">🔍 Buscar / Filtrar</button>
 
-  <!-- BOTÃO FLUTUANTE: BUSCAR / FILTRAR (mais visível) -->
-  <button id="btnBuscaFlutuante"
-    class="fixed bottom-20 left-4 z-50 bg-gradient-to-r from-emerald-500 to-green-600 text-white font-extrabold rounded-full px-5 py-3 shadow-xl hover:scale-105 hover:from-green-500 hover:to-emerald-400 transition-all duration-300 flex items-center gap-2">
-    🔍 Buscar / Filtrar
-  </button>
-
-  <!-- MODAL DE BUSCA/FILTROS COM BLUR + ANIMAÇÃO -->
+  <!-- MODAL DE BUSCA/FILTROS -->
   <div id="modalBusca" class="hidden fixed inset-0 backdrop-blur-sm bg-black/50 z-50 items-center justify-center opacity-0 transition-opacity duration-300">
     <div class="bg-white rounded-2xl shadow-2xl w-[90%] max-w-md p-5 transform scale-95 transition-all duration-300">
       <div class="flex justify-between items-center mb-3">
@@ -167,21 +139,14 @@
       </div>
 
       <div class="space-y-3">
-        <!-- Busca por nome/marca -->
         <input type="text" id="buscaInput" placeholder="Digite o nome ou marca..."
           class="w-full border rounded-md px-3 py-2 text-sm focus:ring-1 focus:ring-emerald-400 outline-none">
-
-        <!-- Estado -->
         <select id="filtroEstado" class="w-full border rounded-md px-3 py-2 text-sm bg-gray-50">
           <option value="">Estado</option>
         </select>
-
-        <!-- Cidade (carrega conforme estado) -->
         <select id="filtroCidade" class="w-full border rounded-md px-3 py-2 text-sm bg-gray-50">
           <option value="">Cidade</option>
         </select>
-
-        <!-- Marca -->
         <select id="filtroMarca" class="w-full border rounded-md px-3 py-2 text-sm bg-gray-50">
           <option value="">Marca</option>
           <option>Apple</option>
@@ -191,8 +156,6 @@
           <option>Realme</option>
           <option>POCO</option>
         </select>
-
-        <!-- Preço -->
         <select id="filtroPreco" class="w-full border rounded-md px-3 py-2 text-sm bg-gray-50">
           <option value="">Faixa de Preço</option>
           <option value="1">Até R$ 2000</option>
@@ -201,22 +164,21 @@
         </select>
       </div>
 
-      <button id="btnAplicarFiltros"
-        class="mt-5 w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold py-2 rounded-full shadow-md hover:scale-105 transition-all duration-300">
+      <button id="btnAplicarFiltros" class="mt-5 w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold py-2 rounded-full shadow-md hover:scale-105 transition-all duration-300">
         ✅ Aplicar Filtros
       </button>
     </div>
   </div>
 
   <!-- LISTA DE PRODUTOS -->
-<main class="p-2 space-y-4 max-w-6xl mx-auto">
-  <section>
-    <h2 class="text-sm sm:text-base font-bold text-white bg-black py-1.5 px-3 rounded-md text-center shadow-md animate-anunciados">
-  📦 Todos os Produtos Anunciados
-</h2>
-    <div id="listaProdutos" class="flex overflow-x-auto gap-2 pb-2 scrollbar-thin scrollbar-thumb-gray-300 flex-wrap justify-center mt-2"></div>
-  </section>
-</main>
+  <main class="p-2 space-y-4 max-w-6xl mx-auto">
+    <section>
+      <h2 class="text-sm sm:text-base font-bold text-white bg-black py-1.5 px-3 rounded-md text-center shadow-md animate-anunciados">
+        📦 Todos os Produtos Anunciados
+      </h2>
+      <div id="listaProdutos" class="flex overflow-x-auto gap-2 pb-2 scrollbar-thin scrollbar-thumb-gray-300 flex-wrap justify-center mt-2"></div>
+    </section>
+  </main>
 
   <!-- MODAL MERCADO LIVRE -->
   <div id="productModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
@@ -239,8 +201,7 @@
             <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-6" alt="Mercado Livre">
             <p class="text-xs sm:text-sm text-gray-700">Compra 100% segura e concluída no <strong>Mercado Livre</strong>.</p>
           </div>
-          <a id="modalLink" href="#" target="_blank"
-            class="mt-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-center py-3 rounded-md hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+          <a id="modalLink" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-center py-3 rounded-md hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
             🔒 Comprar com segurança no Mercado Livre
           </a>
         </div>
@@ -251,7 +212,7 @@
   <!-- BOTÃO FLUTUANTE MOBILE: ANUNCIAR -->
   <a href="novo-anuncio.html" class="botao-flutuante">📢 Anunciar</a>
 
-  <!-- Seu JS principal -->
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
