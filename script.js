@@ -774,39 +774,122 @@ function renderizarMagalu(lista) {
     });
 }
 
-// ===================== RENDER USUÁRIOS =====================
-function renderizarProdutosUsuarios(lista) {
-  container.innerHTML = "";
+// ===================== RENDERIZAR CARDS GERAIS (LIMPO E VISÍVEL) =====================
+function renderizarCardsGerais(lista) {
+  const listaEl = document.getElementById("listaProdutos");
+  if (!listaEl) return;
+  listaEl.innerHTML = "";
+
+  const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "shopee"];
+
   lista
-    .filter((p) => p.tipo === "usuario")
-    .forEach((p) => {
-      const div = document.createElement("div");
-      div.className =
-        "relative bg-gray-100 rounded-md border border-black shadow-md cursor-pointer flex-shrink-0 w-[22%] sm:w-28 h-32 overflow-hidden card-usuario transition-all duration-300";
+    .filter(p => tiposPermitidos.includes(p.tipo))
+    .forEach(p => {
+      const card = document.createElement("div");
+      card.className =
+        "card-geral bg-white border border-gray-300 rounded-lg shadow-sm flex-shrink-0 w-[110px] flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.03] cursor-pointer overflow-visible";
 
-      const seloCor =
-        p.condicao === "Novo" ? "bg-green-500" : "bg-yellow-400";
+      // ====== Banner da loja ======
+      let bannerHtml = "";
+      if (p.tipo === "mercadolivre") {
+        bannerHtml = `
+          <div class="banner-loja bg-[#fff159] h-[24px] w-full flex items-center justify-center">
+            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" 
+                 alt="Mercado Livre" class="h-[14px] object-contain">
+          </div>`;
+      } else if (p.tipo === "magalu") {
+        bannerHtml = `
+          <div class="banner-loja bg-[#A0A0A0] h-[24px] w-full flex items-center justify-center">
+            <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" 
+                 alt="Magalu" class="h-[14px] object-contain invert">
+          </div>`;
+      } else if (p.tipo === "amazon") {
+        bannerHtml = `
+          <div class="banner-loja bg-[#FFB800] h-[24px] w-full flex items-center justify-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+                 alt="Amazon" class="h-[13px] object-contain">
+          </div>`;
+      } else if (p.tipo === "shopee") {
+        bannerHtml = `
+          <div class="banner-loja bg-[#EE4D2D] h-[24px] w-full flex items-center justify-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" 
+                 alt="Shopee" class="h-[14px] object-contain invert">
+          </div>`;
+      }
 
-      div.innerHTML = `
-        <img src="${p.imagem}" alt="${p.nome}" 
-             class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
-        
-        <!-- Selo Condição -->
-        <div class="absolute top-0 left-0 ${seloCor} text-black font-semibold text-[9px] px-2 py-[1px] rounded-br-md shadow-md">
-          ${p.condicao}
+      // ====== Estrutura do card ======
+      card.innerHTML = `
+        <div class="w-full flex items-center justify-center bg-gray-50 rounded-t-md h-[80px]">
+          <img src="${p.imagem}" alt="${p.nome}" class="max-h-[75px] object-contain">
         </div>
 
-        <!-- Faixa inferior com dados -->
-        <div class="absolute bottom-0 left-0 w-full bg-black/70 text-white px-1 py-[2px] text-[9px] flex flex-col leading-tight">
-          <span class="font-bold text-yellow-300">R$ ${p.precoAtual.toFixed(2)}</span>
-          <span class="truncate">${p.cidade || ""}</span>
+        <div class="flex flex-col items-center text-center px-1 py-1">
+          <p class="text-[9px] font-semibold text-gray-800 line-clamp-2 h-[26px] leading-tight">${p.nome}</p>
+          <p class="text-[11px] font-extrabold text-green-700">R$ ${Number(p.precoAtual).toFixed(2)}</p>
+          <p class="text-[8px] text-green-600 font-medium">${p.desconto || ""}</p>
         </div>
+
+        ${bannerHtml}
       `;
 
-      div.addEventListener("click", () => abrirUserModal(p));
-      container.appendChild(div);
+      card.addEventListener("click", () => abrirModalPorTipo(p));
+      listaEl.appendChild(card);
     });
 }
+
+
+// ===================== ABRIR MODAL POR TIPO =====================
+function abrirModalPorTipo(p) {
+  // Se tem modal específico para o tipo, use-o
+  if (p.tipo === "mercadolivre") {
+    abrirModal(p); // seu modal ML existente
+    return;
+  }
+  if (p.tipo === "magalu") {
+    abrirMagaluModal(p);
+    return;
+  }
+  // Para Amazon / Shopee podemos reaproveitar o modal Magalu/M L com pequenas diferenças:
+  // vou usar o magaluModal como fallback visual — você pode criar modalAmazon/modalShopee se preferir.
+  if (p.tipo === "amazon" || p.tipo === "shopee") {
+    // preenche o magaluModalBox mas ajusta título e cor
+    const modal = document.getElementById("magaluModal");
+    const box = document.getElementById("magaluModalBox");
+    document.getElementById("magaluModalImage").src = p.imagem;
+    document.getElementById("magaluModalTitle").textContent = p.nome;
+    document.getElementById("magaluModalOldPrice").textContent = p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : "";
+    document.getElementById("magaluModalPrice").textContent = `R$ ${p.precoAtual.toFixed(2)}`;
+    document.getElementById("magaluModalDiscount").textContent = p.desconto || "";
+    document.getElementById("magaluModalLink").href = p.link || "#";
+
+    // ajustar visual (trocar logo/cores conforme tipo)
+    const logoImg = box.querySelector('img[alt="Magazine Luiza"]');
+    if (p.tipo === "amazon") {
+      logoImg.src = "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg";
+      box.style.borderColor = "#ff9900";
+      box.style.background = "linear-gradient(to bottom right,#fff,#fff6e6)";
+    } else if (p.tipo === "shopee") {
+      logoImg.src = "https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png";
+      box.style.borderColor = "#ff5722";
+      box.style.background = "linear-gradient(to bottom right,#fff,#fff2f0)";
+    }
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    setTimeout(()=> {
+      box.classList.remove("scale-95","opacity-0");
+      box.classList.add("scale-100","opacity-100");
+    }, 40);
+
+    document.getElementById("closeMagaluModal").onclick = fecharMagaluModal;
+    modal.addEventListener("click", (e)=> { if (e.target===modal) fecharMagaluModal(); });
+    return;
+  }
+
+  // fallback: abrir modal usuário (se desejar)
+  abrirUserModal(p);
+}
+
 
 // ===================== MODAL MERCADO LIVRE =====================
 function abrirModal(p) {
@@ -1182,10 +1265,11 @@ function criarBarraFiltros() {
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
   renderizarMagalu(produtos);
-  renderizarProdutosUsuarios(produtos);
+  renderizarCardsGerais(produtos);   // ✅ substitui renderizarProdutosUsuarios()
   criarBarraFiltros();
-  iniciarRolagemAutomaticaML();       // rolagem Mercado Livre
-  iniciarRolagemAutomaticaMagalu();   // rolagem Magazine Luiza
+  iniciarRolagemAutomaticaML();
+  iniciarRolagemAutomaticaMagalu();
 });
+
 
 
