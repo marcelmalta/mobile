@@ -189,6 +189,22 @@
     transform: scale(1.2);
   }
 }
+
+/* Garante proporção para a área da imagem dentro dos modais */
+#modalBox .relative,
+#userModalBox .relative {
+  aspect-ratio: 1 / 1;       /* formato quadrado padrão */
+  min-height: 220px;         /* evita 0px em mobile */
+}
+
+@media (max-width: 640px) {
+  #modalBox .relative,
+  #userModalBox .relative {
+    aspect-ratio: 4 / 3;     /* formato mais retangular no celular */
+    min-height: 180px;
+  }
+}
+
   </style>
 </head>
 
