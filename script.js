@@ -667,8 +667,13 @@ function renderizarMercadoLivre(lista) {
 
       destaque.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
-          <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Frete Grátis</div>
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
+          <!-- Selo Mercado Livre -->
+          <div class="absolute top-0 left-0 bg-[#fff159] px-1.5 py-0.5 rounded-br-md shadow-sm flex items-center justify-center">
+            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
+                 alt="Mercado Livre" class="h-3 sm:h-4 drop-shadow-md">
+          </div>
         </div>
         <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
         <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
@@ -680,6 +685,7 @@ function renderizarMercadoLivre(lista) {
       banner.appendChild(destaque);
     });
 }
+
 
 // ===================== RENDER MAGAZINE LUIZA =====================
 function renderizarMagalu(lista) {
