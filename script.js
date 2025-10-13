@@ -774,70 +774,97 @@ function renderizarMagalu(lista) {
     });
 }
 
-// ===================== RENDERIZAR CARDS GERAIS (LIMPO E VISÍVEL) =====================
+// ===================== RENDERIZAR CARDS GERAIS (MESCLADO E COLORIDO) =====================
 function renderizarCardsGerais(lista) {
   const listaEl = document.getElementById("listaProdutos");
   if (!listaEl) return;
   listaEl.innerHTML = "";
 
-  const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "shopee"];
+  // Agora permitimos todos os tipos (incluindo usuários)
+  const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "shopee", "usuario"];
 
-  lista
+  // Junta todos, filtra e ordena por nome (ordem alfabética)
+  const produtosGerais = lista
     .filter(p => tiposPermitidos.includes(p.tipo))
-    .forEach(p => {
-      const card = document.createElement("div");
-      card.className =
-        "card-geral bg-white border border-gray-300 rounded-lg shadow-sm flex-shrink-0 w-[72px] flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.03] cursor-pointer overflow-visible";
+    .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
 
-      // ====== Banner da loja ======
-      let bannerHtml = "";
-      if (p.tipo === "mercadolivre") {
-        bannerHtml = `
-          <div class="banner-loja bg-[#fff159] h-[18px] w-full flex items-center justify-center">
-            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" 
-                 alt="Mercado Livre" class="h-[10px] object-contain">
-          </div>`;
-      } else if (p.tipo === "magalu") {
-        bannerHtml = `
-          <div class="banner-loja bg-[#A0A0A0] h-[18px] w-full flex items-center justify-center">
-            <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" 
-                 alt="Magalu" class="h-[10px] object-contain invert">
-          </div>`;
-      } else if (p.tipo === "amazon") {
-        bannerHtml = `
-          <div class="banner-loja bg-[#FFB800] h-[18px] w-full flex items-center justify-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
-                 alt="Amazon" class="h-[9px] object-contain">
-          </div>`;
-      } else if (p.tipo === "shopee") {
-        bannerHtml = `
-          <div class="banner-loja bg-[#EE4D2D] h-[18px] w-full flex items-center justify-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" 
-                 alt="Shopee" class="h-[10px] object-contain invert">
-          </div>`;
-      }
+  // Gera uma cor de sombra consistente com base no nome do produto
+  function gerarCor(nome) {
+    let hash = 0;
+    for (let i = 0; i < nome.length; i++) {
+      hash = nome.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return `hsl(${Math.abs(hash) % 360}, 60%, 85%)`; // tons suaves e variados
+  }
 
-      // ====== Estrutura do card ======
-      card.innerHTML = `
-        <div class="w-full flex items-center justify-center bg-gray-50 rounded-t-md h-[55px]">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-[50px] object-contain">
-        </div>
+  produtosGerais.forEach((p) => {
+    const card = document.createElement("div");
+    const sombraCor = gerarCor(p.nome.toLowerCase());
+    const preco = p.precoAtual ? `R$ ${Number(p.precoAtual).toFixed(2)}` : "";
+    const desconto = p.desconto || "";
 
-        <div class="flex flex-col items-center text-center px-0.5 py-0.5">
-          <p class="text-[7px] font-semibold text-gray-800 line-clamp-2 h-[20px] leading-tight">${p.nome}</p>
-          <p class="text-[9px] font-extrabold text-green-700">R$ ${Number(p.precoAtual).toFixed(2)}</p>
-          <p class="text-[6px] text-green-600 font-medium">${p.desconto || ""}</p>
-        </div>
+    card.className =
+      "card-geral bg-white border border-gray-300 rounded-lg shadow-sm flex-shrink-0 w-[72px] flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.03] cursor-pointer overflow-visible";
 
-        ${bannerHtml}
-      `;
+    // aplica cor igual para produtos de mesmo nome
+    card.style.boxShadow = `0 0 8px ${sombraCor}`;
+    card.style.borderColor = sombraCor;
 
-      // Clique abre modal correspondente
-      card.addEventListener("click", () => abrirModalPorTipo(p));
+    // ====== Banner da loja ======
+    let bannerHtml = "";
+    if (p.tipo === "mercadolivre") {
+      bannerHtml = `
+        <div class="banner-loja bg-[#fff159] h-[18px] w-full flex items-center justify-center">
+          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" 
+               alt="Mercado Livre" class="h-[10px] object-contain">
+        </div>`;
+    } else if (p.tipo === "magalu") {
+      bannerHtml = `
+        <div class="banner-loja bg-[#A0A0A0] h-[18px] w-full flex items-center justify-center">
+          <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" 
+               alt="Magalu" class="h-[10px] object-contain invert">
+        </div>`;
+    } else if (p.tipo === "amazon") {
+      bannerHtml = `
+        <div class="banner-loja bg-[#FFB800] h-[18px] w-full flex items-center justify-center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+               alt="Amazon" class="h-[9px] object-contain">
+        </div>`;
+    } else if (p.tipo === "shopee") {
+      bannerHtml = `
+        <div class="banner-loja bg-[#EE4D2D] h-[18px] w-full flex items-center justify-center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" 
+               alt="Shopee" class="h-[10px] object-contain invert">
+        </div>`;
+    } else if (p.tipo === "usuario") {
+      bannerHtml = `
+        <div class="banner-loja bg-green-600 text-white text-[8px] font-bold flex items-center justify-center h-[18px] w-full">
+          <span>Vendedor Local</span>
+        </div>`;
+    }
 
-      listaEl.appendChild(card);
-    });
+    // ====== Estrutura do card ======
+    card.innerHTML = `
+      <div class="w-full flex items-center justify-center bg-gray-50 rounded-t-md h-[55px]">
+        <img src="${p.imagem}" alt="${p.nome}" class="max-h-[50px] object-contain">
+      </div>
+
+      <div class="flex flex-col items-center text-center px-0.5 py-0.5">
+        <p class="text-[7px] font-semibold text-gray-800 line-clamp-2 h-[20px] leading-tight">${p.nome}</p>
+        <p class="text-[9px] font-extrabold text-green-700">${preco}</p>
+        <p class="text-[6px] text-green-600 font-medium">${desconto}</p>
+      </div>
+
+      ${bannerHtml}
+    `;
+
+    // Clique abre o modal específico de acordo com o tipo
+    card.addEventListener("click", () => abrirModalPorTipo(p));
+
+    listaEl.appendChild(card);
+  });
 }
+
 
 
 
