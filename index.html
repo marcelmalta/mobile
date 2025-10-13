@@ -113,6 +113,42 @@
       box-shadow:0 8px 25px rgba(0,0,0,0.25);
       overflow-y:auto;max-height:85vh;
     }
+
+    /* === Ajuste de tamanho dos selos (Mercado Livre e Magalu) === */
+.selo-ml img,
+.selo-magalu img {
+  height: 10px; /* Tamanho menor padrão (mobile) */
+}
+
+.selo-ml,
+.selo-magalu {
+  padding: 1px 3px;
+  border-radius: 0 0.3rem 0.3rem 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* Mercado Livre com fundo amarelo suave */
+.selo-ml {
+  background-color: rgba(255, 241, 89, 0.85);
+}
+
+/* Magalu com fundo azul suave */
+.selo-magalu {
+  background-color: rgba(59, 130, 246, 0.85);
+}
+
+@media (min-width: 640px) {
+  .selo-ml img,
+  .selo-magalu img {
+    height: 14px; /* aumenta levemente em telas maiores */
+  }
+
+  .selo-ml,
+  .selo-magalu {
+    padding: 2px 5px;
+  }
+}
     
     /* === MODAL USUÁRIO === */
 #userModal.flex #userModalBox {
