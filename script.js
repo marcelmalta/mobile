@@ -224,13 +224,24 @@ const produtos = [
   estoqueTotal: 40
 },
 {
-  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
-  precoAntigo: 2999,
-  precoAtual: 2299,
-  desconto: "23% OFF",
-  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
-  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
-  tipo: "magalu",
+  nome: "Smart TV LG 50'' 4K UHD ThinQ AI HDR WebOS 24",
+  precoAntigo: 2699,
+  precoAtual: 1999,
+  desconto: "26% OFF",
+  parcelas: "10x R$ 199,90 sem juros",
+  cor: "Preto",
+  memoriaRam: "N/A",
+  envio: "Entrega rápida pela Magalu 🚚",
+  detalhes: [
+    "Resolução 4K UHD (3840x2160)",
+    "Processador α5 Gen6 AI",
+    "Suporte HDR10 / HLG",
+    "Comando de voz (Google Assistant e Alexa)",
+    "WebOS 24 com Apps nativos"
+  ],
+  imagem: "https://a-static.mlcdn.com.br/800x560/smart-tv-lg-50-uhd-4k-50ur8750-thinq-ai-webos-24-hdr-wi-fi-bluetooth-3-hdmi-2-usb/magazineluiza/236478700/9a9f0dfdcb45e689c07b226dc4a33e1f.jpg",
+  link: "https://www.magazineluiza.com.br/p/236478700/",
+  tipo: "magalu"
 },
 {
   nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
@@ -717,9 +728,7 @@ function renderizarMercadoLivre(lista) {
     });
 }
 
-
-
-// ===================== RENDER MAGAZINE LUIZA =====================
+// ===================== RENDER MAGAZINE LUIZA (com tooltip) =====================
 function renderizarMagalu(lista) {
   const bannerMagalu = document.getElementById("bannerMagalu");
   if (!bannerMagalu) return;
@@ -730,20 +739,37 @@ function renderizarMagalu(lista) {
     .forEach((p) => {
       const card = document.createElement("div");
       card.className =
-        "bg-white rounded-lg border border-blue-400 shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start overflow-hidden cursor-pointer transition-transform duration-300";
+        "relative bg-white rounded-lg border border-blue-400 shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 overflow-hidden transition-transform duration-300 cursor-pointer";
 
       card.innerHTML = `
         <div class="flex items-center justify-center bg-blue-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
           <div class="absolute top-0 left-0 bg-blue-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Magalu</div>
         </div>
         <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
-        <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+        <p class="line-through text-gray-500 text-[9px]">${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}</p>
         <p class="text-blue-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9px] text-blue-600 font-medium">${p.desconto}</span>
+        <span class="text-[9px] text-blue-600 font-medium">${p.desconto || ""}</span>
       `;
 
+      // === Tooltip (mini-modal) ===
+      card.addEventListener("mouseenter", () => mostrarTooltip(p, card, "magalu"));
+      card.addEventListener("mouseleave", esconderTooltip);
+
+      // Long-press no mobile
+      card.addEventListener("touchstart", () => {
+        longPressTimer = setTimeout(() => mostrarTooltip(p, card, "magalu"), 400);
+      }, { passive: true });
+
+      card.addEventListener("touchend", () => {
+        clearTimeout(longPressTimer);
+        esconderTooltip();
+      });
+
+      // Clique abre o modal principal
       card.addEventListener("click", () => abrirMagaluModal(p));
+
       bannerMagalu.appendChild(card);
     });
 }
