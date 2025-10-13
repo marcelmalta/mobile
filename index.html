@@ -242,6 +242,7 @@
   object-fit: contain;
 }
 
+
 /* CORES DEFINIDAS POR LOJA */
 .banner-ml { background-color: #fff159; }   /* Mercado Livre */
 .banner-magalu { background-color: #000000; }
@@ -278,7 +279,74 @@
 #listaProdutos {
   overflow: visible !important;
 }
+/* ======= TRANSIÇÃO DO MODO COMPARAÇÃO ======= */
+#bannerOfertas, #bannerMagalu, #listaProdutos {
+  transition: all 0.4s ease;
+}
 
+/* ======= QUANDO O MODO COMPARAÇÃO ESTIVER ATIVO ======= */
+.modo-comparacao #bannerOfertas,
+.modo-comparacao #bannerMagalu {
+  opacity: 0;
+  transform: scale(0.8);
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+.modo-comparacao #bannerOfertas > *,
+.modo-comparacao #bannerMagalu > * {
+  display: none !important;
+}
+
+/* ======= DESTAQUE AOS CARDS GERAIS (VENDEDORES LOCAIS) ======= */
+.modo-comparacao #listaProdutos {
+  transform: scale(1.04);
+}
+
+.modo-comparacao #listaProdutos .card-geral[data-tipo="usuario"] {
+  transform: scale(1.15);
+  border-color: rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+  z-index: 10;
+  transition: all 0.4s ease;
+}
+/* ======= MODO FILTRO ======= */
+.modo-filtro #bannerOfertas,
+.modo-filtro #bannerMagalu {
+  opacity: 0;
+  transform: scale(0.9);
+  height: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Oculta o conteúdo interno também */
+.modo-filtro #bannerOfertas > *,
+.modo-filtro #bannerMagalu > * {
+  display: none !important;
+}
+
+/* 📦 Área de produtos ocupa mais espaço */
+.modo-filtro #listaProdutos {
+  transition: all 0.4s ease;
+  padding-top: 10px;
+}
+
+/* Mostrar mais produtos por linha no mobile */
+@media (max-width: 640px) {
+  #listaProdutos .card-geral {
+    width: 48% !important; /* padrão 2 por linha */
+  }
+  .modo-filtro #listaProdutos .card-geral {
+    width: 31% !important; /* modo filtro = 3 por linha */
+  }
+}
 
   </style>
 </head>

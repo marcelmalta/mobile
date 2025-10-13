@@ -1291,6 +1291,32 @@ function criarBarraFiltros() {
   });
 }
 
+// ===================== MODO FILTRO: ESCONDER BANNERS =====================
+function ativarModoFiltro(ativo) {
+  const body = document.body;
+  if (ativo) body.classList.add("modo-filtro");
+  else body.classList.remove("modo-filtro");
+}
+
+// ===================== BOTÃO 🔍 (Buscar / Filtrar) =====================
+document.addEventListener("DOMContentLoaded", () => {
+  const btnBusca = document.getElementById("btnBuscaFlutuante");
+  const barra = document.getElementById("barraFiltros");
+  let filtroAtivo = false;
+
+  btnBusca.addEventListener("click", () => {
+    filtroAtivo = !filtroAtivo;
+    ativarModoFiltro(filtroAtivo);
+
+    // Mostra ou oculta a barra de filtros
+    if (barra) barra.classList.toggle("hidden");
+
+    // Scroll suave até a área de produtos
+    const lista = document.getElementById("listaProdutos");
+    if (lista) lista.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
 // ===================== INIT =====================
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
