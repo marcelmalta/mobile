@@ -72,24 +72,23 @@ function renderizarMercadoLivre(lista) {
     .forEach((p) => {
       const destaque = document.createElement("div");
       destaque.className =
-        "card-mercadolivre bg-white rounded-md border border-yellow-400 shadow-md hover:shadow-lg cursor-pointer flex-shrink-0 w-[140px] sm:w-[140px] h-32 flex flex-col items-center justify-between p-[2px] relative snap-start overflow-hidden transition-all duration-300 group";
+        "card-mercadolivre bg-white rounded-md border border-yellow-400 shadow-md hover:shadow-lg cursor-pointer flex-shrink-0 w-[120px] sm:w-[130px] h-[115px] flex flex-col items-center justify-between p-[2px] relative snap-start overflow-hidden transition-all duration-300 group";
 
       destaque.innerHTML = `
         <!-- Imagem -->
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-[2px] relative">
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-[55px] overflow-hidden mb-[2px] relative">
           <img src="${p.imagem}" alt="${p.nome}" 
-               class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
-          <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Frete Grátis</div>
+               class="max-h-[55px] object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
+          <div class="absolute top-0 left-0 bg-green-500 text-white text-[8px] px-1 py-[1px] rounded-br-md shadow-sm">Frete</div>
         </div>
 
         <!-- Nome -->
-        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800 leading-tight">${p.nome}</h2>
+        <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-[26px] text-gray-800 leading-tight">${p.nome}</h2>
 
         <!-- Preços -->
         <div class="flex flex-col items-center leading-tight">
-          <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
-          <p class="text-green-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-          <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+          <p class="line-through text-gray-500 text-[8px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+          <p class="text-green-700 font-extrabold text-[11px]">R$ ${p.precoAtual.toFixed(2)}</p>
         </div>
       `;
 
