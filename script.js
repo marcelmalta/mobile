@@ -72,17 +72,25 @@ function renderizarMercadoLivre(lista) {
     .forEach((p) => {
       const destaque = document.createElement("div");
       destaque.className =
-        "bg-white rounded-lg border border-black shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform duration-300 card-mercadolivre";
+        "card-mercadolivre bg-white rounded-md border border-yellow-400 shadow-md hover:shadow-lg cursor-pointer flex-shrink-0 w-[140px] sm:w-[140px] h-32 flex flex-col items-center justify-between p-[2px] relative snap-start overflow-hidden transition-all duration-300 group";
 
       destaque.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
+        <!-- Imagem -->
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-[2px] relative">
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
           <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Frete Grátis</div>
         </div>
-        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
-        <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
-        <p class="text-green-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+
+        <!-- Nome -->
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800 leading-tight">${p.nome}</h2>
+
+        <!-- Preços -->
+        <div class="flex flex-col items-center leading-tight">
+          <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+          <p class="text-green-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+          <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+        </div>
       `;
 
       destaque.addEventListener("click", () => abrirModal(p));
