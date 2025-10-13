@@ -12,15 +12,25 @@ const produtos = [
     tipo: "mercadolivre",
   },
   {
-    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
-    precoAntigo: 1099,
-    precoAtual: 629.1,
-    desconto: "42% OFF",
-    parcelas: "18x R$ 38,83 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
-    link: "https://mercadolivre.com/sec/12qtdJ1",
-    tipo: "mercadolivre",
-  },
+  nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+  precoAntigo: 1099,
+  precoAtual: 629.1,
+  desconto: "42% OFF",
+  parcelas: "18x R$ 38,83 sem juros",
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+  link: "https://mercadolivre.com/sec/12qtdJ1",
+  cor: "Prata",
+  memoriaRam: "6 GB",
+  detalhes: [
+    "Tela de 6.7”",
+    "Bateria de 5000mAh",
+    "Memória interna de 128GB",
+    "Desbloqueado",
+    "Sensor de impressão lateral"
+  ],
+  envio: "Frete grátis acima de R$19 / FULL",
+  tipo: "mercadolivre"
+},
   {
     nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
     precoAntigo: 3097,
@@ -669,28 +679,43 @@ function renderizarMercadoLivre(lista) {
     .forEach((p) => {
       const destaque = document.createElement("div");
       destaque.className =
-        "bg-white rounded-lg border border-black shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform duration-300 card-mercadolivre";
+        "relative bg-white rounded-lg border border-black shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 overflow-hidden transition-transform duration-300 card-mercadolivre cursor-pointer";
 
       destaque.innerHTML = `
         <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" 
-               class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
-          <!-- Selo Mercado Livre -->
-          <div class="absolute top-0 left-0 bg-[#fff159] px-1.5 py-0.5 rounded-br-md shadow-sm flex items-center justify-center">
+          <img src="${p.imagem}" alt="${p.nome}"
+               class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+          <div class="absolute top-0 left-0 bg-[#fff159] px-1 py-0.5 rounded-br-md shadow-sm flex items-center justify-center">
             <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
-                 alt="Mercado Livre" class="h-3 sm:h-4 drop-shadow-md">
+                 alt="Mercado Livre" class="h-3 sm:h-4">
           </div>
         </div>
         <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
-        <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+        <p class="line-through text-gray-500 text-[9px]">${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}</p>
         <p class="text-green-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
+        <span class="text-[9px] text-green-600 font-medium">${p.desconto || ""}</span>
       `;
 
+      // — hover desktop
+      destaque.addEventListener("mouseenter", () => mostrarTooltip(p, destaque, "ml"));
+      destaque.addEventListener("mouseleave", esconderTooltip);
+
+      // — long press mobile (~400ms)
+      destaque.addEventListener("touchstart", () => {
+        longPressTimer = setTimeout(()=>mostrarTooltip(p, destaque, "ml"), 400);
+      }, {passive:true});
+      destaque.addEventListener("touchend", () => {
+        clearTimeout(longPressTimer);
+        esconderTooltip();
+      });
+
+      // — clique abre o modal principal
       destaque.addEventListener("click", () => abrirModal(p));
+
       banner.appendChild(destaque);
     });
 }
+
 
 
 // ===================== RENDER MAGAZINE LUIZA =====================
@@ -912,6 +937,64 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+
+// ========= TOOLTIP GLOBAL =========
+let tooltipEl = null;
+let longPressTimer = null;
+
+function criarTooltip() {
+  if (tooltipEl) return;
+  tooltipEl = document.createElement("div");
+  tooltipEl.id = "miniTooltip";
+  tooltipEl.className =
+    "fixed z-[9999] hidden max-w-[240px] rounded-lg border bg-white shadow-xl p-2 text-[11px] leading-tight";
+  document.body.appendChild(tooltipEl);
+}
+
+function preencherTooltip(p, tema = "ml") {
+  const corPreco = tema === "ml" ? "text-green-700" : "text-blue-700";
+  const borda = tema === "ml" ? "border-yellow-300" : "border-blue-300";
+  const linkCor = tema === "ml" ? "text-yellow-700" : "text-blue-700";
+
+  tooltipEl.classList.remove("border-yellow-300","border-blue-300");
+  tooltipEl.classList.add(borda);
+
+  tooltipEl.innerHTML = `
+    <p class="font-semibold text-gray-800 line-clamp-2">${p.nome}</p>
+    <p class="${corPreco} font-bold mt-0.5">R$ ${p.precoAtual?.toFixed?.(2) ?? p.precoAtual}
+      <span class="text-gray-500 font-normal">${p.desconto || ""}</span>
+    </p>
+    ${p.parcelas ? `<p class="text-gray-700">${p.parcelas}</p>` : ""}
+    ${p.cor ? `<p class="text-gray-700"><b>Cor:</b> ${p.cor}</p>` : ""}
+    ${p.memoriaRam ? `<p class="text-gray-700"><b>RAM:</b> ${p.memoriaRam}</p>` : ""}
+    ${Array.isArray(p.detalhes) && p.detalhes.length
+      ? `<ul class="list-disc list-inside text-gray-600 mt-1">${p.detalhes.map(d=>`<li>${d}</li>`).join("")}</ul>`
+      : ""
+    }
+    ${p.link ? `<a class="block mt-1 underline ${linkCor}" target="_blank" href="${p.link}">ver produto</a>` : ""}
+  `;
+}
+
+function posicionarTooltip(pertoDoEl) {
+  const r = pertoDoEl.getBoundingClientRect();
+  const padding = 8;
+  const top = window.scrollY + r.top - tooltipEl.offsetHeight - padding;
+  const left = window.scrollX + r.left + (r.width/2) - (tooltipEl.offsetWidth/2);
+  tooltipEl.style.top = Math.max(8, top) + "px";
+  tooltipEl.style.left = Math.max(8, left) + "px";
+}
+
+function mostrarTooltip(p, cardEl, tema) {
+  criarTooltip();
+  preencherTooltip(p, tema);
+  tooltipEl.classList.remove("hidden");
+  // precisa medir depois de mostrar para posicionar certinho
+  requestAnimationFrame(()=>posicionarTooltip(cardEl));
+}
+
+function esconderTooltip() {
+  if (tooltipEl) tooltipEl.classList.add("hidden");
+}
 
 // ===================== ROLAGEM AUTOMÁTICA MERCADO LIVRE (CORRIGIDA) =====================
 let mlRafId = null;
