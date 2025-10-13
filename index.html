@@ -186,6 +186,11 @@
     <div id="bannerOfertas" class="flex gap-2"></div>
   </section>
 
+  <!-- BANNER AUTOMÁTICO MAGAZINE LUIZA -->
+<section class="bg-white py-2 px-2 overflow-x-auto flex gap-3 scrollbar-thin scrollbar-thumb-blue-300 border-t border-blue-200">
+  <div id="bannerMagalu" class="flex gap-2"></div>
+</section>
+
   <!-- BOTÃO FLUTUANTE PRETO -->
   <button id="btnBuscaFlutuante">🔍 Buscar / Filtrar</button>
 
@@ -237,6 +242,48 @@
       </div>
     </div>
   </div>
+
+  <!-- MODAL MAGAZINE LUIZA -->
+<div id="magaluModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
+  <div id="magaluModalBox" class="relative rounded-2xl max-w-2xl w-[92%] sm:w-[90%] overflow-y-auto max-h-[80vh] sm:max-h-[85vh] p-5 sm:p-6 shadow-2xl transform scale-95 opacity-0 transition-all duration-300 bg-gradient-to-br from-white via-blue-50 to-blue-100 border border-blue-300">
+    
+    <!-- Botão Fechar -->
+    <button id="closeMagaluModal" class="absolute top-2 right-3 text-blue-800 hover:text-blue-900 text-2xl font-bold z-50 bg-white/80 backdrop-blur-sm rounded-full p-2 sm:p-2.5 shadow-md transition-all active:scale-90 hover:scale-110">✖</button>
+
+    <div class="relative flex flex-col sm:flex-row gap-5 sm:gap-6 z-10">
+      <!-- Imagem -->
+      <div class="flex-1 flex items-center justify-center bg-white rounded-xl p-3 border border-blue-200 shadow-inner">
+        <img id="magaluModalImage" src="" alt="Produto" class="w-full rounded-lg shadow-md max-h-[220px] sm:max-h-[300px] object-contain transition-all duration-300" />
+      </div>
+
+      <!-- Conteúdo -->
+      <div class="flex-1 flex flex-col gap-3 sm:gap-4">
+        <h2 id="magaluModalTitle" class="text-lg sm:text-xl font-bold text-gray-800 leading-tight"></h2>
+
+        <div class="flex items-center gap-2 mt-1">
+          <span id="magaluModalOldPrice" class="line-through text-gray-500 text-sm"></span>
+          <span id="magaluModalDiscount" class="text-blue-600 font-semibold"></span>
+        </div>
+
+        <div id="magaluModalPrice" class="text-3xl sm:text-4xl font-extrabold text-blue-700"></div>
+        <p id="magaluModalParcelas" class="text-sm text-gray-700"></p>
+
+        <div class="flex items-center gap-2 mt-2 p-2 border rounded-md bg-blue-50 border-blue-300 shadow-sm">
+          <img src="https://a-static.mlcdn.com.br/static/logo-magalu.svg" alt="Magazine Luiza" class="h-6">
+          <p class="text-xs sm:text-sm text-gray-700">Compra segura e garantida pelo <strong>Magazine Luiza</strong>.</p>
+        </div>
+
+        <a id="magaluModalLink" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-center py-2.5 sm:py-3 rounded-md hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+          🛒 Comprar agora no Magazine Luiza
+        </a>
+
+        <button id="btnCompartilharMagalu" class="mt-2 bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold py-2 sm:py-2.5 rounded-md hover:from-sky-500 hover:to-sky-600 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+          🔗 Compartilhar Oferta
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- MODAL USUÁRIO -->
   <div id="userModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">

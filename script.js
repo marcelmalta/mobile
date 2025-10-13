@@ -181,7 +181,178 @@ const produtos = [
     link: "https://mercadolivre.com/sec/1WZnS5g",
     tipo: "mercadolivre",
   },
-
+  // ======= MAGAZINE LUIZA =======
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x560/smartphone-xiaomi-poco-m7-pro-5g-nfc-256gb-16gb-ramboost-lancamento-2025-camera-dzopu-50mp-ois-fhd-plus-amoled-120hz-celular-premium-design-roso/mastercomerciodeprodutosltda/cel-unity-01/ce09e4620ac5f8881613584d7998aeda.jpeg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x560/smartphone-xiaomi-poco-m7-pro-5g-nfc-256gb-16gb-ramboost-lancamento-2025-camera-dzopu-50mp-ois-fhd-plus-amoled-120hz-celular-premium-design-roso/mastercomerciodeprodutosltda/cel-unity-01/ce09e4620ac5f8881613584d7998aeda.jpeg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
+{
+  nome: "Samsung Galaxy S23 FE 256GB 8GB RAM 5G - Verde",
+  precoAntigo: 3999,
+  precoAtual: 2999,
+  desconto: "25% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smartphone-samsung-galaxy-s23-fe-256gb-8gb-ram/magazineluiza/1234567890/abcdef.jpg",
+  link: "https://www.magazineluiza.com.br/smartphone-samsung-galaxy-s23-fe/p/1234567890",
+  tipo: "magalu",
+},
+{
+  nome: "Smart TV LG 50\" 4K UHD ThinQ AI com Alexa Integrada",
+  precoAntigo: 2999,
+  precoAtual: 2299,
+  desconto: "23% OFF",
+  imagem: "https://a-static.mlcdn.com.br/800x600/smart-tv-lg-50-4k-uhd-thinq-ai/magazineluiza/234513700/9e62e7d5cfb7a669c6c74b8ac9d5e332.jpg",
+  link: "https://www.magazineluiza.com.br/smart-tv-lg-50-4k-uhd-thinq-ai/p/234513700",
+  tipo: "magalu",
+},
   // ======= USUÁRIOS =======
   {
     nome: "iPhone 13 128GB - usado, com nota fiscal",
@@ -504,6 +675,35 @@ function renderizarMercadoLivre(lista) {
     });
 }
 
+// ===================== RENDER MAGAZINE LUIZA =====================
+function renderizarMagalu(lista) {
+  const bannerMagalu = document.getElementById("bannerMagalu");
+  if (!bannerMagalu) return;
+  bannerMagalu.innerHTML = "";
+
+  lista
+    .filter((p) => p.tipo === "magalu")
+    .forEach((p) => {
+      const card = document.createElement("div");
+      card.className =
+        "bg-white rounded-lg border border-blue-400 shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start overflow-hidden cursor-pointer transition-transform duration-300";
+
+      card.innerHTML = `
+        <div class="flex items-center justify-center bg-blue-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
+          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+          <div class="absolute top-0 left-0 bg-blue-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Magalu</div>
+        </div>
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
+        <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+        <p class="text-blue-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[9px] text-blue-600 font-medium">${p.desconto}</span>
+      `;
+
+      card.addEventListener("click", () => abrirMagaluModal(p));
+      bannerMagalu.appendChild(card);
+    });
+}
+
 // ===================== RENDER USUÁRIOS =====================
 function renderizarProdutosUsuarios(lista) {
   container.innerHTML = "";
@@ -563,6 +763,60 @@ document.getElementById("closeModal").addEventListener("click", () => {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
   }, 200);
+});
+
+// ===================== MODAL MAGAZINE LUIZA =====================
+function abrirMagaluModal(p) {
+  const modal = document.getElementById("magaluModal");
+  const box = document.getElementById("magaluModalBox");
+
+  document.getElementById("magaluModalImage").src = p.imagem;
+  document.getElementById("magaluModalTitle").textContent = p.nome;
+  document.getElementById("magaluModalOldPrice").textContent = `R$ ${p.precoAntigo.toFixed(2)}`;
+  document.getElementById("magaluModalPrice").textContent = `R$ ${p.precoAtual.toFixed(2)}`;
+  document.getElementById("magaluModalDiscount").textContent = p.desconto || "";
+  document.getElementById("magaluModalLink").href = p.link;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+
+  setTimeout(() => {
+    box.classList.remove("scale-95", "opacity-0");
+    box.classList.add("scale-100", "opacity-100");
+  }, 50);
+
+  document.getElementById("closeMagaluModal").onclick = fecharMagaluModal;
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) fecharMagaluModal();
+  });
+}
+
+function fecharMagaluModal() {
+  const modal = document.getElementById("magaluModal");
+  const box = document.getElementById("magaluModalBox");
+  box.classList.add("scale-95", "opacity-0");
+  setTimeout(() => {
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  }, 200);
+}
+
+// Compartilhar link
+document.addEventListener("click", (e) => {
+  if (e.target.id === "btnCompartilharMagalu") {
+    const link = document.getElementById("magaluModalLink").href;
+    const titulo = document.getElementById("magaluModalTitle").textContent;
+    if (navigator.share) {
+      navigator.share({
+        title: "Oferta no Magazine Luiza",
+        text: `Confira este produto: ${titulo}`,
+        url: link,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(link);
+      alert("🔗 Link copiado para a área de transferência!");
+    }
+  }
 });
 
 // ===================== MODAL USUÁRIO (NOVO PADRÃO VISUAL) =====================
@@ -681,6 +935,43 @@ function iniciarRolagemAutomaticaML() {
   loop();
 }
 
+// ===================== ROLAGEM AUTOMÁTICA MAGAZINE LUIZA =====================
+let magaluRafId = null;
+let magaluPaused = false;
+
+function iniciarRolagemAutomaticaMagalu() {
+  const faixa = document.getElementById("bannerMagalu");
+  if (!faixa) return;
+
+  // O contêiner real com overflow-x-auto é o PAI da faixa
+  const scroller = faixa.parentElement;
+  if (!scroller) return;
+
+  if (magaluRafId) cancelAnimationFrame(magaluRafId);
+
+  let direcao = 1;          // 1 = direita | -1 = esquerda
+  const velocidade = 0.5;   // pixels por frame
+
+  const pause = () => (magaluPaused = true);
+  const resume = () => (magaluPaused = false);
+  scroller.addEventListener("mouseenter", pause);
+  scroller.addEventListener("mouseleave", resume);
+  scroller.addEventListener("touchstart", pause, { passive: true });
+  scroller.addEventListener("touchend", resume, { passive: true });
+
+  function loop() {
+    if (!magaluPaused) {
+      scroller.scrollLeft += direcao * velocidade;
+
+      if (scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 1) direcao = -1;
+      else if (scroller.scrollLeft <= 0) direcao = 1;
+    }
+    magaluRafId = requestAnimationFrame(loop);
+  }
+
+  loop();
+}
+
 // 🔹 Inicia após renderizar todos os cards
 window.addEventListener("load", iniciarRolagemAutomaticaML);
 
@@ -744,6 +1035,11 @@ function criarBarraFiltros() {
 // ===================== INIT =====================
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
+  renderizarMagalu(produtos);
   renderizarProdutosUsuarios(produtos);
   criarBarraFiltros();
+  iniciarRolagemAutomaticaML();       // rolagem Mercado Livre
+  iniciarRolagemAutomaticaMagalu();   // rolagem Magazine Luiza
 });
+
+
