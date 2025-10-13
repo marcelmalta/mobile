@@ -15,20 +15,21 @@ const produtos = [
   nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
   precoAntigo: 1099,
   precoAtual: 629.1,
-  desconto: "42% OFF",
-  parcelas: "18x R$ 38,83 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
-  link: "https://mercadolivre.com/sec/12qtdJ1",
+  desconto: "43% OFF",
+  parcelas: "18x R$ 34,94 sem juros",
   cor: "Prata",
   memoriaRam: "6 GB",
+  envio: "Frete grátis com Mercado Envios FULL 🚚",
   detalhes: [
-    "Tela de 6.7”",
+    "Tela de 6.7\" HD+",
     "Bateria de 5000mAh",
-    "Memória interna de 128GB",
-    "Desbloqueado",
-    "Sensor de impressão lateral"
+    "Câmera tripla de 50MP",
+    "Sensor digital lateral",
+    "Desbloqueado - Dual SIM",
+    "Carregador de 7W incluso"
   ],
-  envio: "Frete grátis acima de R$19 / FULL",
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+  link: "https://mercadolivre.com/sec/12qtdJ1",
   tipo: "mercadolivre"
 },
   {
@@ -954,9 +955,9 @@ function criarTooltip() {
 function preencherTooltip(p, tema = "ml") {
   const corPreco = tema === "ml" ? "text-green-700" : "text-blue-700";
   const borda = tema === "ml" ? "border-yellow-300" : "border-blue-300";
-  const linkCor = tema === "ml" ? "text-yellow-700" : "text-blue-700";
+  const corEntrega = tema === "ml" ? "text-yellow-600" : "text-blue-600";
 
-  tooltipEl.classList.remove("border-yellow-300","border-blue-300");
+  tooltipEl.classList.remove("border-yellow-300", "border-blue-300");
   tooltipEl.classList.add(borda);
 
   tooltipEl.innerHTML = `
@@ -971,7 +972,11 @@ function preencherTooltip(p, tema = "ml") {
       ? `<ul class="list-disc list-inside text-gray-600 mt-1">${p.detalhes.map(d=>`<li>${d}</li>`).join("")}</ul>`
       : ""
     }
-    ${p.link ? `<a class="block mt-1 underline ${linkCor}" target="_blank" href="${p.link}">ver produto</a>` : ""}
+
+    <!-- Destaque da entrega -->
+    <div class="mt-2 bg-gradient-to-r from-white to-${tema === "ml" ? "[#fff9d1]" : "blue-50"} border-l-4 ${borda} px-2 py-1 rounded-md">
+      <p class="font-bold ${corEntrega} text-[10px] flex items-center gap-1">🚚 Entrega em até 2 dias!</p>
+    </div>
   `;
 }
 
