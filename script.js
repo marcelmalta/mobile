@@ -787,55 +787,58 @@ function renderizarCardsGerais(lista) {
     .forEach(p => {
       const card = document.createElement("div");
       card.className =
-        "card-geral bg-white border border-gray-300 rounded-lg shadow-sm flex-shrink-0 w-[110px] flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.03] cursor-pointer overflow-visible";
+        "card-geral bg-white border border-gray-300 rounded-lg shadow-sm flex-shrink-0 w-[72px] flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.03] cursor-pointer overflow-visible";
 
       // ====== Banner da loja ======
       let bannerHtml = "";
       if (p.tipo === "mercadolivre") {
         bannerHtml = `
-          <div class="banner-loja bg-[#fff159] h-[24px] w-full flex items-center justify-center">
+          <div class="banner-loja bg-[#fff159] h-[18px] w-full flex items-center justify-center">
             <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" 
-                 alt="Mercado Livre" class="h-[14px] object-contain">
+                 alt="Mercado Livre" class="h-[10px] object-contain">
           </div>`;
       } else if (p.tipo === "magalu") {
         bannerHtml = `
-          <div class="banner-loja bg-[#A0A0A0] h-[24px] w-full flex items-center justify-center">
+          <div class="banner-loja bg-[#A0A0A0] h-[18px] w-full flex items-center justify-center">
             <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" 
-                 alt="Magalu" class="h-[14px] object-contain invert">
+                 alt="Magalu" class="h-[10px] object-contain invert">
           </div>`;
       } else if (p.tipo === "amazon") {
         bannerHtml = `
-          <div class="banner-loja bg-[#FFB800] h-[24px] w-full flex items-center justify-center">
+          <div class="banner-loja bg-[#FFB800] h-[18px] w-full flex items-center justify-center">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
-                 alt="Amazon" class="h-[13px] object-contain">
+                 alt="Amazon" class="h-[9px] object-contain">
           </div>`;
       } else if (p.tipo === "shopee") {
         bannerHtml = `
-          <div class="banner-loja bg-[#EE4D2D] h-[24px] w-full flex items-center justify-center">
+          <div class="banner-loja bg-[#EE4D2D] h-[18px] w-full flex items-center justify-center">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" 
-                 alt="Shopee" class="h-[14px] object-contain invert">
+                 alt="Shopee" class="h-[10px] object-contain invert">
           </div>`;
       }
 
       // ====== Estrutura do card ======
       card.innerHTML = `
-        <div class="w-full flex items-center justify-center bg-gray-50 rounded-t-md h-[80px]">
-          <img src="${p.imagem}" alt="${p.nome}" class="max-h-[75px] object-contain">
+        <div class="w-full flex items-center justify-center bg-gray-50 rounded-t-md h-[55px]">
+          <img src="${p.imagem}" alt="${p.nome}" class="max-h-[50px] object-contain">
         </div>
 
-        <div class="flex flex-col items-center text-center px-1 py-1">
-          <p class="text-[9px] font-semibold text-gray-800 line-clamp-2 h-[26px] leading-tight">${p.nome}</p>
-          <p class="text-[11px] font-extrabold text-green-700">R$ ${Number(p.precoAtual).toFixed(2)}</p>
-          <p class="text-[8px] text-green-600 font-medium">${p.desconto || ""}</p>
+        <div class="flex flex-col items-center text-center px-0.5 py-0.5">
+          <p class="text-[7px] font-semibold text-gray-800 line-clamp-2 h-[20px] leading-tight">${p.nome}</p>
+          <p class="text-[9px] font-extrabold text-green-700">R$ ${Number(p.precoAtual).toFixed(2)}</p>
+          <p class="text-[6px] text-green-600 font-medium">${p.desconto || ""}</p>
         </div>
 
         ${bannerHtml}
       `;
 
+      // Clique abre modal correspondente
       card.addEventListener("click", () => abrirModalPorTipo(p));
+
       listaEl.appendChild(card);
     });
 }
+
 
 
 // ===================== ABRIR MODAL POR TIPO =====================
