@@ -1136,31 +1136,45 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS =====================
+// ===================== CRIAR BARRA DE FILTROS (abaixo da faixa Mercado Livre) =====================
 function criarBarraFiltros() {
-  const main = document.querySelector("main");
+  const mlSection = document.querySelector(".ml-selo"); // pega a faixa "✅ Ofertas verificadas..."
   const barra = document.createElement("div");
   barra.id = "barraFiltros";
   barra.className =
-    "hidden bg-black text-white border border-yellow-400 rounded-lg mt-2 p-2 shadow-md flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto";
+    "hidden bg-black text-white border border-yellow-400 rounded-lg mt-2 p-2 shadow-md flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto animate-fade-in";
+
   barra.innerHTML = `
     <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
       class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm w-[150px]" />
     <select id="filtroMarca" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Marca</option><option>Apple</option><option>Samsung</option><option>Xiaomi</option><option>Motorola</option><option>Realme</option><option>POCO</option>
+      <option value="">Marca</option>
+      <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
+      <option>Motorola</option><option>Realme</option><option>POCO</option>
     </select>
     <select id="filtroEstado" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
       <option value="">Estado</option><option>AL</option><option>PE</option>
     </select>
     <select id="filtroPreco" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Preço</option><option value="1">Até R$ 2000</option><option value="2">R$ 2000–R$ 4000</option><option value="3">+ R$ 4000</option>
+      <option value="">Preço</option>
+      <option value="1">Até R$ 2000</option>
+      <option value="2">R$ 2000–R$ 4000</option>
+      <option value="3">+ R$ 4000</option>
     </select>
   `;
-  main.parentNode.insertBefore(barra, main);
 
-  ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach(id => {
-    const el = document.getElementById(id);
-    ["input", "change"].forEach(evt => el.addEventListener(evt, aplicarFiltros));
+  // 👉 Insere logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
+  if (mlSection) {
+    mlSection.insertAdjacentElement("afterend", barra);
+  } else {
+    // fallback: caso a seção não exista por algum motivo
+    document.body.insertBefore(barra, document.body.firstChild);
+  }
+
+  // Eventos de atualização dos filtros
+  ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
+    const el = barra.querySelector(`#${id}`);
+    ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
   });
 }
 
