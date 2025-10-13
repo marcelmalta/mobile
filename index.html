@@ -20,8 +20,8 @@
 
     /* === Pulsar barra Mercado Livre === */
     @keyframes mlBarPulse {
-      0%,100% { box-shadow:0 0 8px rgba(250,204,21,0.4),inset 0 0 6px rgba(250,204,21,0.3);}
-      50% { box-shadow:0 0 16px rgba(250,204,21,0.8),inset 0 0 8px rgba(250,204,21,0.6);}
+      0%,100% { box-shadow:0 0 8px rgba(250,204,21,0.4),inset 0 0 6px rgba(250,204,21,0.3); }
+      50% { box-shadow:0 0 16px rgba(250,204,21,0.8),inset 0 0 8px rgba(250,204,21,0.6); }
     }
     .animate-ml-bar { animation: mlBarPulse 2.8s infinite ease-in-out; }
 
@@ -104,7 +104,7 @@
     .card-mercadolivre:hover img { transform: scale(1.05); }
     @keyframes reflexoCardML { 0%,75%{left:-70%;opacity:0;}80%{opacity:.8;}100%{left:130%;opacity:0;} }
 
-        /* === MODAL MERCADO LIVRE === */
+    /* === MODAL MERCADO LIVRE === */
     #productModal.flex #modalBox{opacity:1;transform:scale(1);transition:.25s ease-out;}
     #modalBox{
       opacity:0;transform:scale(0.95);transition:.25s ease-in;
@@ -113,98 +113,23 @@
       box-shadow:0 8px 25px rgba(0,0,0,0.25);
       overflow-y:auto;max-height:85vh;
     }
-    @media(max-width:640px){
-      #modalBox{max-height:80vh;padding:1rem;}
-      #modalPrice{font-size:1.7rem;}
-      #modalLink{font-size:.9rem;}
-      #closeModal{top:.25rem;right:.25rem;transform:scale(1.2);}
-    }
 
     /* === MODAL USUÁRIO === */
-#userModal.flex #userModalBox {
-  opacity: 1;
-  transform: scale(1);
-  transition: .25s ease-out;
-}
+    #userModal.flex #userModalBox {opacity:1;transform:scale(1);transition:.25s ease-out;}
+    #userModalBox {
+      opacity:0;transform:scale(0.95);transition:.25s ease-in;
+      background: linear-gradient(to bottom right, #fff8dc, #fffbea, #fef3c7);
+      border-radius:1.25rem;border:1.5px solid rgba(250,204,21,0.6);
+      box-shadow:0 8px 25px rgba(0,0,0,0.25);
+      overflow-y:auto;max-height:85vh;position:relative;
+    }
 
-#userModalBox {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: .25s ease-in;
-  background: linear-gradient(to bottom right, #fff8dc, #fffbea, #fef3c7);
-  border-radius: 1.25rem;
-  border: 1.5px solid rgba(250, 204, 21, 0.6);
-  box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.25),
-    inset 0 0 12px rgba(250, 204, 21, 0.15);
-  overflow-y: auto;
-  max-height: 85vh;
-  position: relative;
-}
-
-#userModalBox::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 1.25rem;
-  padding: 1px;
-  background: linear-gradient(135deg, #facc15, #fde047);
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-#userModalBox::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -70%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.35),
-    rgba(250, 204, 21, 0.3),
-    transparent
-  );
-  opacity: 0;
-  transform: skewX(-25deg);
-  animation: reflexoModalUser 8s ease-in-out infinite;
-}
-
-@keyframes reflexoModalUser {
-  0%, 75% { left: -70%; opacity: 0; }
-  80% { opacity: 0.8; }
-  100% { left: 130%; opacity: 0; }
-}
-
-@media (max-width: 640px) {
-  #userModalBox {
-    max-height: 80vh;
-    padding: 1rem;
-  }
-  #closeUserModal {
-    top: .25rem;
-    right: .25rem;
-    transform: scale(1.2);
-  }
-}
-
-/* Garante proporção para a área da imagem dentro dos modais */
-#modalBox .relative,
-#userModalBox .relative {
-  aspect-ratio: 1 / 1;       /* formato quadrado padrão */
-  min-height: 220px;         /* evita 0px em mobile */
-}
-
-@media (max-width: 640px) {
-  #modalBox .relative,
-  #userModalBox .relative {
-    aspect-ratio: 4 / 3;     /* formato mais retangular no celular */
-    min-height: 180px;
-  }
-}
-
+    @media(max-width:640px){
+      #modalBox,#userModalBox{max-height:80vh;padding:1rem;}
+      #modalPrice{font-size:1.7rem;}
+      #modalLink{font-size:.9rem;}
+      #closeModal,#closeUserModal{top:.25rem;right:.25rem;transform:scale(1.2);}
+    }
   </style>
 </head>
 
@@ -253,167 +178,82 @@
   </main>
 
   <!-- MODAL MERCADO LIVRE -->
-<div id="productModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
-  <div id="modalBox" class="relative rounded-2xl max-w-2xl w-[92%] sm:w-[90%] overflow-y-auto max-h-[80vh] sm:max-h-[85vh] p-5 sm:p-6 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
-    <div class="absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-400 opacity-60 pointer-events-none"></div>
+  <div id="productModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
+    <div id="modalBox" class="relative rounded-2xl max-w-2xl w-[92%] sm:w-[90%] overflow-y-auto max-h-[80vh] sm:max-h-[85vh] p-5 sm:p-6 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+      <div class="absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-r from-yellow-400 via-yellow-300 to-blue-400 opacity-60 pointer-events-none"></div>
 
-    <!-- Botão Fechar -->
-    <button id="closeModal" class="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl font-bold z-50 bg-white/80 backdrop-blur-sm rounded-full p-2 sm:p-2.5 shadow-md transition-all active:scale-90 hover:scale-110">✖</button>
+      <!-- Botão Fechar -->
+      <button id="closeModal" class="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl font-bold z-50 bg-white/80 backdrop-blur-sm rounded-full p-2 sm:p-2.5 shadow-md transition-all active:scale-90 hover:scale-110">✖</button>
 
-    <div class="relative flex flex-col sm:flex-row gap-5 sm:gap-6 z-10">
-      <!-- Imagem -->
-      <div class="flex-1 relative rounded-xl overflow-hidden border border-gray-200 shadow-inner bg-gray-50">
-        <img id="modalImage" src="" alt="Produto"
-             class="absolute inset-0 w-full h-full object-cover transition-all duration-500 hover:scale-105" />
-      </div>
-
-      <!-- Detalhes -->
-      <div class="flex-1 flex flex-col gap-3 sm:gap-4">
-        <h2 id="modalTitle" class="text-lg sm:text-xl font-bold text-gray-800 leading-tight"></h2>
-        <div class="flex items-center gap-2 mt-1">
-          <span id="modalOldPrice" class="line-through text-gray-500 text-sm"></span>
-          <span id="modalDiscount" class="text-green-600 font-semibold"></span>
-        </div>
-        <div id="modalPrice" class="text-3xl sm:text-4xl font-extrabold text-green-700"></div>
-        <p id="modalParcelas" class="text-sm text-gray-700"></p>
-
-        <div class="flex items-center gap-2 mt-2 p-2 border rounded-md bg-yellow-50 border-yellow-300 shadow-sm">
-          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-6" alt="Mercado Livre">
-          <p class="text-xs sm:text-sm text-gray-700">Compra 100% segura e concluída no <strong>Mercado Livre</strong>.</p>
+      <div class="relative flex flex-col sm:flex-row gap-5 sm:gap-6 z-10">
+        <div class="flex-1 flex items-center justify-center bg-gray-50 rounded-xl p-3 border border-gray-200 shadow-inner">
+          <img id="modalImage" src="" alt="Produto" class="w-full rounded-lg shadow-md max-h-[220px] sm:max-h-[300px] object-contain transition-all duration-300" />
         </div>
 
-        <a id="modalLink" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-center py-2.5 sm:py-3 rounded-md hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-          🔒 Comprar com segurança no Mercado Livre
-        </a>
+        <div class="flex-1 flex flex-col gap-3 sm:gap-4">
+          <h2 id="modalTitle" class="text-lg sm:text-xl font-bold text-gray-800 leading-tight"></h2>
+          <div class="flex items-center gap-2 mt-1">
+            <span id="modalOldPrice" class="line-through text-gray-500 text-sm"></span>
+            <span id="modalDiscount" class="text-green-600 font-semibold"></span>
+          </div>
+          <div id="modalPrice" class="text-3xl sm:text-4xl font-extrabold text-green-700"></div>
+          <p id="modalParcelas" class="text-sm text-gray-700"></p>
 
-        <button id="btnCompartilhar" class="mt-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-2 sm:py-2.5 rounded-md hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-          🔗 Compartilhar Oferta
-        </button>
+          <div class="flex items-center gap-2 mt-2 p-2 border rounded-md bg-yellow-50 border-yellow-300 shadow-sm">
+            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-6" alt="Mercado Livre">
+            <p class="text-xs sm:text-sm text-gray-700">Compra 100% segura e concluída no <strong>Mercado Livre</strong>.</p>
+          </div>
+
+          <a id="modalLink" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 font-bold text-center py-2.5 sm:py-3 rounded-md hover:from-yellow-500 hover:to-yellow-600 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+            🔒 Comprar com segurança no Mercado Livre
+          </a>
+
+          <button id="btnCompartilhar" class="mt-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-2 sm:py-2.5 rounded-md hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+            🔗 Compartilhar Oferta
+          </button>
+        </div>
       </div>
-    </div>
-
-    <!-- Rodapé -->
-    <div class="mt-5 text-xs text-gray-600 border-t pt-2 text-center">
-      ⚠️ As ofertas são verificadas automaticamente pelo sistema Sellulares.com em integração com o Mercado Livre.
     </div>
   </div>
-</div>
-
-<!-- MODAL USUÁRIO -->
-<div id="userModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
-  <div id="userModalBox" class="relative rounded-2xl max-w-2xl w-[92%] sm:w-[90%] overflow-y-auto max-h-[80vh] sm:max-h-[85vh] p-5 sm:p-6 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
-
-    <!-- Bordas douradas -->
-    <div class="absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-400 opacity-40 pointer-events-none"></div>
-
-    <!-- Botão fechar -->
-    <button id="closeUserModal" class="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl font-bold z-50 bg-white/80 backdrop-blur-sm rounded-full p-2 sm:p-2.5 shadow-md transition-all active:scale-90 hover:scale-110">✖</button>
-
-    <!-- Conteúdo -->
-    <div class="relative flex flex-col sm:flex-row gap-5 sm:gap-6 z-10">
-      <!-- Imagem -->
-      <div class="flex-1 relative rounded-xl overflow-hidden border border-yellow-200 shadow-inner bg-white">
-        <img id="userModalImage" src="" alt="Produto"
-             class="absolute inset-0 w-full h-full object-cover transition-all duration-500 hover:scale-105" />
-      </div>
-
-      <!-- Detalhes -->
-      <div class="flex-1 flex flex-col gap-3 sm:gap-4">
-        <h2 id="userModalTitle" class="text-lg sm:text-xl font-bold text-gray-800 leading-tight"></h2>
-
-        <!-- Selos -->
-        <div class="flex flex-wrap gap-2 text-xs font-semibold">
-          <span id="userModalCond" class="px-2 py-1 rounded-md border border-yellow-400 bg-yellow-100 text-yellow-800">Usado</span>
-          <span id="userModalLocation" class="px-2 py-1 rounded-md border border-gray-300 bg-gray-100 text-gray-700">Maceió - AL</span>
-          <span id="userModalDate" class="px-2 py-1 rounded-md border border-gray-200 bg-white text-gray-500">Publicado há 2 dias</span>
-        </div>
-
-        <!-- Preço -->
-        <div id="userModalPrice" class="text-3xl sm:text-4xl font-extrabold text-green-700"></div>
-
-        <!-- Descrição -->
-        <p id="userModalDesc" class="text-sm text-gray-800 leading-snug"></p>
-
-        <!-- Botões -->
-        <a id="userModalWhats" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-center py-2.5 sm:py-3 rounded-md hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-          💬 Conversar via WhatsApp
-        </a>
-
-        <button id="userModalCopy" class="mt-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-2 sm:py-2.5 rounded-md hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-          🔗 Copiar link do anúncio
-        </button>
-
-        <!-- Aviso de segurança -->
-        <div class="flex items-center gap-2 mt-3 p-2 border rounded-md bg-yellow-50 border-yellow-300 shadow-sm text-xs sm:text-sm text-gray-700">
-          <span>⚠️</span>
-          <p>Negocie com segurança: nunca envie dinheiro antecipado e prefira encontros em locais públicos.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Rodapé -->
-    <div class="mt-5 text-xs text-gray-600 border-t pt-2 text-center">
-      ⚠️ Negocie com segurança. Verifique o aparelho e finalize o pagamento somente após confirmar o produto.
-    </div>
-  </div>
-</div>
 
   <!-- MODAL USUÁRIO -->
-<div id="userModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
-  <div id="userModalBox" class="relative rounded-2xl max-w-2xl w-[92%] sm:w-[90%] overflow-y-auto max-h-[80vh] sm:max-h-[85vh] p-5 sm:p-6 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+  <div id="userModal" class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50 transition duration-300">
+    <div id="userModalBox" class="relative rounded-2xl max-w-2xl w-[92%] sm:w-[90%] overflow-y-auto max-h-[80vh] sm:max-h-[85vh] p-5 sm:p-6 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+      <div class="absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-400 opacity-40 pointer-events-none"></div>
 
-    <!-- Bordas douradas -->
-    <div class="absolute inset-0 rounded-2xl p-[1.5px] bg-gradient-to-r from-yellow-300 via-yellow-200 to-yellow-400 opacity-40 pointer-events-none"></div>
+      <!-- Botão Fechar -->
+      <button id="closeUserModal" class="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl font-bold z-50 bg-white/80 backdrop-blur-sm rounded-full p-2 sm:p-2.5 shadow-md transition-all active:scale-90 hover:scale-110">✖</button>
 
-    <!-- Botão fechar -->
-    <button id="closeUserModal" class="absolute top-2 right-3 text-gray-700 hover:text-black text-2xl font-bold z-50 bg-white/80 backdrop-blur-sm rounded-full p-2 sm:p-2.5 shadow-md transition-all active:scale-90 hover:scale-110">✖</button>
-
-    <!-- Conteúdo -->
-    <div class="relative flex flex-col sm:flex-row gap-5 sm:gap-6 z-10">
-      <!-- Imagem -->
-      <div class="flex-1 relative rounded-xl overflow-hidden border border-yellow-200 shadow-inner bg-white">
-  <img id="userModalImage" src="" alt="Produto"
-       class="absolute inset-0 w-full h-full object-cover transition-all duration-500 hover:scale-105" />
-</div>
-      <!-- Detalhes -->
-      <div class="flex-1 flex flex-col gap-3 sm:gap-4">
-        <h2 id="userModalTitle" class="text-lg sm:text-xl font-bold text-gray-800 leading-tight"></h2>
-
-        <!-- Selos -->
-        <div class="flex flex-wrap gap-2 text-xs font-semibold">
-          <span id="userModalCond" class="px-2 py-1 rounded-md border border-yellow-400 bg-yellow-100 text-yellow-800">Usado</span>
-          <span id="userModalLocation" class="px-2 py-1 rounded-md border border-gray-300 bg-gray-100 text-gray-700">Maceió - AL</span>
-          <span id="userModalDate" class="px-2 py-1 rounded-md border border-gray-200 bg-white text-gray-500">Publicado há 2 dias</span>
+      <div class="relative flex flex-col sm:flex-row gap-5 sm:gap-6 z-10">
+        <div class="flex-1 flex items-center justify-center bg-white rounded-xl p-3 border border-yellow-200 shadow-inner">
+          <img id="userModalImage" src="" alt="Produto" class="w-full rounded-lg shadow-md max-h-[220px] sm:max-h-[300px] object-contain transition-all duration-300" />
         </div>
 
-        <!-- Preço -->
-        <div id="userModalPrice" class="text-3xl sm:text-4xl font-extrabold text-green-700"></div>
+        <div class="flex-1 flex flex-col gap-3 sm:gap-4">
+          <h2 id="userModalTitle" class="text-lg sm:text-xl font-bold text-gray-800 leading-tight"></h2>
 
-        <!-- Descrição -->
-        <p id="userModalDesc" class="text-sm text-gray-800 leading-snug"></p>
+          <div class="flex flex-wrap gap-2 text-xs font-semibold">
+            <span id="userModalCond" class="px-2 py-1 rounded-md border border-yellow-400 bg-yellow-100 text-yellow-800">Usado</span>
+            <span id="userModalLocation" class="px-2 py-1 rounded-md border border-gray-300 bg-gray-100 text-gray-700">Maceió - AL</span>
+            <span id="userModalDate" class="px-2 py-1 rounded-md border border-gray-200 bg-white text-gray-500">Publicado há 2 dias</span>
+          </div>
 
-        <!-- Botões -->
-        <a id="userModalWhats" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-center py-2.5 sm:py-3 rounded-md hover:from-green-600 hover:to-green-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-          💬 Conversar via WhatsApp
-        </a>
+          <div id="userModalPrice" class="text-3xl sm:text-4xl font-extrabold text-green-700"></div>
+          <p id="userModalDesc" class="text-sm text-gray-800 leading-snug"></p>
 
-        <button id="userModalCopy" class="mt-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-2 sm:py-2.5 rounded-md hover:from-blue-600 hover:to-blue-700 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-          🔗 Copiar link do anúncio
-        </button>
+          <a id="userModalWhats" href="#" target="_blank" class="mt-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-center py-2.5 sm:py-3 rounded-md hover:from-green-600 hover:to-green-700 shadow-md">
+            💬 Conversar via WhatsApp
+          </a>
 
-        <!-- Aviso de segurança -->
-        <div class="flex items-center gap-2 mt-3 p-2 border rounded-md bg-yellow-50 border-yellow-300 shadow-sm text-xs sm:text-sm text-gray-700">
-          <span>⚠️</span>
-          <p>Negocie com segurança: nunca envie dinheiro antecipado e prefira encontros em locais públicos.</p>
+          <button id="userModalCopy" class="mt-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-2 sm:py-2.5 rounded-md hover:from-blue-600 hover:to-blue-700 shadow-md">
+            🔗 Copiar link do anúncio
+          </button>
+
+          <div class="flex items-center gap-2 mt-3 p-2 border rounded-md bg-yellow-50 border-yellow-300 shadow-sm text-xs sm:text-sm text-gray-700">
+            <span>⚠️</span>
+            <p>Negocie com segurança: nunca envie dinheiro antecipado e prefira encontros em locais públicos.</p>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-      <!-- Rodapé de segurança -->
-      <div class="mt-5 text-xs text-gray-600 border-t pt-2 text-center">
-        ⚠️ Negocie com segurança. Verifique o aparelho e finalize o pagamento somente após confirmar o produto.
       </div>
     </div>
   </div>
