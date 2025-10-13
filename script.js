@@ -641,32 +641,48 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ===================== ROLAGEM AUTOMÁTICA MERCADO LIVRE =====================
-function iniciarRolagemAutomatica() {
+// ===================== ROLAGEM AUTOMÁTICA MERCADO LIVRE (CORRIGIDA) =====================
+let mlRafId = null;
+let mlPaused = false;
+
+function iniciarRolagemAutomaticaML() {
   const faixa = document.getElementById("bannerOfertas");
   if (!faixa) return;
 
-  let direcao = 1; // 1 = direita, -1 = esquerda
-  const velocidade = 0.5; // pixels por frame (quanto menor, mais suave)
+  // 🔹 O contêiner real com overflow-x-auto é o PAI da faixa
+  const scroller = faixa.parentElement;
+  if (!scroller) return;
 
-  function rolar() {
-    faixa.scrollLeft += direcao * velocidade;
+  // Evita múltiplos loops
+  if (mlRafId) cancelAnimationFrame(mlRafId);
 
-    // Detecta se chegou ao fim ou início da rolagem
-    if (faixa.scrollLeft + faixa.clientWidth >= faixa.scrollWidth - 2) {
-      direcao = -1;
-    } else if (faixa.scrollLeft <= 0) {
-      direcao = 1;
+  let direcao = 1;          // 1 = direita | -1 = esquerda
+  const velocidade = 0.5;   // pixels por frame
+
+  // Pausar quando o usuário interage
+  const pause = () => (mlPaused = true);
+  const resume = () => (mlPaused = false);
+  scroller.addEventListener("mouseenter", pause);
+  scroller.addEventListener("mouseleave", resume);
+  scroller.addEventListener("touchstart", pause, { passive: true });
+  scroller.addEventListener("touchend", resume, { passive: true });
+
+  function loop() {
+    if (!mlPaused) {
+      scroller.scrollLeft += direcao * velocidade;
+
+      // Inverter nas extremidades
+      if (scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 1) direcao = -1;
+      else if (scroller.scrollLeft <= 0) direcao = 1;
     }
-
-    requestAnimationFrame(rolar);
+    mlRafId = requestAnimationFrame(loop);
   }
 
-  rolar();
+  loop();
 }
 
-// Inicia rolagem automática após renderizar
-window.addEventListener("load", iniciarRolagemAutomatica);
+// 🔹 Inicia após renderizar todos os cards
+window.addEventListener("load", iniciarRolagemAutomaticaML);
 
 // ===================== FILTROS FUNCIONAIS =====================
 function aplicarFiltros() {
