@@ -2,7 +2,157 @@
 const produtos = [
   // ======= MERCADO LIVRE =======
   {
-    nome: "Apple iPhone 16 (128 GB) - Preto - Distribuidor Autorizado",
+    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.1,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.1,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.1,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.1,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
+    precoAntigo: 7799,
+    precoAtual: 4404.33,
+    desconto: "43% OFF",
+    parcelas: "21x R$ 233,03 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
+    link: "https://mercadolivre.com/sec/1YrAHb8",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
+    precoAntigo: 1099,
+    precoAtual: 629.1,
+    desconto: "42% OFF",
+    parcelas: "18x R$ 38,83 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
+    link: "https://mercadolivre.com/sec/12qtdJ1",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
+    precoAntigo: 3097,
+    precoAtual: 2395,
+    desconto: "23% OFF",
+    parcelas: "21x R$ 114,05 sem juros",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
+    link: "https://mercadolivre.com/sec/1WZnS5g",
+    tipo: "mercadolivre",
+  },
+  {
+    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
     precoAntigo: 7799,
     precoAtual: 4404.33,
     desconto: "43% OFF",
@@ -57,6 +207,270 @@ const produtos = [
     contato: "5581998765432",
     dataPublicacao: "2025-10-10",
   },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
+  {
+    nome: "iPhone 13 128GB - usado, com nota fiscal",
+    precoAtual: 2950,
+    imagem: "https://img.olx.com.br/images/59/593530097787261.webp",
+    tipo: "usuario",
+    estado: "AL",
+    cidade: "Maceió",
+    condicao: "Usado",
+    descricao: "Aparelho em ótimo estado, sem riscos. Bateria 90%.",
+    contato: "5582981234567",
+    dataPublicacao: "2025-10-09",
+  },
+  {
+    nome: "Samsung A54 5G 256GB - novo lacrado",
+    precoAtual: 2100,
+    imagem: "https://img.olx.com.br/images/30/304592818915746.webp",
+    tipo: "usuario",
+    estado: "PE",
+    cidade: "Recife",
+    condicao: "Novo",
+    descricao: "Novo, lacrado, comprado na Samsung Store.",
+    contato: "5581998765432",
+    dataPublicacao: "2025-10-10",
+  },
 ];
 
 // ===================== ELEMENTOS =====================
@@ -72,24 +486,17 @@ function renderizarMercadoLivre(lista) {
     .forEach((p) => {
       const destaque = document.createElement("div");
       destaque.className =
-        "card-mercadolivre bg-white rounded-md border border-yellow-400 shadow-md hover:shadow-lg cursor-pointer flex-shrink-0 w-[120px] sm:w-[130px] h-[115px] flex flex-col items-center justify-between p-[2px] relative snap-start overflow-hidden transition-all duration-300 group";
+        "bg-white rounded-lg border border-black shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 relative snap-start group overflow-hidden cursor-pointer transition-transform duration-300 card-mercadolivre";
 
       destaque.innerHTML = `
-        <!-- Imagem -->
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-[55px] overflow-hidden mb-[2px] relative">
-          <img src="${p.imagem}" alt="${p.nome}" 
-               class="max-h-[55px] object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
-          <div class="absolute top-0 left-0 bg-green-500 text-white text-[8px] px-1 py-[1px] rounded-br-md shadow-sm">Frete</div>
+        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
+          <img src="${p.imagem}" alt="${p.nome}" class="max-h-20 object-contain rounded-md transition-transform duration-300 group-hover:scale-105">
+          <div class="absolute top-0 left-0 bg-green-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Frete Grátis</div>
         </div>
-
-        <!-- Nome -->
-        <h2 class="text-[9px] font-semibold text-center line-clamp-2 h-[26px] text-gray-800 leading-tight">${p.nome}</h2>
-
-        <!-- Preços -->
-        <div class="flex flex-col items-center leading-tight">
-          <p class="line-through text-gray-500 text-[8px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
-          <p class="text-green-700 font-extrabold text-[11px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        </div>
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
+        <p class="line-through text-gray-500 text-[9px]">R$ ${p.precoAntigo?.toFixed(2) || ""}</p>
+        <p class="text-green-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
+        <span class="text-[9px] text-green-600 font-medium">${p.desconto}</span>
       `;
 
       destaque.addEventListener("click", () => abrirModal(p));
@@ -233,6 +640,33 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+
+// ===================== ROLAGEM AUTOMÁTICA MERCADO LIVRE =====================
+function iniciarRolagemAutomatica() {
+  const faixa = document.getElementById("bannerOfertas");
+  if (!faixa) return;
+
+  let direcao = 1; // 1 = direita, -1 = esquerda
+  const velocidade = 0.5; // pixels por frame (quanto menor, mais suave)
+
+  function rolar() {
+    faixa.scrollLeft += direcao * velocidade;
+
+    // Detecta se chegou ao fim ou início da rolagem
+    if (faixa.scrollLeft + faixa.clientWidth >= faixa.scrollWidth - 2) {
+      direcao = -1;
+    } else if (faixa.scrollLeft <= 0) {
+      direcao = 1;
+    }
+
+    requestAnimationFrame(rolar);
+  }
+
+  rolar();
+}
+
+// Inicia rolagem automática após renderizar
+window.addEventListener("load", iniciarRolagemAutomatica);
 
 // ===================== FILTROS FUNCIONAIS =====================
 function aplicarFiltros() {
