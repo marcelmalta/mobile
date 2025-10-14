@@ -2,15 +2,24 @@
 const produtos = [
   // ======= MERCADO LIVRE =======
   {
-    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
-    precoAntigo: 7799,
-    precoAtual: 4404.33,
-    desconto: "43% OFF",
-    parcelas: "21x R$ 233,03 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
-    link: "https://mercadolivre.com/sec/1YrAHb8",
-    tipo: "mercadolivre",
-  },
+  nome: "Motorola Moto g05 128GB 12GB RAM",
+  precoAntigo: 1138.56,
+  precoAtual: 630.88,
+  desconto: "50% OFF",
+  parcelas: "9x R$ 70,10 sem juros",
+  cor: "Violeta",
+  memoriaRam: "12 GB",
+  envio: "Frete grátis",
+  detalhes: [
+    "Tela de 6.7\" com Superbrilho",
+    "Bateria de 5200mAh",
+    "Câmera principal de 50MP com AI",
+    "Reconhecimento facial e sensor de impressão digital"
+  ],
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_704736-MLA81432018906_122024-F.webp",
+  link: "https://mercadolivre.com/sec/2PJYkgE",
+  "tipo": "mercadolivre"
+},
   {
   nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
   precoAntigo: 1099,
@@ -200,16 +209,23 @@ const produtos = [
   },
   // ======= MAGAZINE LUIZA =======
 {
-  tipo: "magalu",
-  nome: "Smartphone Xiaomi POCO X7 5G 512GB / 256GB NFC Tela AMOLED 120Hz Câmera Tripla 4K 50MP OIS - IP68 Design Premium",
-  precoAntigo: 5398.00,
-  precoAtual: 2307.55,
-  desconto: "57% OFF",
-  parcelas: "10x R$ 242,90 sem juros",
-  imagem: "https://a-static.mlcdn.com.br/800x560/smartphone-xiaomi-poco-x7-5g-512gb-256gb-nfc-tela-amoled-120-hz-camera-tripla-4k-50mp-ois-desempenho-performance-e-design-premium-ip68/mastercomerciodeprodutosltda/celular-ateb-8/a98a962539fcba76919f204298328aa9.jpeg",
-  link: "https://magazineluiza.onelink.me/589508454/qulmsdwz",
-  estoque: 25,
-  estoqueTotal: 30
+  nome: "Motorola Moto G05 128GB 4GB RAM",
+  precoAntigo: 669.40,
+  precoAtual: 569.00,
+  desconto: "15% OFF",
+  parcelas: "5x R$ 133,88 sem juros",
+  cor: "Violeta",
+  memoriaRam: "4 GB",
+  envio: "Frete a consultar",
+  detalhes: [
+    "Tela de 6.7\"",
+    "Bateria de 5200mAh",
+    "Câmera principal de 50MP",
+    "Processador Helio G81"
+  ],
+  imagem: "https://a-static.mlcdn.com.br/800x560/smartphone-motorola-moto-g05-4g-128gb-4gb-bateria-5-200-mah/gazinshop/14380/072f099c48c7805201403c7cfc64a02f.jpeg",
+  link: "https://magazineluiza.onelink.me/589508454/bdp6piar",
+  tipo: "magalu"
 },
 {
   tipo: "magalu",
@@ -780,85 +796,71 @@ function renderizarCardsGerais(lista) {
   if (!listaEl) return;
   listaEl.innerHTML = "";
 
-  // Agora permitimos todos os tipos (incluindo usuários)
   const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "shopee", "usuario"];
-
-  // Junta todos, filtra e ordena por nome (ordem alfabética)
   const produtosGerais = lista
     .filter(p => tiposPermitidos.includes(p.tipo))
     .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
 
-  // Gera uma cor de sombra consistente com base no nome do produto
+  // Gera uma cor suave fixa por nome (mantém padrão para itens iguais)
   function gerarCor(nome) {
     let hash = 0;
     for (let i = 0; i < nome.length; i++) {
       hash = nome.charCodeAt(i) + ((hash << 5) - hash);
     }
-    return `hsl(${Math.abs(hash) % 360}, 60%, 85%)`; // tons suaves e variados
+    const hue = Math.abs(hash) % 360;
+    return `hsl(${hue}, 80%, 92%)`;
   }
 
   produtosGerais.forEach((p) => {
-    const card = document.createElement("div");
     const sombraCor = gerarCor(p.nome.toLowerCase());
     const preco = p.precoAtual ? `R$ ${Number(p.precoAtual).toFixed(2)}` : "";
     const desconto = p.desconto || "";
+    const tipo = p.tipo;
 
+    const card = document.createElement("div");
     card.className =
-      "card-geral bg-white border border-gray-300 rounded-lg shadow-sm flex-shrink-0 w-[72px] flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.03] cursor-pointer overflow-visible";
+      "card-geral group bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer w-[22%] sm:w-[24%] md:w-[12%] lg:w-[11%] flex flex-col items-center overflow-hidden";
 
-    // aplica cor igual para produtos de mesmo nome
-    card.style.boxShadow = `0 0 8px ${sombraCor}`;
-    card.style.borderColor = sombraCor;
+    card.style.boxShadow = `0 0 10px ${sombraCor}`;
 
-    // ====== Banner da loja ======
+    // 🔹 Banner de loja
     let bannerHtml = "";
-    if (p.tipo === "mercadolivre") {
-      bannerHtml = `
-        <div class="banner-loja bg-[#fff159] h-[18px] w-full flex items-center justify-center">
-          <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" 
-               alt="Mercado Livre" class="h-[10px] object-contain">
-        </div>`;
-    } else if (p.tipo === "magalu") {
-      bannerHtml = `
-        <div class="banner-loja bg-[#A0A0A0] h-[18px] w-full flex items-center justify-center">
-          <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" 
-               alt="Magalu" class="h-[10px] object-contain invert">
-        </div>`;
-    } else if (p.tipo === "amazon") {
-      bannerHtml = `
-        <div class="banner-loja bg-[#FFB800] h-[18px] w-full flex items-center justify-center">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
-               alt="Amazon" class="h-[9px] object-contain">
-        </div>`;
-    } else if (p.tipo === "shopee") {
-      bannerHtml = `
-        <div class="banner-loja bg-[#EE4D2D] h-[18px] w-full flex items-center justify-center">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" 
-               alt="Shopee" class="h-[10px] object-contain invert">
-        </div>`;
-    } else if (p.tipo === "usuario") {
-      bannerHtml = `
-        <div class="banner-loja bg-green-600 text-white text-[8px] font-bold flex items-center justify-center h-[18px] w-full">
-          <span>Vendedor Local</span>
-        </div>`;
+    if (tipo === "mercadolivre") {
+      bannerHtml = `<div class="w-full h-[20px] bg-[#fff159] flex items-center justify-center">
+        <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-[12px]" alt="Mercado Livre">
+      </div>`;
+    } else if (tipo === "magalu") {
+      bannerHtml = `<div class="w-full h-[20px] bg-[#007aff] flex items-center justify-center">
+        <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" class="h-[12px] invert" alt="Magalu">
+      </div>`;
+    } else if (tipo === "amazon") {
+      bannerHtml = `<div class="w-full h-[20px] bg-[#ff9900] flex items-center justify-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="h-[11px]" alt="Amazon">
+      </div>`;
+    } else if (tipo === "shopee") {
+      bannerHtml = `<div class="w-full h-[20px] bg-[#ee4d2d] flex items-center justify-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" class="h-[11px] invert" alt="Shopee">
+      </div>`;
+    } else if (tipo === "usuario") {
+      bannerHtml = `<div class="w-full h-[20px] bg-green-600 text-white text-[10px] font-semibold flex items-center justify-center">Vendedor Local</div>`;
     }
 
-    // ====== Estrutura do card ======
+    // 🔹 Corpo do card
     card.innerHTML = `
-      <div class="w-full flex items-center justify-center bg-gray-50 rounded-t-md h-[55px]">
-        <img src="${p.imagem}" alt="${p.nome}" class="max-h-[50px] object-contain">
+      <div class="bg-gray-50 w-full h-[80px] flex items-center justify-center">
+        <img src="${p.imagem}" alt="${p.nome}" class="max-h-[70px] object-contain transition-transform duration-300 group-hover:scale-105">
       </div>
 
-      <div class="flex flex-col items-center text-center px-0.5 py-0.5">
-        <p class="text-[7px] font-semibold text-gray-800 line-clamp-2 h-[20px] leading-tight">${p.nome}</p>
-        <p class="text-[9px] font-extrabold text-green-700">${preco}</p>
-        <p class="text-[6px] text-green-600 font-medium">${desconto}</p>
+      <div class="flex flex-col items-center justify-between px-1 py-1 text-center flex-grow">
+        <p class="text-[9px] font-semibold text-gray-800 leading-tight line-clamp-2 h-[28px]">${p.nome}</p>
+        <p class="text-[10px] sm:text-[11px] font-extrabold text-green-700">${preco}</p>
+        <p class="text-[8px] text-green-600">${desconto}</p>
       </div>
 
       ${bannerHtml}
     `;
 
-    // Clique abre o modal específico de acordo com o tipo
+    // 🔹 Abre modal conforme o tipo
     card.addEventListener("click", () => abrirModalPorTipo(p));
 
     listaEl.appendChild(card);
@@ -1220,7 +1222,7 @@ function iniciarRolagemAutomaticaMagalu() {
 // 🔹 Inicia após renderizar todos os cards
 window.addEventListener("load", iniciarRolagemAutomaticaML);
 
-// ===================== FILTROS FUNCIONAIS =====================
+// ===================== FILTROS FUNCIONAIS (COM CONTADOR + ANIMAÇÃO) =====================
 function aplicarFiltros() {
   const busca = (document.getElementById("buscaInput")?.value || "").toLowerCase();
   const marca = (document.getElementById("filtroMarca")?.value || "").toLowerCase();
@@ -1228,18 +1230,59 @@ function aplicarFiltros() {
   const preco = document.getElementById("filtroPreco")?.value || "";
 
   const filtrados = produtos.filter(p => {
+    // 🔍 texto livre
     if (busca && !p.nome.toLowerCase().includes(busca)) return false;
+
+    // 🏷️ marca
     if (marca && !p.nome.toLowerCase().includes(marca)) return false;
+
+    // 📍 estado (só para vendedor local)
     if (estado && p.tipo === "usuario" && p.estado !== estado) return false;
-    if (preco === "1" && p.precoAtual > 2000) return false;
-    if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false;
-    if (preco === "3" && p.precoAtual < 4000) return false;
+
+    // 💰 faixa de preço
+    if (preco === "0" && p.precoAtual > 500) return false;                    // até 500
+    if (preco === "0b" && p.precoAtual > 1000) return false;                  // até 1000
+    if (preco === "1" && p.precoAtual > 2000) return false;                   // até 2000
+    if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false; // entre 2–4k
+    if (preco === "3" && p.precoAtual < 4000) return false;                   // acima de 4k
+
     return true;
   });
 
-  renderizarMercadoLivre(filtrados);
-  renderizarProdutosUsuarios(filtrados);
+  // 🔹 Oculta as seções Mercado Livre e Magalu
+  document.getElementById("bannerOfertas")?.parentElement.classList.add("hidden");
+  document.getElementById("bannerMagalu")?.parentElement.classList.add("hidden");
+
+  // 🔹 Atualiza os cards gerais com os resultados filtrados
+  renderizarCardsGerais(filtrados);
+
+  // 🔹 Cria ou atualiza o contador de resultados
+  let contador = document.getElementById("contadorResultados");
+  if (!contador) {
+    contador = document.createElement("div");
+    contador.id = "contadorResultados";
+    contador.className = "text-center text-sm sm:text-base font-semibold mt-2 mb-1 transition-all duration-500 opacity-0";
+    const listaEl = document.getElementById("listaProdutos");
+    if (listaEl && listaEl.parentElement) {
+      listaEl.parentElement.insertBefore(contador, listaEl);
+    }
+  }
+
+  // Atualiza o texto e a cor
+  if (filtrados.length > 0) {
+    contador.textContent = `📱 ${filtrados.length} produto${filtrados.length !== 1 ? "s" : ""} encontrado${filtrados.length !== 1 ? "s" : ""}`;
+    contador.classList.remove("text-red-600");
+    contador.classList.add("text-green-600");
+  } else {
+    contador.textContent = "❌ Nenhum produto encontrado";
+    contador.classList.remove("text-green-600");
+    contador.classList.add("text-red-600");
+  }
+
+  // Fade-in
+  requestAnimationFrame(() => contador.classList.add("opacity-100"));
 }
+
 
 // ===================== BOTÃO 🔍 SCROLL ATÉ O TOPO =====================
 btnBusca.addEventListener("click", () => {
@@ -1269,11 +1312,13 @@ function criarBarraFiltros() {
       <option value="">Estado</option><option>AL</option><option>PE</option>
     </select>
     <select id="filtroPreco" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Preço</option>
-      <option value="1">Até R$ 2000</option>
-      <option value="2">R$ 2000–R$ 4000</option>
-      <option value="3">+ R$ 4000</option>
-    </select>
+  <option value="">Preço</option>
+  <option value="0">Até R$ 500</option>
+  <option value="0b">Até R$ 1000</option>
+  <option value="1">Até R$ 2000</option>
+  <option value="2">R$ 2000–R$ 4000</option>
+  <option value="3">+ R$ 4000</option>
+</select>
   `;
 
   // 👉 Insere logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
@@ -1297,11 +1342,13 @@ function ativarModoFiltro(ativo) {
   const btn = document.getElementById("btnBuscaFlutuante");
 
   if (ativo) {
+    // 🔹 Ativa o modo-filtro
     body.classList.add("modo-filtro");
     btn.classList.add("ativo");
     btn.textContent = "⨯ Fechar Filtro";
     window.scrollTo({ top: 0, behavior: "smooth" }); // sobe até o topo
   } else {
+    // 🔹 Desativa o modo-filtro
     body.classList.remove("modo-filtro");
     btn.classList.remove("ativo");
     btn.textContent = "🔍 Buscar / Filtrar";
@@ -1313,12 +1360,25 @@ function ativarModoFiltro(ativo) {
       inputs.forEach(el => el.value = "");
     }
 
+    // ✅ Reexibir banners do Mercado Livre e Magalu
+    ["bannerOfertas", "bannerMagalu"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove("hidden");
+      if (el.parentElement) el.parentElement.classList.remove("hidden");
+    });
+
+    // ✅ Remover contador de resultados (se existir)
+    const contador = document.getElementById("contadorResultados");
+    if (contador) contador.remove();
+
     // ✅ Renderizar novamente todos os produtos (limpo)
     if (typeof renderizarMercadoLivre === "function") renderizarMercadoLivre(produtos);
     if (typeof renderizarMagalu === "function") renderizarMagalu(produtos);
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
   }
 }
+
 
 // ===================== EVENTO DO BOTÃO 🔍 / ⨯ =====================
 document.addEventListener("DOMContentLoaded", () => {
