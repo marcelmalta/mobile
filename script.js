@@ -1291,14 +1291,36 @@ function criarBarraFiltros() {
   });
 }
 
-// ===================== MODO FILTRO: ESCONDER BANNERS =====================
+// ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
 function ativarModoFiltro(ativo) {
   const body = document.body;
-  if (ativo) body.classList.add("modo-filtro");
-  else body.classList.remove("modo-filtro");
+  const btn = document.getElementById("btnBuscaFlutuante");
+
+  if (ativo) {
+    body.classList.add("modo-filtro");
+    btn.classList.add("ativo");
+    btn.textContent = "⨯ Fechar Filtro";
+    window.scrollTo({ top: 0, behavior: "smooth" }); // sobe até o topo
+  } else {
+    body.classList.remove("modo-filtro");
+    btn.classList.remove("ativo");
+    btn.textContent = "🔍 Buscar / Filtrar";
+
+    // ✅ Resetar todos os campos da barra de filtros
+    const barra = document.getElementById("barraFiltros");
+    if (barra) {
+      const inputs = barra.querySelectorAll("input, select");
+      inputs.forEach(el => el.value = "");
+    }
+
+    // ✅ Renderizar novamente todos os produtos (limpo)
+    if (typeof renderizarMercadoLivre === "function") renderizarMercadoLivre(produtos);
+    if (typeof renderizarMagalu === "function") renderizarMagalu(produtos);
+    if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
+  }
 }
 
-// ===================== BOTÃO 🔍 (Buscar / Filtrar) =====================
+// ===================== EVENTO DO BOTÃO 🔍 / ⨯ =====================
 document.addEventListener("DOMContentLoaded", () => {
   const btnBusca = document.getElementById("btnBuscaFlutuante");
   const barra = document.getElementById("barraFiltros");
@@ -1308,12 +1330,8 @@ document.addEventListener("DOMContentLoaded", () => {
     filtroAtivo = !filtroAtivo;
     ativarModoFiltro(filtroAtivo);
 
-    // Mostra ou oculta a barra de filtros
+    // Alternar exibição da barra de filtros
     if (barra) barra.classList.toggle("hidden");
-
-    // Scroll suave até a área de produtos
-    const lista = document.getElementById("listaProdutos");
-    if (lista) lista.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 

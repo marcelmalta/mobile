@@ -317,13 +317,13 @@
 .modo-filtro #bannerOfertas,
 .modo-filtro #bannerMagalu {
   opacity: 0;
-  transform: scale(0.9);
+  transform: translateY(-20px) scale(0.95);
   height: 0;
   margin: 0;
   padding: 0;
   overflow: hidden;
   pointer-events: none;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .modo-filtro #bannerOfertas > *,
@@ -331,39 +331,57 @@
   display: none !important;
 }
 
-/* ======= LAYOUT DOS CARDS ======= */
+/* ======= ÁREA DE PRODUTOS ======= */
 #listaProdutos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px;
   padding-bottom: 8px;
+  transition: transform 0.5s ease, padding 0.4s ease;
 }
 
-/* 🔸 MOBILE (até 640px) — 4 cards por linha */
+/* Quando o modo-filtro está ativo, sobe e expande */
+.modo-filtro #listaProdutos {
+  transform: translateY(-20px);
+  padding-top: 10px;
+}
+
+/* ======= BOTÃO FLUTUANTE (normal e ativo) ======= */
+#btnBuscaFlutuante {
+  transition: all 0.3s ease;
+}
+
+#btnBuscaFlutuante.ativo {
+  background: linear-gradient(to right, #dc2626, #b91c1c);
+  color: #fff;
+  animation: none; /* desativa o brilho */
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.6);
+}
+
+#btnBuscaFlutuante.ativo:hover {
+  transform: scale(1.05);
+}
+
+/* ======= RESPONSIVIDADE: QUANTOS CARDS POR LINHA ======= */
 @media (max-width: 640px) {
   #listaProdutos .card-geral {
     flex: 0 0 23%;
     max-width: 23%;
   }
 }
-
-/* 🔸 TABLET (641–1024px) — 5 por linha */
 @media (min-width: 641px) and (max-width: 1024px) {
   #listaProdutos .card-geral {
     flex: 0 0 18%;
     max-width: 18%;
   }
 }
-
-/* 🔸 DESKTOP (1025px+) — 6 por linha */
 @media (min-width: 1025px) {
   #listaProdutos .card-geral {
     flex: 0 0 15%;
     max-width: 15%;
   }
 }
-
   </style>
 </head>
 
