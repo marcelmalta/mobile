@@ -364,22 +364,28 @@
 }
 
 /* ======= RESPONSIVIDADE: QUANTOS CARDS POR LINHA ======= */
+
+/* 🔸 MOBILE (até 640px) — 5 por linha */
 @media (max-width: 640px) {
   #listaProdutos .card-geral {
     flex: 0 0 23%;
     max-width: 23%;
   }
 }
+
+/* 🔸 TABLET (641–1024px) — 6 por linha */
 @media (min-width: 641px) and (max-width: 1024px) {
   #listaProdutos .card-geral {
     flex: 0 0 18%;
     max-width: 18%;
   }
 }
+
+/* 🔸 DESKTOP (1025px+) — 10 por linha */
 @media (min-width: 1025px) {
   #listaProdutos .card-geral {
-    flex: 0 0 15%;
-    max-width: 15%;
+    flex: 0 0 11.5%;
+    max-width: 11.5%;
   }
 }
   </style>
