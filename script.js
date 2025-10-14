@@ -788,34 +788,28 @@ function renderizarMercadoLivre(lista) {
       const destaque = document.createElement("div");
       destaque.className = `
         relative bg-white rounded-lg border 
-        ${isAmazon ? "border-amber-400" : "border-black"} 
-        shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col 
-        items-center p-1 overflow-hidden transition-transform 
-        duration-300 cursor-pointer hover:scale-105
+        ${isAmazon ? "border-amber-400" : "border-black"} shadow-md 
+        flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 overflow-hidden 
+        transition-transform duration-300 cursor-pointer hover:scale-105
       `;
 
-      // 🔹 Cores e logos
-      const bgCor = isAmazon ? "#ffb800" : "#fff159";
+      // Cores de fundo por loja
+      const bgImg = isAmazon ? "bg-[#232F3E]" : "bg-[#FFF159]";
       const logoSrc = isAmazon
         ? "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
         : "https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png";
 
-      // 🔹 Estrutura visual padronizada
       destaque.innerHTML = `
         <div class="flex flex-col items-center justify-center w-full mb-1 relative">
-          <div class="bg-gray-50 rounded-md w-full h-20 overflow-hidden flex items-center justify-center">
+          <!-- Imagem com fundo colorido -->
+          <div class="${bgImg} rounded-md w-full h-20 overflow-hidden flex items-center justify-center">
             <img src="${p.imagem}" alt="${p.nome}" 
-                 class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+                 class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105 drop-shadow-sm">
           </div>
 
-          <!-- ✅ Selo abaixo da imagem, altura e proporção padronizada -->
-          <div class="mt-[3px] w-full flex items-center justify-center 
-                      border border-gray-300 bg-white rounded-md shadow-sm py-[2px] h-[18px]">
-            ${
-              isAmazon
-                ? `<img src="${logoSrc}" alt="Amazon" class="h-3 sm:h-4">`
-                : `<img src="${logoSrc}" alt="Mercado Livre" class="h-3 sm:h-4">`
-            }
+          <!-- ✅ Selo abaixo da imagem -->
+          <div class="mt-[3px] w-full flex items-center justify-center border border-gray-300 bg-white rounded-md shadow-sm py-[2px] h-[18px]">
+            <img src="${logoSrc}" alt="${isAmazon ? "Amazon" : "Mercado Livre"}" class="h-3 sm:h-4">
           </div>
         </div>
 
@@ -833,7 +827,6 @@ function renderizarMercadoLivre(lista) {
         </span>
       `;
 
-      // === Tooltips e interação ===
       destaque.addEventListener("mouseenter", () => mostrarTooltip(p, destaque, isAmazon ? "magalu" : "ml"));
       destaque.addEventListener("mouseleave", esconderTooltip);
       destaque.addEventListener("touchstart", () => {
@@ -848,7 +841,6 @@ function renderizarMercadoLivre(lista) {
       banner.appendChild(destaque);
     });
 }
-
 
 
 // ===================== RENDER MAGAZINE LUIZA + AMAZON =====================
@@ -870,32 +862,27 @@ function renderizarMagalu(lista) {
         transition-transform duration-300 cursor-pointer hover:scale-105
       `;
 
-      // ===== Estrutura do card =====
+      // Fundo da imagem por marca
+      const bgImg = isAmazon ? "bg-[#232F3E]" : "bg-[#007BFF]";
+      const logoHTML = isAmazon
+        ? `<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" class="h-3 sm:h-4">`
+        : `<span class="text-[9px] sm:text-[10px] font-bold tracking-wide magalu-gradient uppercase">MAGALU</span>`;
+
       card.innerHTML = `
         <div class="flex flex-col items-center justify-center w-full mb-1 relative">
-          <!-- Imagem -->
-          <div class="${isAmazon ? "bg-amber-50" : "bg-blue-50"} rounded-md w-full h-20 overflow-hidden flex items-center justify-center">
+          <!-- Imagem com fundo colorido institucional -->
+          <div class="${bgImg} rounded-md w-full h-20 overflow-hidden flex items-center justify-center">
             <img src="${p.imagem}" alt="${p.nome}" 
-                 class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+                 class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105 drop-shadow-sm">
           </div>
 
-          <!-- ✅ Selo abaixo da imagem (padronizado e centralizado) -->
+          <!-- ✅ Selo abaixo da imagem -->
           <div class="mt-[3px] w-full flex items-center justify-center border border-gray-300 bg-white rounded-md shadow-sm py-[2px] h-[18px]">
-            ${
-              isAmazon
-                ? `<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
-                        alt="Amazon" class="h-3 sm:h-4">`
-                : `<span class="text-[9px] sm:text-[10px] font-bold tracking-wide magalu-gradient uppercase">
-                     MAGALU
-                   </span>`
-            }
+            ${logoHTML}
           </div>
         </div>
 
-        <!-- Texto e preço -->
-        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">
-          ${p.nome}
-        </h2>
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
         <p class="line-through text-gray-500 text-[9px]">
           ${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}
         </p>
@@ -907,7 +894,7 @@ function renderizarMagalu(lista) {
         </span>
       `;
 
-      // === Tooltip e interações ===
+      // Eventos e tooltip
       card.addEventListener("mouseenter", () => mostrarTooltip(p, card, isAmazon ? "magalu" : "magalu"));
       card.addEventListener("mouseleave", esconderTooltip);
       card.addEventListener("touchstart", () => {
@@ -922,6 +909,7 @@ function renderizarMagalu(lista) {
       bannerMagalu.appendChild(card);
     });
 }
+
 
 
 
