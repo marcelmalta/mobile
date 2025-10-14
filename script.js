@@ -933,76 +933,108 @@ function renderizarMagalu(lista) {
 
 // ===================== RENDERIZAR CARDS GERAIS (MESCLADO E COLORIDO) =====================
 function renderizarCardsGerais(lista) {
-  const listaEl = document.getElementById("listaProdutos");
-  if (!listaEl) return;
-  listaEl.innerHTML = "";
+  const container = document.getElementById("listaProdutos");
+  if (!container) return;
+  container.innerHTML = "";
 
-  const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "usuario"];
-  const produtosGerais = lista
-    .filter(p => tiposPermitidos.includes(p.tipo))
-    .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
-
-  // Gera uma cor suave fixa por nome (mantém padrão para itens iguais)
-  function gerarCor(nome) {
-    let hash = 0;
-    for (let i = 0; i < nome.length; i++) {
-      hash = nome.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash) % 360;
-    return `hsl(${hue}, 80%, 92%)`;
-  }
-
-  produtosGerais.forEach((p) => {
-    const sombraCor = gerarCor(p.nome.toLowerCase());
-    const preco = p.precoAtual ? `R$ ${Number(p.precoAtual).toFixed(2)}` : "";
-    const desconto = p.desconto || "";
-    const tipo = p.tipo;
-
+  lista.forEach((p) => {
     const card = document.createElement("div");
-    card.className =
-      "card-geral group bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer w-[22%] sm:w-[24%] md:w-[12%] lg:w-[11%] flex flex-col items-center overflow-hidden";
 
-    card.style.boxShadow = `0 0 10px ${sombraCor}`;
-
-    // 🔹 Banner de loja
-    let bannerHtml = "";
-    if (tipo === "mercadolivre") {
-      bannerHtml = `<div class="w-full h-[20px] bg-[#fff159] flex items-center justify-center">
-        <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-[12px]" alt="Mercado Livre">
-      </div>`;
-    } else if (tipo === "magalu") {
-      bannerHtml = `<div class="w-full h-[20px] bg-[#007aff] flex items-center justify-center">
-        <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg" class="h-[12px] invert" alt="Magalu">
-      </div>`;
-    } else if (tipo === "amazon") {
-      bannerHtml = `<div class="w-full h-[20px] bg-[#ff9900] flex items-center justify-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="h-[11px]" alt="Amazon">
-      </div>`;
-    } else if (tipo === "usuario") {
-      bannerHtml = `<div class="w-full h-[20px] bg-green-600 text-white text-[10px] font-semibold flex items-center justify-center">Vendedor Local</div>`;
+    // === Cores por tipo ===
+    let corBorda, brilhoHover, bgGradient, corTexto;
+    switch (p.tipo) {
+      case "mercadolivre":
+        corBorda = "#FFF159"; brilhoHover = "#FFF15955";
+        bgGradient = "linear-gradient(to bottom, #FFF159, #FFFBEA)";
+        corTexto = "#137333";
+        break;
+      case "magalu":
+        corBorda = "#007BFF"; brilhoHover = "#00C8FF55";
+        bgGradient = "linear-gradient(to bottom, #007BFF, #E3F2FF)";
+        corTexto = "#0052CC";
+        break;
+      case "amazon":
+        corBorda = "#232F3E"; brilhoHover = "#232F3E66";
+        bgGradient = "linear-gradient(to bottom, #232F3E, #3A4553)";
+        corTexto = "#FF9900";
+        break;
+      default: // vendedor local
+        corBorda = "#8B5CF6"; brilhoHover = "#8B5CF655";
+        bgGradient = "linear-gradient(to bottom, #8B5CF6, #F3E8FF)";
+        corTexto = "#6D28D9";
     }
 
-    // 🔹 Corpo do card
+    // === Estrutura do card ===
+    card.className = `
+      relative rounded-lg shadow-md flex flex-col items-center justify-start p-1
+      w-[46%] sm:w-28 md:w-24 lg:w-[11%] overflow-hidden
+      transition-transform duration-300 cursor-pointer hover:scale-105
+    `;
+    card.style.border = `2px solid ${corBorda}80`;
+    card.style.boxShadow = `0 1px 4px rgba(0,0,0,0.1)`;
+
+    // Hover brilho
+    card.addEventListener("mouseenter", () => {
+      card.style.boxShadow = `0 0 8px 2px ${brilhoHover}`;
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.boxShadow = `0 1px 4px rgba(0,0,0,0.1)`;
+    });
+
+    // === Conteúdo ===
+    const localTexto = p.tipo === "usuario" && p.cidade
+      ? `${p.cidade}${p.estado ? `-${p.estado}` : ""}`
+      : "LOCAL";
+
     card.innerHTML = `
-      <div class="bg-gray-50 w-full h-[80px] flex items-center justify-center">
-        <img src="${p.imagem}" alt="${p.nome}" class="max-h-[70px] object-contain transition-transform duration-300 group-hover:scale-105">
+      <div class="flex flex-col items-center justify-center w-full mb-1 relative">
+        <div class="rounded-md w-full h-20 overflow-hidden flex items-center justify-center"
+             style="background:${bgGradient}">
+          <img src="${p.imagem}" alt="${p.nome}" 
+               class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105 drop-shadow-sm">
+        </div>
+
+        <!-- ✅ Selo com cidade e WhatsApp -->
+        <div class="mt-[3px] w-full flex items-center justify-center gap-1 border border-gray-200 bg-white rounded-md shadow-sm py-[2px] h-[18px]">
+          ${
+            p.tipo === "mercadolivre"
+              ? `<img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png" class="h-3 sm:h-4">`
+              : p.tipo === "magalu"
+              ? `<span class="text-[9px] sm:text-[10px] font-bold tracking-wide magalu-gradient uppercase">MAGALU</span>`
+              : p.tipo === "amazon"
+              ? `<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="h-3 sm:h-4">`
+              : `
+                <div class="flex items-center gap-[3px]">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="#10B981" viewBox="0 0 24 24" class="w-3.5 h-3.5">
+                    <path d="M20.52 3.48A11.94 11.94 0 0 0 12 0C5.38 0 .03 5.35.03 12c0 2.11.55 4.17 1.59 6.02L0 24l6.18-1.59A11.97 11.97 0 0 0 12 24c6.62 0 12-5.35 12-12 0-3.19-1.25-6.19-3.48-8.52ZM12 22.08a10.02 10.02 0 0 1-5.12-1.41l-.36-.21-3.67.94.98-3.57-.23-.37A9.93 9.93 0 0 1 1.92 12C1.92 6.51 6.51 1.92 12 1.92S22.08 6.51 22.08 12 17.49 22.08 12 22.08Zm5.45-7.08c-.3-.15-1.78-.88-2.05-.98-.28-.1-.48-.15-.68.15s-.78.98-.95 1.18-.35.22-.65.07a8.18 8.18 0 0 1-2.4-1.48 9.1 9.1 0 0 1-1.7-2.1c-.18-.3 0-.45.14-.6.14-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.52-.07-.15-.68-1.63-.93-2.23-.24-.58-.5-.5-.68-.5h-.58c-.2 0-.52.07-.8.38s-1.05 1.02-1.05 2.48 1.08 2.88 1.23 3.08c.15.2 2.13 3.25 5.16 4.56.72.3 1.28.48 1.72.62.72.23 1.38.2 1.9.12.58-.08 1.78-.72 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.25-.2-.55-.35Z"/>
+                  </svg>
+                  <span class="text-[8.5px] sm:text-[9px] font-semibold text-purple-700">${localTexto}</span>
+                </div>
+              `
+          }
+        </div>
       </div>
 
-      <div class="flex flex-col items-center justify-between px-1 py-1 text-center flex-grow">
-        <p class="text-[9px] font-semibold text-gray-800 leading-tight line-clamp-2 h-[28px]">${p.nome}</p>
-        <p class="text-[10px] sm:text-[11px] font-extrabold text-green-700">${preco}</p>
-        <p class="text-[8px] text-green-600">${desconto}</p>
-      </div>
-
-      ${bannerHtml}
+      <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
+      <p class="line-through text-gray-500 text-[9px]">
+        ${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}
+      </p>
+      <p class="font-extrabold text-[12px]" style="color:${corTexto}">
+        R$ ${p.precoAtual.toFixed(2)}
+      </p>
+      <span class="text-[9px] font-medium" style="color:${corTexto}">
+        ${p.desconto || ""}
+      </span>
     `;
 
-    // 🔹 Abre modal conforme o tipo
+    // Clique → modal
     card.addEventListener("click", () => abrirModalPorTipo(p));
 
-    listaEl.appendChild(card);
+    container.appendChild(card);
   });
 }
+
+
 
 
 
