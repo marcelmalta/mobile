@@ -966,10 +966,10 @@ function renderizarCardsGerais(lista) {
 
     // === Estrutura do card ===
     card.className = `
-      relative rounded-lg shadow-md flex flex-col items-center justify-start p-1
-      w-[46%] sm:w-28 md:w-24 lg:w-[11%] overflow-hidden
-      transition-transform duration-300 cursor-pointer hover:scale-105
-    `;
+  relative rounded-lg shadow-md flex flex-col items-center justify-start p-1
+  w-[23.5%] sm:w-28 md:w-24 lg:w-[11%] overflow-hidden
+  transition-transform duration-300 cursor-pointer hover:scale-105
+`;
     card.style.border = `2px solid ${corBorda}80`;
     card.style.boxShadow = `0 1px 4px rgba(0,0,0,0.1)`;
 
