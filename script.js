@@ -1520,7 +1520,9 @@ function ativarModoFiltro(ativo) {
     const barra = document.getElementById("barraFiltros");
     if (barra) {
       const inputs = barra.querySelectorAll("input, select");
-      inputs.forEach(el => el.value = "");
+      inputs.forEach(el => {
+        el.value = "";
+      });
     }
 
     // ✅ Reexibir banners do Mercado Livre e Magalu
@@ -1531,14 +1533,16 @@ function ativarModoFiltro(ativo) {
       if (el.parentElement) el.parentElement.classList.remove("hidden");
     });
 
-    // ✅ Remover contador de resultados (se existir)
-    const contador = document.getElementById("contadorResultados");
-    if (contador) contador.remove();
-
-    // ✅ Renderizar novamente todos os produtos (limpo)
+    // ✅ Re-renderizar todos os produtos (volta ao estado original)
     if (typeof renderizarMercadoLivre === "function") renderizarMercadoLivre(produtos);
     if (typeof renderizarMagalu === "function") renderizarMagalu(produtos);
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
+
+    // ✅ Atualizar contador geral novamente
+    if (typeof atualizarContadorResultados === "function") atualizarContadorResultados(produtos);
+
+    // ✅ Forçar scroll e estado visual limpo
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 
