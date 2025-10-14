@@ -42,71 +42,123 @@ const produtos = [
   tipo: "mercadolivre"
 },
   {
-    nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
-    precoAntigo: 3097,
-    precoAtual: 2395,
-    desconto: "23% OFF",
-    parcelas: "21x R$ 114,05 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_823732-MLA81806997422_012025-F.webp",
-    link: "https://mercadolivre.com/sec/1WZnS5g",
-    tipo: "mercadolivre",
-  },
-  {
-  tipo: "mercadolivre",
-  nome: "Samsung Galaxy A16 4G 256GB 8GB RAM - Câmera até 50MP, Tela 6.7'', NFC, IP54, Bateria 5000mAh - Preto",
-  precoAntigo: 1855.72,
-  precoAtual: 1061.10,
-  desconto: "42% OFF",
-  parcelas: "18x R$ 65,50 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_776838-MLA93117611065_092025-F.webp",
-  link: "https://mercadolivre.com/sec/1P4j2tw",
-  estoque: 50,
-  estoqueTotal: 60
-  },
-  {
-  tipo: "mercadolivre",
-  nome: "Smartphone Motorola Moto G05 128GB 12GB (4GB RAM + 8GB Boost) Câmera 50MP AI Bateria 5200mAh Tela 6.7'' Superbrilho - Cinza",
-  precoAntigo: 1138.56,
-  precoAtual: 568.80,
-  desconto: "50% OFF",
-  parcelas: "12x R$ 52,67 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_802075-MLA91491750282_092025-F.webp",
-  link: "https://mercadolivre.com/sec/2KosJYH",
-  estoque: 50,
-  estoqueTotal: 60
-  },
-  {
-  tipo: "mercadolivre",
-  nome: "Samsung Galaxy A06 Dual SIM 128GB 4GB RAM - Branco",
-  precoAntigo: 899.00,
-  precoAtual: 660.66,
-  desconto: "26% OFF",
-  parcelas: "11x R$ 60,08 sem juros",
-  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_679802-MLA79052664754_092024-F.webp",
-  link: "https://mercadolivre.com/sec/1CrAqpc",
-  estoque: 50,
-  estoqueTotal: 60
+  nome: "Motorola Moto g05 128GB 12GB RAM",
+  precoAntigo: 630.90,
+  precoAtual: 567.79,
+  desconto: "10% OFF",
+  parcelas: "12x R$ 52,65 sem juros",
+  cor: "Violeta",
+  memoriaRam: "12 GB",
+  envio: "Entrega grátis",
+  detalhes: [
+    "Tela de 6.7\" com Superbrilho",
+    "Bateria de 5200mAh",
+    "Câmera principal de 50MP com AI",
+    "RAM Boost de 8GB"
+  ],
+  imagem: "https://m.media-amazon.com/images/I/61bnLWBf5WL._AC_SX679_.jpg",
+  link: "https://amzn.to/471ZTvm",
+  tipo: "amazon"
 },
   {
-    nome: "Apple iPhone 16 (128 GB) - Preto - Loja Oficial",
-    precoAntigo: 7799,
-    precoAtual: 4404.33,
-    desconto: "43% OFF",
-    parcelas: "21x R$ 233,03 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_928475-MLA78901058072_092024-F.webp",
-    link: "https://mercadolivre.com/sec/1YrAHb8",
-    tipo: "mercadolivre",
-  },
+  nome: "Samsung Galaxy A16 128GB 4GB RAM",
+  precoAntigo: 1299.00,
+  precoAtual: 759.00,
+  desconto: "41% OFF",
+  parcelas: "12x R$ 73,60 sem juros",
+  cor: "Verde-claro",
+  memoriaRam: "4 GB",
+  envio: "Frete grátis com Mercado Envios FULL 🚚",
+  detalhes: [
+    "Tela de 6.7\" Super AMOLED",
+    "Bateria de 5000mAh",
+    "Câmera principal de 50MP",
+    "Resistência IP54 a respingos",
+    "Compatível com NFC"
+  ],
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_622565-MLA80779729792_112024-F.webp",
+  link: "https://mercadolivre.com/sec/2QNe3KH",
+  tipo: "mercadolivre"
+},
   {
-    nome: "Samsung Galaxy A05s 128 GB Dual SIM Tela Infinita 6,7\" Cor Prata 6 GB RAM",
-    precoAntigo: 1099,
-    precoAtual: 629.1,
-    desconto: "42% OFF",
-    parcelas: "18x R$ 38,83 sem juros",
-    imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_803399-MLA76762678802_062024-F.webp",
-    link: "https://mercadolivre.com/sec/12qtdJ1",
-    tipo: "mercadolivre",
-  },
+  nome: "Samsung Galaxy A16 128GB 4GB RAM",
+  precoAntigo: 839.00,
+  precoAtual: 759.00,
+  desconto: "10% OFF",
+  parcelas: "12x R$ 73,60 sem juros",
+  cor: "Verde-claro",
+  memoriaRam: "4 GB",
+  envio: "Entrega grátis",
+  detalhes: [
+    "Tela de 6.7\"",
+    "Bateria de 5000mAh",
+    "Câmera principal de 50MP",
+    "Compatível com NFC"
+  ],
+  imagem: "https://m.media-amazon.com/images/I/51nm-h3wiUL._AC_SX679_.jpg",
+  link: "https://amzn.to/3ITCTXv",
+  tipo: "amazon"
+},
+  {
+  nome: "Motorola Moto G15 256GB 12GB RAM",
+  precoAntigo: 1345.84,
+  precoAtual: 760.43,
+  desconto: "43% OFF",
+  parcelas: "12x R$ 70,41 sem juros",
+  cor: "Grafite",
+  memoriaRam: "12 GB",
+  envio: "Frete grátis",
+  detalhes: [
+    "Tela FHD+ de 6.7\" com Superbrilho",
+    "Bateria de 5200mAh",
+    "Câmera de 50MP com Night Vision",
+    "Compatível com NFC",
+    "Resistente a salpicos e poeira"
+  ],
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_634923-MLA81307878099_122024-F.webp",
+  link: "https://mercadolivre.com/sec/2jMSnG4",
+  tipo: "mercadolivre"
+},
+  {
+  nome: "Xiaomi Poco X7 Pro 5G 256GB 8GB RAM",
+  precoAntigo: 3599.00,
+  precoAtual: 1890.00,
+  desconto: "47% OFF",
+  parcelas: "12x R$ 200,64 sem juros",
+  cor: "Preto",
+  memoriaRam: "8 GB",
+  envio: "Frete grátis",
+  detalhes: [
+    "Tela AMOLED de 6\"",
+    "Bateria de 6000mAh",
+    "Câmera principal de 50MP",
+    "Compatível com NFC",
+    "Sensor de impressão digital"
+  ],
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_662793-MLA81920022500_012025-F.webp",
+  link: "https://mercadolivre.com/sec/2AXFY6f",
+  tipo: "mercadolivre"
+},
+  {
+  nome: "Samsung Galaxy S25 5G 256GB 12GB RAM",
+  precoAntigo: 6499.00,
+  precoAtual: 3863.01,
+  desconto: "40% OFF",
+  parcelas: "12x R$ 357,69 sem juros",
+  cor: "Azul Marinho",
+  memoriaRam: "12 GB",
+  envio: "Frete grátis com Mercado Envios FULL 🚚",
+  detalhes: [
+    "Tela Dynamic AMOLED 2X de 6.8\"",
+    "Bateria de 5000mAh",
+    "Câmera Tripla com sensor principal de 200MP",
+    "Compatível com S Pen",
+    "Resistência a água e poeira (IP68)"
+  ],
+  imagem: "https://http2.mlstatic.com/D_NQ_NP_2X_868507-MLA83150292219_032025-F.webp",
+  link: "https://mercadolivre.com/sec/1HJALmk",
+  tipo: "mercadolivre"
+},
   {
     nome: "Xiaomi Poco X7 Pro 5G 512GB Verde 12GB RAM 50MPX",
     precoAntigo: 3097,
@@ -699,96 +751,179 @@ const container = document.getElementById("listaProdutos");
 const banner = document.getElementById("bannerOfertas");
 const btnBusca = document.getElementById("btnBuscaFlutuante");
 
-// ===================== RENDER MERCADO LIVRE =====================
-function renderizarMercadoLivre(lista) {
-  banner.innerHTML = "";
-  lista
-    .filter((p) => p.tipo === "mercadolivre")
-    .forEach((p) => {
-      const destaque = document.createElement("div");
-      destaque.className =
-        "relative bg-white rounded-lg border border-black shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 overflow-hidden transition-transform duration-300 card-mercadolivre cursor-pointer";
+/* ✨ EFEITO DE BRILHO SUAVE NOS SELOS DAS LOJAS */
+const estiloBrilho = document.createElement("style");
+estiloBrilho.textContent = `
+  @keyframes brilho-horizontal {
+    0% { background-position: -120px 0; }
+    100% { background-position: 120px 0; }
+  }
+  .selo-loja {
+    background-image: linear-gradient(
+      120deg,
+      rgba(255,255,255,0.3) 0%,
+      rgba(255,255,255,0.6) 20%,
+      rgba(255,255,255,0.3) 40%
+    );
+    background-size: 200px 100%;
+    animation: brilho-horizontal 3s linear infinite;
+    background-blend-mode: overlay;
+  }
+`;
+document.head.appendChild(estiloBrilho);
 
-      destaque.innerHTML = `
-        <div class="flex items-center justify-center bg-gray-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}"
-               class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
-          <div class="absolute top-0 left-0 bg-[#fff159] px-1 py-0.5 rounded-br-md shadow-sm flex items-center justify-center">
-            <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
-                 alt="Mercado Livre" class="h-3 sm:h-4">
-          </div>
-        </div>
-        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
-        <p class="line-through text-gray-500 text-[9px]">${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}</p>
-        <p class="text-green-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9px] text-green-600 font-medium">${p.desconto || ""}</span>
+
+
+// ===================== RENDER MERCADO LIVRE + AMAZON =====================
+function renderizarMercadoLivre(lista) {
+  const banner = document.getElementById("bannerOfertas");
+  if (!banner) return;
+  banner.innerHTML = "";
+
+  lista
+    .filter(p => ["mercadolivre", "amazon"].includes(p.tipo))
+    .forEach(p => {
+      const isAmazon = p.tipo === "amazon";
+
+      const destaque = document.createElement("div");
+      destaque.className = `
+        relative bg-white rounded-lg border 
+        ${isAmazon ? "border-amber-400" : "border-black"} 
+        shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col 
+        items-center p-1 overflow-hidden transition-transform 
+        duration-300 cursor-pointer hover:scale-105
       `;
 
-      // — hover desktop
-      destaque.addEventListener("mouseenter", () => mostrarTooltip(p, destaque, "ml"));
-      destaque.addEventListener("mouseleave", esconderTooltip);
+      // 🔹 Cores e logos
+      const bgCor = isAmazon ? "#ffb800" : "#fff159";
+      const logoSrc = isAmazon
+        ? "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+        : "https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png";
 
-      // — long press mobile (~400ms)
+      // 🔹 Estrutura visual padronizada
+      destaque.innerHTML = `
+        <div class="flex flex-col items-center justify-center w-full mb-1 relative">
+          <div class="bg-gray-50 rounded-md w-full h-20 overflow-hidden flex items-center justify-center">
+            <img src="${p.imagem}" alt="${p.nome}" 
+                 class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+          </div>
+
+          <!-- ✅ Selo abaixo da imagem, altura e proporção padronizada -->
+          <div class="mt-[3px] w-full flex items-center justify-center 
+                      border border-gray-300 bg-white rounded-md shadow-sm py-[2px] h-[18px]">
+            ${
+              isAmazon
+                ? `<img src="${logoSrc}" alt="Amazon" class="h-3 sm:h-4">`
+                : `<img src="${logoSrc}" alt="Mercado Livre" class="h-3 sm:h-4">`
+            }
+          </div>
+        </div>
+
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">
+          ${p.nome}
+        </h2>
+        <p class="line-through text-gray-500 text-[9px]">
+          ${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}
+        </p>
+        <p class="${isAmazon ? "text-amber-700" : "text-green-700"} font-extrabold text-[12px]">
+          R$ ${p.precoAtual.toFixed(2)}
+        </p>
+        <span class="text-[9px] ${isAmazon ? "text-amber-600" : "text-green-600"} font-medium">
+          ${p.desconto || ""}
+        </span>
+      `;
+
+      // === Tooltips e interação ===
+      destaque.addEventListener("mouseenter", () => mostrarTooltip(p, destaque, isAmazon ? "magalu" : "ml"));
+      destaque.addEventListener("mouseleave", esconderTooltip);
       destaque.addEventListener("touchstart", () => {
-        longPressTimer = setTimeout(()=>mostrarTooltip(p, destaque, "ml"), 400);
-      }, {passive:true});
+        longPressTimer = setTimeout(() => mostrarTooltip(p, destaque, isAmazon ? "magalu" : "ml"), 400);
+      }, { passive: true });
       destaque.addEventListener("touchend", () => {
         clearTimeout(longPressTimer);
         esconderTooltip();
       });
-
-      // — clique abre o modal principal
-      destaque.addEventListener("click", () => abrirModal(p));
+      destaque.addEventListener("click", () => abrirModalPorTipo(p));
 
       banner.appendChild(destaque);
     });
 }
 
-// ===================== RENDER MAGAZINE LUIZA (com tooltip) =====================
+
+
+// ===================== RENDER MAGAZINE LUIZA + AMAZON =====================
 function renderizarMagalu(lista) {
   const bannerMagalu = document.getElementById("bannerMagalu");
   if (!bannerMagalu) return;
   bannerMagalu.innerHTML = "";
 
   lista
-    .filter((p) => p.tipo === "magalu")
-    .forEach((p) => {
+    .filter(p => ["magalu", "amazon"].includes(p.tipo))
+    .forEach(p => {
+      const isAmazon = p.tipo === "amazon";
       const card = document.createElement("div");
-      card.className =
-        "relative bg-white rounded-lg border border-blue-400 shadow-md flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 overflow-hidden transition-transform duration-300 cursor-pointer";
 
-      card.innerHTML = `
-        <div class="flex items-center justify-center bg-blue-50 rounded-md w-full h-20 overflow-hidden mb-1 relative">
-          <img src="${p.imagem}" alt="${p.nome}" 
-               class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
-          <div class="absolute top-0 left-0 bg-blue-500 text-white text-[9px] px-1.5 py-0.5 rounded-br-md shadow-sm">Magalu</div>
-        </div>
-        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">${p.nome}</h2>
-        <p class="line-through text-gray-500 text-[9px]">${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}</p>
-        <p class="text-blue-700 font-extrabold text-[12px]">R$ ${p.precoAtual.toFixed(2)}</p>
-        <span class="text-[9px] text-blue-600 font-medium">${p.desconto || ""}</span>
+      card.className = `
+        relative bg-white rounded-lg border 
+        ${isAmazon ? "border-amber-400" : "border-blue-400"} shadow-md 
+        flex-shrink-0 w-28 sm:w-36 flex flex-col items-center p-1 overflow-hidden 
+        transition-transform duration-300 cursor-pointer hover:scale-105
       `;
 
-      // === Tooltip (mini-modal) ===
-      card.addEventListener("mouseenter", () => mostrarTooltip(p, card, "magalu"));
+      // ===== Estrutura do card =====
+      card.innerHTML = `
+        <div class="flex flex-col items-center justify-center w-full mb-1 relative">
+          <!-- Imagem -->
+          <div class="${isAmazon ? "bg-amber-50" : "bg-blue-50"} rounded-md w-full h-20 overflow-hidden flex items-center justify-center">
+            <img src="${p.imagem}" alt="${p.nome}" 
+                 class="max-h-20 object-contain rounded-md transition-transform duration-300 hover:scale-105">
+          </div>
+
+          <!-- ✅ Selo abaixo da imagem (padronizado e centralizado) -->
+          <div class="mt-[3px] w-full flex items-center justify-center border border-gray-300 bg-white rounded-md shadow-sm py-[2px] h-[18px]">
+            ${
+              isAmazon
+                ? `<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+                        alt="Amazon" class="h-3 sm:h-4">`
+                : `<span class="text-[9px] sm:text-[10px] font-bold tracking-wide magalu-gradient uppercase">
+                     MAGALU
+                   </span>`
+            }
+          </div>
+        </div>
+
+        <!-- Texto e preço -->
+        <h2 class="text-[10px] font-semibold text-center line-clamp-2 h-8 text-gray-800">
+          ${p.nome}
+        </h2>
+        <p class="line-through text-gray-500 text-[9px]">
+          ${p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : ""}
+        </p>
+        <p class="${isAmazon ? "text-amber-700" : "text-blue-700"} font-extrabold text-[12px]">
+          R$ ${p.precoAtual.toFixed(2)}
+        </p>
+        <span class="text-[9px] ${isAmazon ? "text-amber-600" : "text-blue-600"} font-medium">
+          ${p.desconto || ""}
+        </span>
+      `;
+
+      // === Tooltip e interações ===
+      card.addEventListener("mouseenter", () => mostrarTooltip(p, card, isAmazon ? "magalu" : "magalu"));
       card.addEventListener("mouseleave", esconderTooltip);
-
-      // Long-press no mobile
       card.addEventListener("touchstart", () => {
-        longPressTimer = setTimeout(() => mostrarTooltip(p, card, "magalu"), 400);
+        longPressTimer = setTimeout(() => mostrarTooltip(p, card, isAmazon ? "magalu" : "magalu"), 400);
       }, { passive: true });
-
       card.addEventListener("touchend", () => {
         clearTimeout(longPressTimer);
         esconderTooltip();
       });
-
-      // Clique abre o modal principal
-      card.addEventListener("click", () => abrirMagaluModal(p));
+      card.addEventListener("click", () => abrirModalPorTipo(p));
 
       bannerMagalu.appendChild(card);
     });
 }
+
+
 
 // ===================== RENDERIZAR CARDS GERAIS (MESCLADO E COLORIDO) =====================
 function renderizarCardsGerais(lista) {
@@ -796,7 +931,7 @@ function renderizarCardsGerais(lista) {
   if (!listaEl) return;
   listaEl.innerHTML = "";
 
-  const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "shopee", "usuario"];
+  const tiposPermitidos = ["mercadolivre", "magalu", "amazon", "usuario"];
   const produtosGerais = lista
     .filter(p => tiposPermitidos.includes(p.tipo))
     .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"));
@@ -837,10 +972,6 @@ function renderizarCardsGerais(lista) {
       bannerHtml = `<div class="w-full h-[20px] bg-[#ff9900] flex items-center justify-center">
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" class="h-[11px]" alt="Amazon">
       </div>`;
-    } else if (tipo === "shopee") {
-      bannerHtml = `<div class="w-full h-[20px] bg-[#ee4d2d] flex items-center justify-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png" class="h-[11px] invert" alt="Shopee">
-      </div>`;
     } else if (tipo === "usuario") {
       bannerHtml = `<div class="w-full h-[20px] bg-green-600 text-white text-[10px] font-semibold flex items-center justify-center">Vendedor Local</div>`;
     }
@@ -872,53 +1003,53 @@ function renderizarCardsGerais(lista) {
 
 // ===================== ABRIR MODAL POR TIPO =====================
 function abrirModalPorTipo(p) {
-  // Se tem modal específico para o tipo, use-o
+  // 🔹 Mercado Livre
   if (p.tipo === "mercadolivre") {
-    abrirModal(p); // seu modal ML existente
+    abrirModal(p);
     return;
   }
+
+  // 🔹 Magazine Luiza
   if (p.tipo === "magalu") {
     abrirMagaluModal(p);
     return;
   }
-  // Para Amazon / Shopee podemos reaproveitar o modal Magalu/M L com pequenas diferenças:
-  // vou usar o magaluModal como fallback visual — você pode criar modalAmazon/modalShopee se preferir.
-  if (p.tipo === "amazon" || p.tipo === "shopee") {
-    // preenche o magaluModalBox mas ajusta título e cor
+
+  // 🔹 Amazon (usa modal Magalu adaptado)
+  if (p.tipo === "amazon") {
     const modal = document.getElementById("magaluModal");
     const box = document.getElementById("magaluModalBox");
     document.getElementById("magaluModalImage").src = p.imagem;
     document.getElementById("magaluModalTitle").textContent = p.nome;
-    document.getElementById("magaluModalOldPrice").textContent = p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : "";
+    document.getElementById("magaluModalOldPrice").textContent =
+      p.precoAntigo ? `R$ ${p.precoAntigo.toFixed(2)}` : "";
     document.getElementById("magaluModalPrice").textContent = `R$ ${p.precoAtual.toFixed(2)}`;
     document.getElementById("magaluModalDiscount").textContent = p.desconto || "";
     document.getElementById("magaluModalLink").href = p.link || "#";
 
-    // ajustar visual (trocar logo/cores conforme tipo)
+    // 🔸 Ajuste visual Amazon
     const logoImg = box.querySelector('img[alt="Magazine Luiza"]');
-    if (p.tipo === "amazon") {
+    if (logoImg) {
       logoImg.src = "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg";
-      box.style.borderColor = "#ff9900";
-      box.style.background = "linear-gradient(to bottom right,#fff,#fff6e6)";
-    } else if (p.tipo === "shopee") {
-      logoImg.src = "https://upload.wikimedia.org/wikipedia/commons/6/6a/Shopee_logo.png";
-      box.style.borderColor = "#ff5722";
-      box.style.background = "linear-gradient(to bottom right,#fff,#fff2f0)";
     }
+    box.style.borderColor = "#ff9900";
+    box.style.background = "linear-gradient(to bottom right,#fff,#fff6e6)";
 
     modal.classList.remove("hidden");
     modal.classList.add("flex");
-    setTimeout(()=> {
-      box.classList.remove("scale-95","opacity-0");
-      box.classList.add("scale-100","opacity-100");
+    setTimeout(() => {
+      box.classList.remove("scale-95", "opacity-0");
+      box.classList.add("scale-100", "opacity-100");
     }, 40);
 
     document.getElementById("closeMagaluModal").onclick = fecharMagaluModal;
-    modal.addEventListener("click", (e)=> { if (e.target===modal) fecharMagaluModal(); });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) fecharMagaluModal();
+    });
     return;
   }
 
-  // fallback: abrir modal usuário (se desejar)
+  // 🔹 Vendedores locais (usuário)
   abrirUserModal(p);
 }
 
@@ -1229,58 +1360,52 @@ function aplicarFiltros() {
   const estado = document.getElementById("filtroEstado")?.value || "";
   const preco = document.getElementById("filtroPreco")?.value || "";
 
+  // 🔹 Aplica os filtros
   const filtrados = produtos.filter(p => {
-    // 🔍 texto livre
     if (busca && !p.nome.toLowerCase().includes(busca)) return false;
-
-    // 🏷️ marca
     if (marca && !p.nome.toLowerCase().includes(marca)) return false;
-
-    // 📍 estado (só para vendedor local)
     if (estado && p.tipo === "usuario" && p.estado !== estado) return false;
-
-    // 💰 faixa de preço
-    if (preco === "0" && p.precoAtual > 500) return false;                    // até 500
-    if (preco === "0b" && p.precoAtual > 1000) return false;                  // até 1000
-    if (preco === "1" && p.precoAtual > 2000) return false;                   // até 2000
-    if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false; // entre 2–4k
-    if (preco === "3" && p.precoAtual < 4000) return false;                   // acima de 4k
-
+    if (preco === "0" && p.precoAtual > 500) return false;
+    if (preco === "0b" && p.precoAtual > 1000) return false;
+    if (preco === "1" && p.precoAtual > 2000) return false;
+    if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false;
+    if (preco === "3" && p.precoAtual < 4000) return false;
     return true;
   });
 
-  // 🔹 Oculta as seções Mercado Livre e Magalu
-  document.getElementById("bannerOfertas")?.parentElement.classList.add("hidden");
-  document.getElementById("bannerMagalu")?.parentElement.classList.add("hidden");
+  // 🔹 Ativa o modo-filtro visual (mantém banners pequenos)
+  ativarModoFiltro(true);
 
-  // 🔹 Atualiza os cards gerais com os resultados filtrados
+  // 🔹 Renderiza a seção principal com os produtos filtrados
   renderizarCardsGerais(filtrados);
 
-  // 🔹 Cria ou atualiza o contador de resultados
-  let contador = document.getElementById("contadorResultados");
-  if (!contador) {
-    contador = document.createElement("div");
-    contador.id = "contadorResultados";
-    contador.className = "text-center text-sm sm:text-base font-semibold mt-2 mb-1 transition-all duration-500 opacity-0";
-    const listaEl = document.getElementById("listaProdutos");
-    if (listaEl && listaEl.parentElement) {
-      listaEl.parentElement.insertBefore(contador, listaEl);
+  // 🔹 Atualiza contador detalhado
+  const contador = document.getElementById("contadorResultados");
+  if (contador) {
+    const total = filtrados.length;
+    const ml = filtrados.filter(p => p.tipo === "mercadolivre").length;
+    const magalu = filtrados.filter(p => p.tipo === "magalu").length;
+    const amazon = filtrados.filter(p => p.tipo === "amazon").length;
+    const usuario = filtrados.filter(p => p.tipo === "usuario").length;
+
+    if (total > 0) {
+      contador.innerHTML = `
+        <span class="total">📱 ${total} produto${total > 1 ? "s" : ""} encontrado${total > 1 ? "s" : ""}</span>
+        <span class="mercadolivre">ML: ${ml}</span>
+        <span class="magalu">Magalu: ${magalu}</span>
+        <span class="amazon">Amazon: ${amazon}</span>
+        <span class="usuario">Vendedores Locais: ${usuario}</span>
+      `;
+    } else {
+      contador.innerHTML = `<span class="total bg-red-600">❌ Nenhum produto encontrado</span>`;
     }
-  }
 
-  // Atualiza o texto e a cor
-  if (filtrados.length > 0) {
-    contador.textContent = `📱 ${filtrados.length} produto${filtrados.length !== 1 ? "s" : ""} encontrado${filtrados.length !== 1 ? "s" : ""}`;
-    contador.classList.remove("text-red-600");
-    contador.classList.add("text-green-600");
-  } else {
-    contador.textContent = "❌ Nenhum produto encontrado";
-    contador.classList.remove("text-green-600");
-    contador.classList.add("text-red-600");
+    // animação suave ao atualizar
+    contador.style.opacity = "0";
+    setTimeout(() => {
+      contador.style.opacity = "1";
+    }, 100);
   }
-
-  // Fade-in
-  requestAnimationFrame(() => contador.classList.add("opacity-100"));
 }
 
 
@@ -1399,11 +1524,30 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("DOMContentLoaded", () => {
   renderizarMercadoLivre(produtos);
   renderizarMagalu(produtos);
-  renderizarCardsGerais(produtos);   // ✅ substitui renderizarProdutosUsuarios()
+  renderizarCardsGerais(produtos); // ✅ substitui renderizarProdutosUsuarios()
   criarBarraFiltros();
   iniciarRolagemAutomaticaML();
   iniciarRolagemAutomaticaMagalu();
+
+  // ✅ Exibir contador inicial profissional
+  const contador = document.getElementById("contadorResultados");
+  if (contador) {
+    const total = produtos.length;
+    const ml = produtos.filter(p => p.tipo === "mercadolivre").length;
+    const magalu = produtos.filter(p => p.tipo === "magalu").length;
+    const amazon = produtos.filter(p => p.tipo === "amazon").length;
+    const usuario = produtos.filter(p => p.tipo === "usuario").length;
+
+    contador.innerHTML = `
+      <span class="total">📱 ${total} produtos disponíveis</span>
+      <span class="mercadolivre">ML: ${ml}</span>
+      <span class="magalu">Magalu: ${magalu}</span>
+      <span class="amazon">Amazon: ${amazon}</span>
+      <span class="usuario">Vendedores Locais: ${usuario}</span>
+    `;
+  }
 });
+
 
 
 
