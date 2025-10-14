@@ -414,6 +414,30 @@
   animation: magaluShift 8s linear infinite;
 }
 
+/* ======== AJUSTE: REMOVER ESPAÇO ENTRE FILTRO E TÍTULO ======== */
+
+/* Quando o filtro está visível, garantir que tudo suba junto */
+body.modo-filtro main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Colar o título 📦 “Todos os Produtos Anunciados” no filtro */
+body.modo-filtro .todos-selo {
+  margin-top: 0 !important;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
+
+/* Remover margens superiores do contador e da lista */
+body.modo-filtro #contadorResultados,
+body.modo-filtro #listaProdutos {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  transform: translateY(-10px);
+  transition: transform 0.3s ease;
+}
+
 /* Contador */
 #contadorResultados {
   font-family: 'Inter', sans-serif;
