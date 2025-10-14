@@ -326,25 +326,41 @@
   transition: all 0.4s ease-in-out;
 }
 
-/* Oculta o conteúdo interno também */
 .modo-filtro #bannerOfertas > *,
 .modo-filtro #bannerMagalu > * {
   display: none !important;
 }
 
-/* 📦 Área de produtos ocupa mais espaço */
-.modo-filtro #listaProdutos {
-  transition: all 0.4s ease;
-  padding-top: 10px;
+/* ======= LAYOUT DOS CARDS ======= */
+#listaProdutos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  padding-bottom: 8px;
 }
 
-/* Mostrar mais produtos por linha no mobile */
+/* 🔸 MOBILE (até 640px) — 4 cards por linha */
 @media (max-width: 640px) {
   #listaProdutos .card-geral {
-    width: 48% !important; /* padrão 2 por linha */
+    flex: 0 0 23%;
+    max-width: 23%;
   }
-  .modo-filtro #listaProdutos .card-geral {
-    width: 31% !important; /* modo filtro = 3 por linha */
+}
+
+/* 🔸 TABLET (641–1024px) — 5 por linha */
+@media (min-width: 641px) and (max-width: 1024px) {
+  #listaProdutos .card-geral {
+    flex: 0 0 18%;
+    max-width: 18%;
+  }
+}
+
+/* 🔸 DESKTOP (1025px+) — 6 por linha */
+@media (min-width: 1025px) {
+  #listaProdutos .card-geral {
+    flex: 0 0 15%;
+    max-width: 15%;
   }
 }
 
