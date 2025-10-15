@@ -621,44 +621,28 @@ body.modo-filtro #listaProdutos {
   border-radius: 10px;
   border: 1.5px solid transparent;
   cursor: pointer;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.3s ease, background 0.4s ease, box-shadow 0.4s ease;
   user-select: none;
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #fff;
+  color: #111;
   font-weight: 600;
   font-size: 12px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  background: #fff;
 }
 
 /* === Fundos brancos com bordas coloridas === */
-#filtroOrigem label:nth-child(1) { /* Mercado Livre */
-  background: #ffffff;
-  border: 1.5px solid #facc15;
-  color: #111;
-}
-#filtroOrigem label:nth-child(2) { /* Magalu */
-  background: #ffffff;
-  border: 1.5px solid #007aff;
-  color: #111;
-}
-#filtroOrigem label:nth-child(3) { /* Amazon */
-  background: #ffffff;
-  border: 1.5px solid #ff9900;
-  color: #111;
-}
-#filtroOrigem label:nth-child(4) { /* Locais */
-  background: #ffffff;
-  border: 1.5px solid #16a34a;
-  color: #111;
-}
+#filtroOrigem label:nth-child(1) { border-color: #facc15; } /* Mercado Livre */
+#filtroOrigem label:nth-child(2) { border-color: #007aff; } /* Magalu */
+#filtroOrigem label:nth-child(3) { border-color: #ff9900; } /* Amazon */
+#filtroOrigem label:nth-child(4) { border-color: #16a34a; } /* Locais */
 
 /* === Hover (realce leve e profissional) === */
 #filtroOrigem label:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255,255,255,0.25),
-              0 0 6px currentColor;
+  box-shadow: 0 0 10px rgba(255,255,255,0.25), 0 0 6px currentColor;
   filter: brightness(1.05);
 }
 
@@ -671,92 +655,52 @@ body.modo-filtro #listaProdutos {
 }
 
 /* === Estado ativo (selecionado) com brilho colorido + transição suave === */
-#filtroOrigem label {
-  transition: all 0.3s ease, background 0.4s ease, box-shadow 0.4s ease;
-}
-
 #filtroOrigem label.ativo {
   transform: scale(1.05);
   border-width: 2px;
-  box-shadow:
-    0 0 10px rgba(255, 255, 255, 0.25),
-    inset 0 0 12px rgba(255, 255, 255, 0.15);
   animation: glowFade 0.3s ease-in-out forwards;
 }
 
 /* 💫 Animação de entrada do brilho */
 @keyframes glowFade {
   0% { box-shadow: 0 0 0 rgba(255,255,255,0); opacity: 0.7; }
-  100% { box-shadow: 0 0 10px rgba(255,255,255,0.25), inset 0 0 12px rgba(255,255,255,0.15); opacity: 1; }
+  100% { opacity: 1; }
 }
 
 /* 🎨 Brilho interno colorido por loja */
 #filtroOrigem label:nth-child(1).ativo { /* Mercado Livre */
   background: radial-gradient(circle at center, rgba(250,204,21,0.25), #fff 70%);
   border-color: #facc15;
-  box-shadow:
-    0 0 12px rgba(250,204,21,0.4),
-    inset 0 0 10px rgba(250,204,21,0.25);
+  box-shadow: 0 0 10px rgba(250,204,21,0.35), inset 0 0 10px rgba(250,204,21,0.25);
 }
 #filtroOrigem label:nth-child(2).ativo { /* Magalu */
   background: radial-gradient(circle at center, rgba(0,122,255,0.25), #fff 70%);
   border-color: #007aff;
-  box-shadow:
-    0 0 12px rgba(0,122,255,0.4),
-    inset 0 0 10px rgba(0,122,255,0.25);
+  box-shadow: 0 0 10px rgba(0,122,255,0.35), inset 0 0 10px rgba(0,122,255,0.25);
 }
 #filtroOrigem label:nth-child(3).ativo { /* Amazon */
   background: radial-gradient(circle at center, rgba(255,153,0,0.25), #fff 70%);
   border-color: #ff9900;
-  box-shadow:
-    0 0 12px rgba(255,153,0,0.4),
-    inset 0 0 10px rgba(255,153,0,0.25);
+  box-shadow: 0 0 10px rgba(255,153,0,0.35), inset 0 0 10px rgba(255,153,0,0.25);
 }
 #filtroOrigem label:nth-child(4).ativo { /* Locais */
   background: radial-gradient(circle at center, rgba(34,197,94,0.25), #fff 70%);
   border-color: #16a34a;
-  box-shadow:
-    0 0 12px rgba(34,197,94,0.4),
-    inset 0 0 10px rgba(34,197,94,0.25);
-}
-
-
-/* Cor interna específica por loja */
-#filtroOrigem label:nth-child(1).ativo { /* Mercado Livre */
-  background: radial-gradient(circle at center, rgba(250,204,21,0.25), #fff 70%);
-  border-color: #facc15;
-}
-#filtroOrigem label:nth-child(2).ativo { /* Magalu */
-  background: radial-gradient(circle at center, rgba(0,122,255,0.25), #fff 70%);
-  border-color: #007aff;
-}
-#filtroOrigem label:nth-child(3).ativo { /* Amazon */
-  background: radial-gradient(circle at center, rgba(255,153,0,0.25), #fff 70%);
-  border-color: #ff9900;
-}
-#filtroOrigem label:nth-child(4).ativo { /* Locais */
-  background: radial-gradient(circle at center, rgba(34,197,94,0.25), #fff 70%);
-  border-color: #16a34a;
+  box-shadow: 0 0 10px rgba(34,197,94,0.35), inset 0 0 10px rgba(34,197,94,0.25);
 }
 
 /* === Ícones animados === */
 #filtroOrigem .logo-filtro {
   height: 15px;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.4));
   transition: transform 0.3s ease, filter 0.3s ease;
   opacity: 0.95;
 }
 
 /* Brilho pulsante das logos */
 @keyframes pulseLogo {
-  0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 1px rgba(255,255,255,0.3));
-  }
-  50% {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
-  }
+  0%,100% { transform: scale(1); filter: drop-shadow(0 0 1px rgba(255,255,255,0.3)); }
+  50% { transform: scale(1.12); filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)); }
 }
 #filtroOrigem .ml-logo     { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 0s; }
 #filtroOrigem .magalu-logo { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 0.8s; }
@@ -783,11 +727,11 @@ body.modo-filtro #listaProdutos {
   font-size: 11px;
   padding: 6px 12px;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.4);
 }
 #filtroOrigem #selecionarTodos:hover {
   background: linear-gradient(to right, #16a34a, #15803d);
-  box-shadow: 0 0 10px rgba(22, 163, 74, 0.6);
+  box-shadow: 0 0 10px rgba(22,163,74,0.6);
   transform: scale(1.05);
 }
 
@@ -797,7 +741,6 @@ body.modo-filtro #listaProdutos {
     padding: 8px 6px !important;
     gap: 6px;
   }
-
   #barraFiltros input,
   #barraFiltros select {
     padding: 4px 6px;
@@ -805,28 +748,23 @@ body.modo-filtro #listaProdutos {
     width: 29%;
     border-radius: 6px;
   }
-
   #filtroOrigem {
     gap: 5px;
     padding-top: 3px;
     margin-top: 3px;
   }
-
   #filtroOrigem label {
     padding: 4px 7px;
     font-size: 10.5px;
     border-radius: 7px;
   }
-
-  #filtroOrigem .logo-filtro {
-    height: 12px;
-  }
-
+  #filtroOrigem .logo-filtro { height: 12px; }
   #filtroOrigem #selecionarTodos {
     padding: 3px 8px;
     font-size: 10px;
   }
 }
+
 
 
   </style>
