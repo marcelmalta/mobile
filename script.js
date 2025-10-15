@@ -1451,29 +1451,27 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS (DARK PREMIUM COMPACTA) =====================
+// ===================== CRIAR BARRA DE FILTROS (DARK PREMIUM OTIMIZADO) =====================
 function criarBarraFiltros() {
   const mlSection = document.querySelector(".ml-selo");
   const barra = document.createElement("div");
   barra.id = "barraFiltros";
   barra.className =
-    "hidden text-white rounded-xl mt-2 p-3 shadow-md flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto animate-fade-in";
+    "hidden text-white rounded-xl mt-2 p-3 shadow-md flex flex-wrap items-center justify-center gap-3 max-w-6xl mx-auto animate-fade-in";
 
   barra.innerHTML = `
     <!-- 🔍 BUSCA -->
-    <div class="flex items-center justify-center w-full sm:w-auto gap-2">
-      <div class="relative flex-1">
-        <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
-          class="w-full bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[13px]
-          focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-300 placeholder-yellow-300/70" />
-        <svg class="absolute left-3 top-2.5 w-4 h-4 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-          d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
-      </div>
+    <div class="w-full sm:w-[65%] flex justify-center relative">
+      <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
+        class="w-[90%] sm:w-[100%] bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[14px]
+        focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-300 placeholder-yellow-300/70" />
+      <svg class="absolute left-8 sm:left-5 top-2.5 w-4 h-4 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+        d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
     </div>
 
-    <!-- 🔘 MINI-FILTROS SEMPRE VISÍVEIS (marca, estado, preço) -->
-    <div id="miniFiltrosArea" class="mini-filtros w-full flex flex-wrap justify-center gap-2 mt-2 sm:mt-0">
+    <!-- 🔘 MINI-FILTROS (agora ao lado do botão "Todos") -->
+    <div id="miniFiltrosArea" class="mini-filtros flex flex-wrap justify-center items-center gap-2 w-full sm:w-auto">
       <select id="filtroMarca" class="rounded-md px-2 py-1 text-sm">
         <option value="">Marca</option>
         <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
@@ -1493,6 +1491,11 @@ function criarBarraFiltros() {
         <option value="2">R$ 2000–R$ 4000</option>
         <option value="3">+ R$ 4000</option>
       </select>
+
+      <button id="selecionarTodos"
+        class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
+        Todos
+      </button>
     </div>
 
     <!-- 🏷️ FILTRO DE ORIGEM COM ÍCONES -->
@@ -1524,15 +1527,10 @@ function criarBarraFiltros() {
           class="logo-filtro local-logo" alt="Locais" />
         <span>Locais</span>
       </label>
-
-      <button id="selecionarTodos"
-        class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
-        Todos
-      </button>
     </div>
   `;
 
-  // 👉 Insere logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
+  // 👉 Inserir logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
   if (mlSection) {
     mlSection.insertAdjacentElement("afterend", barra);
   } else {
