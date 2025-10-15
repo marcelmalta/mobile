@@ -601,16 +601,17 @@ body.modo-filtro #listaProdutos {
   background-color: #16a34a;
 }
 
-/* ===================== FILTRO DE ORIGEM (LOJAS) — VERSÃO FINAL COLORIDA ===================== */
+/* ===================== FILTRO DE ORIGEM (LOJAS) — AJUSTADO E OTIMIZADO ===================== */
 #filtroOrigem {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 6px;
-  padding-top: 6px;
+  margin-top: 4px;
+  padding-top: 4px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent !important;
 }
 
 /* === Cada opção (Mercado Livre, Magalu, Amazon, Locais) === */
@@ -620,7 +621,7 @@ body.modo-filtro #listaProdutos {
   border-radius: 10px;
   border: 1.5px solid transparent;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.25s ease-in-out;
   user-select: none;
   display: flex;
   align-items: center;
@@ -631,29 +632,37 @@ body.modo-filtro #listaProdutos {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
 
-/* === Fundos coloridos por loja === */
+/* === Fundos brancos com bordas coloridas === */
 #filtroOrigem label:nth-child(1) { /* Mercado Livre */
-  background: linear-gradient(135deg, #fff159, #facc15);
+  background: #ffffff;
+  border: 1.5px solid #facc15;
   color: #111;
 }
 #filtroOrigem label:nth-child(2) { /* Magalu */
-  background: linear-gradient(135deg, #007aff, #00c8ff);
+  background: #ffffff;
+  border: 1.5px solid #007aff;
+  color: #111;
 }
 #filtroOrigem label:nth-child(3) { /* Amazon */
-  background: linear-gradient(135deg, #ff9900, #ffb84d);
+  background: #ffffff;
+  border: 1.5px solid #ff9900;
   color: #111;
 }
 #filtroOrigem label:nth-child(4) { /* Locais */
-  background: linear-gradient(135deg, #16a34a, #22c55e);
+  background: #ffffff;
+  border: 1.5px solid #16a34a;
+  color: #111;
 }
 
-/* === Hover === */
+/* === Hover (realce leve e profissional) === */
 #filtroOrigem label:hover {
   transform: scale(1.05);
-  filter: brightness(1.1);
+  box-shadow: 0 0 10px rgba(255,255,255,0.25),
+              0 0 6px currentColor;
+  filter: brightness(1.05);
 }
 
-/* === Checkbox invisível (mantém funcionalidade) === */
+/* === Checkbox invisível === */
 #filtroOrigem input[type="checkbox"] {
   position: absolute;
   width: 0;
@@ -661,35 +670,52 @@ body.modo-filtro #listaProdutos {
   opacity: 0;
 }
 
-/* === Estado ativo (checkbox marcado) === */
+/* === Estado ativo (selecionado) com brilho interno colorido === */
 #filtroOrigem label.ativo {
-  border-color: #fff;
+  transform: scale(1.05);
+  border-width: 2px;
   box-shadow:
-    0 0 10px rgba(255, 255, 255, 0.4),
-    inset 0 0 6px rgba(255, 255, 255, 0.3);
-  transform: scale(1.07);
+    0 0 10px rgba(255, 255, 255, 0.25),
+    inset 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+/* Cor interna específica por loja */
+#filtroOrigem label:nth-child(1).ativo { /* Mercado Livre */
+  background: radial-gradient(circle at center, rgba(250,204,21,0.25), #fff 70%);
+  border-color: #facc15;
+}
+#filtroOrigem label:nth-child(2).ativo { /* Magalu */
+  background: radial-gradient(circle at center, rgba(0,122,255,0.25), #fff 70%);
+  border-color: #007aff;
+}
+#filtroOrigem label:nth-child(3).ativo { /* Amazon */
+  background: radial-gradient(circle at center, rgba(255,153,0,0.25), #fff 70%);
+  border-color: #ff9900;
+}
+#filtroOrigem label:nth-child(4).ativo { /* Locais */
+  background: radial-gradient(circle at center, rgba(34,197,94,0.25), #fff 70%);
+  border-color: #16a34a;
 }
 
 /* === Ícones animados === */
 #filtroOrigem .logo-filtro {
-  height: 16px;
+  height: 15px;
   filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
   transition: transform 0.3s ease, filter 0.3s ease;
   opacity: 0.95;
 }
 
-/* Brilho contínuo e suave nas logos */
+/* Brilho pulsante das logos */
 @keyframes pulseLogo {
   0%, 100% {
     transform: scale(1);
     filter: drop-shadow(0 0 1px rgba(255,255,255,0.3));
   }
   50% {
-    transform: scale(1.15);
+    transform: scale(1.12);
     filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
   }
 }
-
 #filtroOrigem .ml-logo     { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 0s; }
 #filtroOrigem .magalu-logo { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 0.8s; }
 #filtroOrigem .amazon-logo { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 1.6s; }
@@ -698,10 +724,9 @@ body.modo-filtro #listaProdutos {
 /* Efeito bounce ao clicar */
 @keyframes bounceLogo {
   0% { transform: scale(1); }
-  40% { transform: scale(1.3); }
+  40% { transform: scale(1.25); }
   100% { transform: scale(1); }
 }
-
 #filtroOrigem input[type="checkbox"]:checked + img {
   animation: bounceLogo 0.4s ease;
 }
@@ -718,27 +743,45 @@ body.modo-filtro #listaProdutos {
   transition: all 0.3s ease;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
 }
-
 #filtroOrigem #selecionarTodos:hover {
   background: linear-gradient(to right, #16a34a, #15803d);
   box-shadow: 0 0 10px rgba(22, 163, 74, 0.6);
   transform: scale(1.05);
 }
 
-/* === Responsividade === */
+/* === Responsividade (MOBILE COMPACTO) === */
 @media (max-width: 640px) {
+  #barraFiltros {
+    padding: 8px 6px !important;
+    gap: 6px;
+  }
+
+  #barraFiltros input,
+  #barraFiltros select {
+    padding: 4px 6px;
+    font-size: 11px;
+    width: 29%;
+    border-radius: 6px;
+  }
+
   #filtroOrigem {
     gap: 5px;
+    padding-top: 3px;
+    margin-top: 3px;
   }
+
   #filtroOrigem label {
     padding: 4px 7px;
-    font-size: 11px;
+    font-size: 10.5px;
+    border-radius: 7px;
   }
+
   #filtroOrigem .logo-filtro {
-    height: 13px;
+    height: 12px;
   }
+
   #filtroOrigem #selecionarTodos {
-    padding: 4px 8px;
+    padding: 3px 8px;
     font-size: 10px;
   }
 }
