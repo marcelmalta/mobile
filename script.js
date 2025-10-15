@@ -1584,13 +1584,11 @@ if (btnMini) {
 }
 }
 
-// ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
+// ===================== MODO FILTRO (TOPO FIXO + ESCONDE MENU E BANNERS) =====================
 function ativarModoFiltro(ativo) {
   const body = document.body;
   const btn = document.getElementById("btnBuscaFlutuante");
   const barra = document.getElementById("barraFiltros");
-
-  // 🔹 Cabeçalho principal (logo/topo)
   const headerTopo = document.querySelector("header, .topo-site, #topoPrincipal");
 
   if (ativo) {
@@ -1599,20 +1597,28 @@ function ativarModoFiltro(ativo) {
     btn.classList.add("ativo");
     btn.textContent = "⨯ Fechar Filtro";
 
-    // 🔹 Esconde o topo principal (logo, menu, etc.)
-    if (headerTopo) headerTopo.classList.add("hidden");
+    // 🔹 Esconde topo (menu/logo) com transição suave
+    if (headerTopo) {
+      headerTopo.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+      headerTopo.style.opacity = "0";
+      headerTopo.style.transform = "translateY(-100%)";
+      setTimeout(() => (headerTopo.style.display = "none"), 400);
+    }
 
     // 🔹 Esconde banners (Mercado Livre e Magalu)
-    ["bannerOfertas", "bannerMagalu"].forEach(id => {
+    ["bannerOfertas", "bannerMagalu"].forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
       el.classList.add("hidden");
       if (el.parentElement) el.parentElement.classList.add("hidden");
     });
 
-    // 🔹 Animação suave da barra de filtros (fade + slide)
+    // 🔹 Mostra barra de filtros fixa no topo
     if (barra) {
       barra.classList.remove("hidden");
+      barra.style.position = "sticky";
+      barra.style.top = "0";
+      barra.style.zIndex = "50";
       barra.style.opacity = "0";
       barra.style.transform = "translateY(-10px)";
       requestAnimationFrame(() => {
@@ -1622,6 +1628,7 @@ function ativarModoFiltro(ativo) {
       });
     }
 
+    // 🔹 Scroll até o topo
     window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
     // === MODO FILTRO DESATIVADO ===
@@ -1629,34 +1636,45 @@ function ativarModoFiltro(ativo) {
     btn.classList.remove("ativo");
     btn.textContent = "🔍 Buscar / Filtrar";
 
-    // 🔹 Reexibe o topo principal
-    if (headerTopo) headerTopo.classList.remove("hidden");
+    // 🔹 Reexibe o topo suavemente
+    if (headerTopo) {
+      headerTopo.style.display = "block";
+      requestAnimationFrame(() => {
+        headerTopo.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+        headerTopo.style.opacity = "1";
+        headerTopo.style.transform = "translateY(0)";
+      });
+    }
 
-    // 🔹 Resetar campos do filtro
+    // 🔹 Resetar e esconder barra de filtros
     if (barra) {
       const inputs = barra.querySelectorAll("input, select");
-      inputs.forEach(el => {
+      inputs.forEach((el) => {
         if (el.type === "checkbox") el.checked = true;
         else el.value = "";
       });
-      barra.querySelectorAll("label").forEach(l => l.classList.add("ativo"));
+      barra.querySelectorAll("label").forEach((l) => l.classList.add("ativo"));
 
-      // 🔹 Esconde com transição suave
       barra.style.transition = "all 0.35s ease";
       barra.style.opacity = "0";
       barra.style.transform = "translateY(-10px)";
-      setTimeout(() => barra.classList.add("hidden"), 350);
+      setTimeout(() => {
+        barra.classList.add("hidden");
+        barra.style.position = "";
+        barra.style.top = "";
+        barra.style.zIndex = "";
+      }, 350);
     }
 
     // 🔹 Reexibir banners
-    ["bannerOfertas", "bannerMagalu"].forEach(id => {
+    ["bannerOfertas", "bannerMagalu"].forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
       el.classList.remove("hidden");
       if (el.parentElement) el.parentElement.classList.remove("hidden");
     });
 
-    // 🔹 Re-renderiza todos os produtos
+    // 🔹 Re-renderiza produtos
     if (typeof renderizarMercadoLivre === "function") renderizarMercadoLivre(produtos);
     if (typeof renderizarMagalu === "function") renderizarMagalu(produtos);
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
@@ -1669,7 +1687,6 @@ function ativarModoFiltro(ativo) {
   }
 }
 
-
 // ===================== EVENTO DO BOTÃO 🔍 / ⨯ =====================
 document.addEventListener("DOMContentLoaded", () => {
   const btnBusca = document.getElementById("btnBuscaFlutuante");
@@ -1680,8 +1697,12 @@ document.addEventListener("DOMContentLoaded", () => {
     filtroAtivo = !filtroAtivo;
     ativarModoFiltro(filtroAtivo);
 
-    // Alternar exibição da barra de filtros
-    if (barra) barra.classList.toggle("hidden");
+    // Garante exibição correta
+    if (barra && filtroAtivo) {
+      barra.classList.remove("hidden");
+    } else if (barra) {
+      barra.classList.add("hidden");
+    }
   });
 });
 

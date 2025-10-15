@@ -975,6 +975,21 @@ body.modo-filtro #listaProdutos {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+/* === Filtro fixo no topo durante o modo filtro === */
+body.modo-filtro #barraFiltros {
+  position: sticky !important;
+  top: 0;
+  z-index: 50;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Evita que o topo escondido deixe espaço */
+body.modo-filtro header,
+body.modo-filtro .topo-site,
+body.modo-filtro #topoPrincipal {
+  display: none !important;
+}
 
 
 
