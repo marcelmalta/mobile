@@ -1567,13 +1567,21 @@ function criarBarraFiltros() {
   });
 
   // 🔘 Botão Filtros (mobile)
-  const btnMini = barra.querySelector("#btnMiniFiltros");
-  if (btnMini) {
-    btnMini.addEventListener("click", () => {
-      const miniArea = barra.querySelector("#miniFiltrosArea");
-      miniArea.classList.toggle("hidden");
-    });
-  }
+const btnMini = barra.querySelector("#btnMiniFiltros");
+if (btnMini) {
+  btnMini.addEventListener("click", () => {
+    const miniArea = barra.querySelector("#miniFiltrosArea");
+
+    // remove classe hidden (se tiver)
+    miniArea.classList.remove("hidden");
+
+    // alterna a classe show para ativar/desativar exibição
+    const ativo = miniArea.classList.toggle("show");
+
+    // alterna ícone ⚙️ ↔ ❌ para indicar abertura
+    btnMini.textContent = ativo ? "❌" : "⚙️";
+  });
+}
 }
 
 // ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
