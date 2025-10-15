@@ -637,7 +637,7 @@ body.modo-filtro #listaProdutos {
 #filtroOrigem label:nth-child(1) { border-color: #facc15; } /* Mercado Livre */
 #filtroOrigem label:nth-child(2) { border-color: #007aff; } /* Magalu */
 #filtroOrigem label:nth-child(3) { border-color: #ff9900; } /* Amazon */
-#filtroOrigem label:nth-child(4) { border-color: #16a34a; } /* Locais */
+#filtroOrigem label:nth-child(4) { border-color: #a855f7; } /* Locais */
 
 /* === Hover (realce leve e profissional) === */
 #filtroOrigem label:hover {
@@ -654,37 +654,78 @@ body.modo-filtro #listaProdutos {
   opacity: 0;
 }
 
-/* === Estado ativo (selecionado) — destaque suave e elegante === */
+/* === Estado ativo (Dark Glass Colorido Premium) === */
 #filtroOrigem label.ativo {
+  position: relative;
   transform: scale(1.05);
-  border-width: 2px;
+  color: #fff;
+  border-width: 1.5px;
   box-shadow:
-    0 0 6px rgba(255,255,255,0.3),
-    inset 0 0 6px rgba(255,255,255,0.15);
-  backdrop-filter: brightness(1.05);
-  transition: all 0.3s ease;
+    0 0 10px rgba(255, 255, 255, 0.15),
+    inset 0 0 8px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px) brightness(1.1);
+  transition: all 0.35s ease-in-out;
+  overflow: hidden;
 }
 
-/* === Realce sutil colorido por loja === */
+/* === Reflexo dourado diagonal sutil === */
+#filtroOrigem label.ativo::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: -60%;
+  width: 220%;
+  height: 320%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 215, 0, 0.15) 0%,
+    rgba(255, 255, 255, 0.25) 25%,
+    rgba(255, 215, 0, 0.08) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: reflexoDourado 9s linear infinite;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.5;
+}
+
+/* === Reflexo cruzando suavemente o botão === */
+@keyframes reflexoDourado {
+  0% { transform: translateX(-80%) rotate(25deg); opacity: 0.2; }
+  30% { opacity: 0.45; }
+  50% { transform: translateX(80%) rotate(25deg); opacity: 0.4; }
+  100% { transform: translateX(120%) rotate(25deg); opacity: 0.2; }
+}
+
+/* === Fundos translúcidos coloridos (mais claros) === */
 #filtroOrigem label:nth-child(1).ativo { /* Mercado Livre */
-  background: linear-gradient(135deg, #fffef5 0%, #fff9c4 100%);
-  border-color: #facc15;
-  box-shadow: 0 0 10px rgba(250,204,21,0.25);
+  background: radial-gradient(circle at center, rgba(250, 204, 21, 0.35), rgba(0,0,0,0.5));
+  border-color: rgba(250, 204, 21, 0.8);
+  box-shadow:
+    0 0 10px rgba(250,204,21,0.4),
+    inset 0 0 10px rgba(250,204,21,0.25);
 }
 #filtroOrigem label:nth-child(2).ativo { /* Magalu */
-  background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
-  border-color: #007aff;
-  box-shadow: 0 0 10px rgba(0,122,255,0.25);
+  background: radial-gradient(circle at center, rgba(0, 160, 255, 0.3), rgba(0,0,0,0.45));
+  border-color: rgba(0, 122, 255, 0.8);
+  box-shadow:
+    0 0 10px rgba(0,122,255,0.4),
+    inset 0 0 10px rgba(0,122,255,0.25);
 }
 #filtroOrigem label:nth-child(3).ativo { /* Amazon */
-  background: linear-gradient(135deg, #fffaf5 0%, #ffedd5 100%);
-  border-color: #ff9900;
-  box-shadow: 0 0 10px rgba(255,153,0,0.25);
+  background: radial-gradient(circle at center, rgba(255, 153, 0, 0.3), rgba(0,0,0,0.45));
+  border-color: rgba(255, 153, 0, 0.8);
+  box-shadow:
+    0 0 10px rgba(255,153,0,0.4),
+    inset 0 0 10px rgba(255,153,0,0.25);
 }
-#filtroOrigem label:nth-child(4).ativo { /* Locais */
-  background: linear-gradient(135deg, #f5fff8 0%, #dcfce7 100%);
-  border-color: #16a34a;
-  box-shadow: 0 0 10px rgba(34,197,94,0.25);
+#filtroOrigem label:nth-child(4).ativo { /* Locais — agora roxo dos cards */
+  background: radial-gradient(circle at center, rgba(147, 51, 234, 0.35), rgba(0,0,0,0.45));
+  border-color: rgba(168, 85, 247, 0.9);
+  box-shadow:
+    0 0 10px rgba(168, 85, 247, 0.5),
+    inset 0 0 10px rgba(168, 85, 247, 0.25);
 }
 
 /* === Ícones animados === */
