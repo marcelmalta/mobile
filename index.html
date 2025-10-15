@@ -736,6 +736,7 @@ body.modo-filtro #barraFiltros {
 }
 
 /* 📱 MOBILE — layout empilhado com botões 100% */
+/* ================= MOBILE FIXO (3 LINHAS) ================= */
 @media (max-width: 640px) {
   #barraFiltros {
     display: flex;
@@ -746,14 +747,14 @@ body.modo-filtro #barraFiltros {
     background: rgba(15,15,15,0.9);
   }
 
-  /* Linha 1 — busca 100% */
+  /* 🔍 Linha 1 — busca */
   #buscaInput {
     width: 100%;
     font-size: 14px;
     padding-left: 36px;
   }
 
-  /* Linha 3 — selects em grid 3 colunas (ocupando tudo) */
+  /* 🟨 Linha 3 — selects (Estado / Preço / Modelo) */
   #miniFiltrosArea {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -766,25 +767,68 @@ body.modo-filtro #barraFiltros {
     padding: 8px 10px;
   }
 
-  /* Linha 2 — botões de origem em grid 4 colunas (ocupando tudo) */
+  /* 🏷️ Linha 2 — lojas (4 colunas lado a lado, largura igual) */
   #filtroOrigem {
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
     width: 100%;
-    margin-top: 4px;
   }
+
   #filtroOrigem label {
-    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 10px 8px;
-    font-size: 13px;
+    gap: 5px;
+    font-size: 12px;
+    padding: 8px 6px;
+    font-weight: 600;
     border-radius: 10px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
   }
+
+  /* ✨ Ajuste específico para o Mercado Livre (texto menor e largura uniforme) */
+  #filtroOrigem label[for="origem-mercadolivre"] span {
+    font-size: 11px;
+  }
+  #filtroOrigem label[for="origem-mercadolivre"] img {
+    width: 16px;
+  }
+
   #filtroOrigem label img {
-    width: 18px;
+    width: 16px;
     height: auto;
   }
+}
+
+/* ================= CORES ATIVAS (DESTAQUE QUANDO CHECKED) ================= */
+#filtroOrigem label.ativo[for="origem-mercadolivre"] {
+  background: linear-gradient(to right, #facc15, #fbbf24);
+  color: #000;
+  border-color: #facc15;
+}
+#filtroOrigem label.ativo[for="origem-magalu"] {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: #fff;
+  border-color: #3b82f6;
+}
+#filtroOrigem label.ativo[for="origem-amazon"] {
+  background: linear-gradient(to right, #111, #222);
+  color: #fbbf24;
+  border-color: #444;
+}
+#filtroOrigem label.ativo[for="origem-usuario"] {
+  background: linear-gradient(to right, #22c55e, #16a34a);
+  color: #fff;
+  border-color: #22c55e;
+}
+
+/* Suave no desktop também */
+#filtroOrigem label:hover {
+  transform: scale(1.04);
+  transition: 0.2s ease;
 }
 
 /* ===================== DESKTOP AJUSTADO ===================== */
