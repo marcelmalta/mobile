@@ -1451,7 +1451,7 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS (DARK PREMIUM OTIMIZADO) =====================
+// ===================== CRIAR BARRA DE FILTROS (DARK PREMIUM + ESTADO EMBUTIDO EM LOCAIS) =====================
 function criarBarraFiltros() {
   const mlSection = document.querySelector(".ml-selo");
   const barra = document.createElement("div");
@@ -1470,17 +1470,12 @@ function criarBarraFiltros() {
         d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
     </div>
 
-    <!-- 🔘 MINI-FILTROS (agora ao lado do botão "Todos") -->
+    <!-- 🔘 MINI-FILTROS (marca e preço — estado embutido em “Locais”) -->
     <div id="miniFiltrosArea" class="mini-filtros flex flex-wrap justify-center items-center gap-2 w-full sm:w-auto">
       <select id="filtroMarca" class="rounded-md px-2 py-1 text-sm">
         <option value="">Marca</option>
         <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
         <option>Motorola</option><option>Realme</option><option>POCO</option>
-      </select>
-
-      <select id="filtroEstado" class="rounded-md px-2 py-1 text-sm">
-        <option value="">Estado</option>
-        <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option>
       </select>
 
       <select id="filtroPreco" class="rounded-md px-2 py-1 text-sm">
@@ -1491,14 +1486,9 @@ function criarBarraFiltros() {
         <option value="2">R$ 2000–R$ 4000</option>
         <option value="3">+ R$ 4000</option>
       </select>
-
-      <button id="selecionarTodos"
-        class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
-        Todos
-      </button>
     </div>
 
-    <!-- 🏷️ FILTRO DE ORIGEM COM ÍCONES -->
+    <!-- 🏷️ FILTRO DE ORIGEM COM ÍCONES (Locais controla o filtro de Estado) -->
     <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-2">
       <label class="flex items-center gap-1 cursor-pointer ativo">
         <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
@@ -1521,12 +1511,20 @@ function criarBarraFiltros() {
         <span>Amazon</span>
       </label>
 
-      <label class="flex items-center gap-1 cursor-pointer ativo">
+      <!-- 🔹 Locais agora abre o seletor de Estado -->
+      <label id="btnLocais" class="flex items-center gap-1 cursor-pointer ativo relative">
         <input type="checkbox" class="origemCheck" value="usuario" checked />
         <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
           class="logo-filtro local-logo" alt="Locais" />
         <span>Locais</span>
       </label>
+
+      <!-- 🔽 SELECT DE ESTADO (escondido até clicar em Locais) -->
+      <select id="filtroEstado" class="hidden absolute bg-gray-900 text-yellow-200 border border-yellow-400 rounded-md px-2 py-1 text-sm top-full left-1/2 -translate-x-1/2 mt-1 shadow-lg z-50 w-32">
+        <option value="">Todos os Estados</option>
+        <option>AL</option><option>PE</option><option>BA</option>
+        <option>SE</option><option>PB</option><option>RN</option>
+      </select>
     </div>
   `;
 
@@ -1538,7 +1536,7 @@ function criarBarraFiltros() {
   }
 
   // ===================== EVENTOS DE FILTROS PRINCIPAIS =====================
-  ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
+  ["buscaInput", "filtroMarca", "filtroPreco"].forEach((id) => {
     const el = barra.querySelector(`#${id}`);
     ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
   });
@@ -1552,18 +1550,17 @@ function criarBarraFiltros() {
     });
   });
 
-  // ===================== BOTÃO “TODOS” (selecionar / desmarcar todos) =====================
-  const btnTodos = barra.querySelector("#selecionarTodos");
-  btnTodos.addEventListener("click", () => {
-    const checks = barra.querySelectorAll(".origemCheck");
-    const todosAtivos = Array.from(checks).every((c) => c.checked);
-    checks.forEach((c) => {
-      c.checked = !todosAtivos;
-      const label = c.closest("label");
-      label.classList.toggle("ativo", !todosAtivos);
-    });
-    aplicarFiltros();
+  // ===================== INTERAÇÃO DO BOTÃO “LOCAIS” (abre filtro de Estado) =====================
+  const btnLocais = barra.querySelector("#btnLocais");
+  const filtroEstado = barra.querySelector("#filtroEstado");
+
+  btnLocais.addEventListener("click", (e) => {
+    e.preventDefault();
+    filtroEstado.classList.toggle("hidden");
+    filtroEstado.classList.toggle("animate-fade-in");
   });
+
+  filtroEstado.addEventListener("change", aplicarFiltros);
 }
 
 

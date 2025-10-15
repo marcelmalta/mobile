@@ -740,6 +740,26 @@ body.modo-filtro #listaProdutos {
     display: none !important;
   }
 }
+/* === Filtro de Estado flutuante (controlado por Locais) === */
+#filtroEstado {
+  background: rgba(15,15,15,0.95);
+  border-radius: 10px;
+  border: 1px solid rgba(250,204,21,0.4);
+  color: #facc15;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+#filtroEstado:hover {
+  border-color: #facc15;
+  box-shadow: 0 0 10px rgba(250,204,21,0.3);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.25s ease;
+}
 
 
 /* ===================== FILTRO DE ORIGEM (LOJAS) ===================== */
