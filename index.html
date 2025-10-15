@@ -629,7 +629,7 @@ body.modo-filtro #listaProdutos {
   background: rgba(30, 30, 30, 0.9);
 }
 
-/* ===================== MINI-FILTROS (MARCA / ESTADO / PREÇO) — DARK GLASS ===================== */
+/* ===================== MINI-FILTROS (MARCA / ESTADO / PREÇO) ===================== */
 #miniFiltrosArea {
   background: rgba(15, 15, 15, 0.85);
   border: 1px solid rgba(255, 215, 0, 0.25);
@@ -641,16 +641,19 @@ body.modo-filtro #listaProdutos {
   padding: 8px 10px;
   animation: fadeIn 0.3s ease;
   transition: all 0.3s ease;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
-/* Selects internos — minimalistas e elegantes */
 #miniFiltrosArea select {
   background: rgba(255, 255, 255, 0.08);
   color: #facc15;
   border: 1px solid rgba(250, 204, 21, 0.4);
   border-radius: 9999px;
-  font-size: 12px;
-  padding: 6px 12px;
+  font-size: 13px;
+  padding: 7px 14px;
   font-weight: 600;
   box-shadow:
     0 0 8px rgba(250, 204, 21, 0.15),
@@ -660,9 +663,6 @@ body.modo-filtro #listaProdutos {
 #miniFiltrosArea select:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(250, 204, 21, 0.7);
-  box-shadow:
-    0 0 10px rgba(250, 204, 21, 0.3),
-    inset 0 0 6px rgba(255, 255, 255, 0.08);
   transform: scale(1.05);
 }
 #miniFiltrosArea select:focus {
@@ -671,13 +671,62 @@ body.modo-filtro #listaProdutos {
   box-shadow: 0 0 14px rgba(250, 204, 21, 0.4);
 }
 
+/* ===================== BOTÕES DE ORIGEM (LOJAS / LOCAIS) ===================== */
+#filtroOrigem {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#filtroOrigem label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding: 8px 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+#filtroOrigem label span {
+  font-size: 13px;
+}
+
+#filtroOrigem label img {
+  width: 18px;
+  height: auto;
+}
+
+/* Estados ativos por loja */
+#filtroOrigem label[for*="mercadolivre"] {
+  background: rgba(255, 230, 0, 0.1);
+  border-color: rgba(255, 230, 0, 0.3);
+}
+#filtroOrigem label[for*="magalu"] {
+  background: rgba(0, 153, 255, 0.1);
+  border-color: rgba(0, 153, 255, 0.3);
+}
+#filtroOrigem label[for*="amazon"] {
+  background: rgba(50, 50, 50, 0.8);
+  border-color: rgba(120, 120, 120, 0.4);
+}
+#filtroOrigem label[for*="usuario"] {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
 /* ✨ Fade-in animation suave */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* === Filtro fixo no topo durante o modo filtro === */
+/* === Filtro fixo no topo === */
 body.modo-filtro #barraFiltros {
   position: sticky !important;
   top: 0;
@@ -686,51 +735,48 @@ body.modo-filtro #barraFiltros {
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
 
-/* Evita que o topo escondido deixe espaço */
-body.modo-filtro header,
-body.modo-filtro .topo-site,
-body.modo-filtro #topoPrincipal {
-  display: none !important;
-}
-
-/* 📱 MOBILE — barra compacta + rolagem lateral dos mini-filtros */
+/* 📱 MOBILE — layout empilhado com botões 100% */
 @media (max-width: 640px) {
   #barraFiltros {
     flex-direction: column;
-    gap: 8px;
-    padding: 10px 6px;
+    gap: 10px;
+    padding: 10px 8px;
     border-radius: 0;
     background: rgba(15,15,15,0.9);
   }
 
   #buscaInput {
-    width: 94%;
-    font-size: 13px;
-    padding-left: 32px;
-    background: rgba(255, 255, 255, 0.1)
-      url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 9px center;
-    background-size: 14px;
+    width: 100%;
+    font-size: 14px;
+    padding-left: 36px;
   }
 
-  /* mini-filtros com scroll lateral */
   #miniFiltrosArea {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 8px;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 6px;
-    scrollbar-width: none;
-  }
-  #miniFiltrosArea::-webkit-scrollbar {
-    display: none;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
   }
 
   #miniFiltrosArea select {
-    flex: 0 0 auto;
-    font-size: 11.5px;
-    padding: 6px 10px;
+    flex: 1;
+    width: 100%;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  #filtroOrigem {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  #filtroOrigem label {
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 10px;
   }
 }
 

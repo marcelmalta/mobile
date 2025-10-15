@@ -1451,7 +1451,7 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS (DARK GLASS OTIMIZADO) =====================
+// ===================== CRIAR BARRA DE FILTROS (DARK GLASS — MOBILE 3 LINHAS) =====================
 function criarBarraFiltros() {
   const mlSection = document.querySelector(".ml-selo");
   const barra = document.createElement("div");
@@ -1461,29 +1461,29 @@ function criarBarraFiltros() {
 
   barra.innerHTML = `
     <!-- 🔍 BUSCA -->
-    <div class="w-full sm:w-[70%] flex justify-center relative">
+    <div class="w-full flex justify-center relative">
       <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
-        class="w-[94%] sm:w-[100%] bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[14px]
+        class="w-full bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[14px]
         focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-300 placeholder-yellow-300/70 shadow-inner" />
       <svg class="absolute left-7 top-2.5 w-4 h-4 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2"
         viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
         d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
     </div>
 
-    <!-- 🔘 MINI-FILTROS (em linha abaixo da busca) -->
-    <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-3 w-full sm:w-auto mt-1">
-      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-1.5 text-sm font-semibold shadow hover:scale-105 transition">
+    <!-- 🟨 MINI-FILTROS (MARCA / ESTADO / PREÇO) -->
+    <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-3 w-full mt-1">
+      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Marca</option>
         <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
         <option>Motorola</option><option>Realme</option><option>POCO</option>
       </select>
 
-      <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-1.5 text-sm font-semibold shadow hover:scale-105 transition">
+      <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Estado</option>
         <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option><option>CE</option>
       </select>
 
-      <select id="filtroPreco" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-1.5 text-sm font-semibold shadow hover:scale-105 transition">
+      <select id="filtroPreco" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Preço</option>
         <option value="0">Até R$ 500</option>
         <option value="0b">Até R$ 1000</option>
@@ -1493,39 +1493,44 @@ function criarBarraFiltros() {
       </select>
     </div>
 
-    <!-- 🏷️ FILTRO DE ORIGEM COM ÍCONES -->
-    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-3">
-      <label class="flex items-center gap-1 cursor-pointer ativo bg-gradient-to-r from-yellow-400/20 to-yellow-400/5 px-2 py-1.5 rounded-full border border-yellow-400/40 hover:scale-105 transition">
-        <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
+    <!-- 🏷️ FILTRO DE ORIGEM (3ª LINHA) -->
+    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-3 w-full">
+      
+      <!-- Mercado Livre -->
+      <label for="origem-mercadolivre" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-yellow-400/20 to-yellow-400/5 px-3 py-2 rounded-full border border-yellow-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
+        <input type="checkbox" id="origem-mercadolivre" class="origemCheck" value="mercadolivre" checked />
         <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
-          class="logo-filtro ml-logo w-4 h-4" alt="Mercado Livre" />
+          class="logo-filtro ml-logo w-5 h-5" alt="Mercado Livre" />
         <span>Mercado Livre</span>
       </label>
 
-      <label class="flex items-center gap-1 cursor-pointer ativo bg-gradient-to-r from-blue-400/20 to-blue-400/5 px-2 py-1.5 rounded-full border border-blue-400/40 hover:scale-105 transition">
-        <input type="checkbox" class="origemCheck" value="magalu" checked />
+      <!-- Magalu -->
+      <label for="origem-magalu" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-blue-400/20 to-blue-400/5 px-3 py-2 rounded-full border border-blue-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
+        <input type="checkbox" id="origem-magalu" class="origemCheck" value="magalu" checked />
         <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
-          class="logo-filtro magalu-logo w-4 h-4" alt="Magalu" />
+          class="logo-filtro magalu-logo w-5 h-5" alt="Magalu" />
         <span>Magalu</span>
       </label>
 
-      <label class="flex items-center gap-1 cursor-pointer ativo bg-gradient-to-r from-black/70 to-gray-900 px-2 py-1.5 rounded-full border border-gray-500/50 hover:scale-105 transition">
-        <input type="checkbox" class="origemCheck" value="amazon" checked />
+      <!-- Amazon -->
+      <label for="origem-amazon" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-black/70 to-gray-900 px-3 py-2 rounded-full border border-gray-500/50 hover:scale-105 transition w-full sm:w-auto justify-center">
+        <input type="checkbox" id="origem-amazon" class="origemCheck" value="amazon" checked />
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-          class="logo-filtro amazon-logo w-5 h-3" alt="Amazon" />
+          class="logo-filtro amazon-logo w-6 h-4" alt="Amazon" />
         <span>Amazon</span>
       </label>
 
-      <label class="flex items-center gap-1 cursor-pointer ativo bg-gradient-to-r from-green-400/20 to-green-400/5 px-2 py-1.5 rounded-full border border-green-400/40 hover:scale-105 transition">
-        <input type="checkbox" class="origemCheck" value="usuario" checked />
+      <!-- Locais -->
+      <label for="origem-usuario" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-green-400/20 to-green-400/5 px-3 py-2 rounded-full border border-green-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
+        <input type="checkbox" id="origem-usuario" class="origemCheck" value="usuario" checked />
         <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
-          class="logo-filtro local-logo w-4 h-4" alt="Locais" />
+          class="logo-filtro local-logo w-5 h-5" alt="Locais" />
         <span>Locais</span>
       </label>
     </div>
   `;
 
-  // 👉 Inserir logo abaixo da faixa "Ofertas Verificadas"
+  // 👉 Inserir logo abaixo da seção "Ofertas Verificadas"
   if (mlSection) {
     mlSection.insertAdjacentElement("afterend", barra);
   } else {
