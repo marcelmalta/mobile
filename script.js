@@ -1565,29 +1565,67 @@ function criarBarraFiltros() {
 function ativarModoFiltro(ativo) {
   const body = document.body;
   const btn = document.getElementById("btnBuscaFlutuante");
+  const barra = document.getElementById("barraFiltros");
+
+  // 🔹 Cabeçalho principal (logo/topo)
+  const headerTopo = document.querySelector("header, .topo-site, #topoPrincipal");
 
   if (ativo) {
-    // 🔹 Ativa o modo-filtro
+    // === MODO FILTRO ATIVADO ===
     body.classList.add("modo-filtro");
     btn.classList.add("ativo");
     btn.textContent = "⨯ Fechar Filtro";
-    window.scrollTo({ top: 0, behavior: "smooth" }); // sobe até o topo
+
+    // 🔹 Esconde o topo principal (logo, menu, etc.)
+    if (headerTopo) headerTopo.classList.add("hidden");
+
+    // 🔹 Esconde banners (Mercado Livre e Magalu)
+    ["bannerOfertas", "bannerMagalu"].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add("hidden");
+      if (el.parentElement) el.parentElement.classList.add("hidden");
+    });
+
+    // 🔹 Animação suave da barra de filtros (fade + slide)
+    if (barra) {
+      barra.classList.remove("hidden");
+      barra.style.opacity = "0";
+      barra.style.transform = "translateY(-10px)";
+      requestAnimationFrame(() => {
+        barra.style.transition = "all 0.4s ease";
+        barra.style.opacity = "1";
+        barra.style.transform = "translateY(0)";
+      });
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
-    // 🔹 Desativa o modo-filtro
+    // === MODO FILTRO DESATIVADO ===
     body.classList.remove("modo-filtro");
     btn.classList.remove("ativo");
     btn.textContent = "🔍 Buscar / Filtrar";
 
-    // ✅ Resetar todos os campos da barra de filtros
-    const barra = document.getElementById("barraFiltros");
+    // 🔹 Reexibe o topo principal
+    if (headerTopo) headerTopo.classList.remove("hidden");
+
+    // 🔹 Resetar campos do filtro
     if (barra) {
       const inputs = barra.querySelectorAll("input, select");
       inputs.forEach(el => {
-        el.value = "";
+        if (el.type === "checkbox") el.checked = true;
+        else el.value = "";
       });
+      barra.querySelectorAll("label").forEach(l => l.classList.add("ativo"));
+
+      // 🔹 Esconde com transição suave
+      barra.style.transition = "all 0.35s ease";
+      barra.style.opacity = "0";
+      barra.style.transform = "translateY(-10px)";
+      setTimeout(() => barra.classList.add("hidden"), 350);
     }
 
-    // ✅ Reexibir banners do Mercado Livre e Magalu
+    // 🔹 Reexibir banners
     ["bannerOfertas", "bannerMagalu"].forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -1595,15 +1633,15 @@ function ativarModoFiltro(ativo) {
       if (el.parentElement) el.parentElement.classList.remove("hidden");
     });
 
-    // ✅ Re-renderizar todos os produtos (volta ao estado original)
+    // 🔹 Re-renderiza todos os produtos
     if (typeof renderizarMercadoLivre === "function") renderizarMercadoLivre(produtos);
     if (typeof renderizarMagalu === "function") renderizarMagalu(produtos);
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
 
-    // ✅ Atualizar contador geral novamente
-    
+    // 🔹 Reinicia rolagem automática
+    if (typeof iniciarRolagemAutomaticaML === "function") iniciarRolagemAutomaticaML();
+    if (typeof iniciarRolagemAutomaticaMagalu === "function") iniciarRolagemAutomaticaMagalu();
 
-    // ✅ Forçar scroll e estado visual limpo
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
