@@ -601,20 +601,85 @@ body.modo-filtro #listaProdutos {
   background-color: #16a34a;
 }
 
-/* ===================== FILTRO DE ORIGEM (LOJAS) — AJUSTADO E OTIMIZADO ===================== */
+/* ===================== BARRA DE FILTROS — DARK PREMIUM ===================== */
+#barraFiltros {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px) saturate(120%);
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+}
+
+/* === BUSCA === */
+#barraFiltros #buscaInput {
+  flex: 1;
+  min-width: 220px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px 8px 34px;
+  color: #fff;
+  background: rgba(30, 30, 30, 0.9)
+    url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 10px center;
+  background-size: 16px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(250,204,21,0.6);
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 10px rgba(250,204,21,0.15);
+}
+#barraFiltros #buscaInput::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+#barraFiltros #buscaInput:focus {
+  outline: none;
+  border-color: #facc15;
+  box-shadow: 0 0 15px rgba(250,204,21,0.45);
+}
+
+/* === MINI-FILTROS (marca, estado, preço) === */
+.mini-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.mini-filtros select {
+  appearance: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 9999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(to right, #0a0a0a, #1c1c1c);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.05), 0 0 5px rgba(0,0,0,0.25);
+}
+.mini-filtros select:hover {
+  transform: scale(1.05);
+  border-color: rgba(250,204,21,0.3);
+  box-shadow: 0 0 8px rgba(250,204,21,0.25);
+}
+.mini-filtros select:focus {
+  outline: none;
+  border-color: #facc15;
+  box-shadow: 0 0 10px rgba(250,204,21,0.4);
+}
+
+/* ===================== FILTRO DE ORIGEM (LOJAS) ===================== */
 #filtroOrigem {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  margin-top: 4px;
-  padding-top: 4px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.15);
   background: transparent !important;
 }
 
-/* === Cada opção (Mercado Livre, Magalu, Amazon, Locais) === */
+/* === Cada loja === */
 #filtroOrigem label {
   position: relative;
   padding: 6px 10px;
@@ -629,17 +694,17 @@ body.modo-filtro #listaProdutos {
   color: #111;
   font-weight: 600;
   font-size: 12px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   background: #fff;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.25);
 }
 
-/* === Fundos brancos com bordas coloridas === */
+/* === Bordas por loja === */
 #filtroOrigem label:nth-child(1) { border-color: #facc15; } /* Mercado Livre */
 #filtroOrigem label:nth-child(2) { border-color: #007aff; } /* Magalu */
 #filtroOrigem label:nth-child(3) { border-color: #ff9900; } /* Amazon */
 #filtroOrigem label:nth-child(4) { border-color: #a855f7; } /* Locais */
 
-/* === Hover (realce leve e profissional) === */
+/* === Hover === */
 #filtroOrigem label:hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px rgba(255,255,255,0.25), 0 0 6px currentColor;
@@ -654,81 +719,37 @@ body.modo-filtro #listaProdutos {
   opacity: 0;
 }
 
-/* === Estado ativo (Dark Glass Colorido Premium) === */
+/* === Estado ativo — Dark Glass === */
 #filtroOrigem label.ativo {
-  position: relative;
   transform: scale(1.05);
   color: #fff;
   border-width: 1.5px;
-  box-shadow:
-    0 0 10px rgba(255, 255, 255, 0.15),
-    inset 0 0 8px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 10px rgba(255,255,255,0.15),
+              inset 0 0 8px rgba(255,255,255,0.08);
   backdrop-filter: blur(8px) brightness(1.1);
   transition: all 0.35s ease-in-out;
   overflow: hidden;
 }
 
-/* === Reflexo dourado diagonal sutil === */
-#filtroOrigem label.ativo::after {
-  content: "";
-  position: absolute;
-  top: -120%;
-  left: -60%;
-  width: 220%;
-  height: 320%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 215, 0, 0.15) 0%,
-    rgba(255, 255, 255, 0.25) 25%,
-    rgba(255, 215, 0, 0.08) 50%,
-    transparent 100%
-  );
-  transform: rotate(25deg);
-  animation: reflexoDourado 9s linear infinite;
-  pointer-events: none;
-  border-radius: inherit;
-  opacity: 0.5;
+/* === Fundos translúcidos coloridos === */
+#filtroOrigem label:nth-child(1).ativo {
+  background: radial-gradient(circle at center, rgba(250,204,21,0.35), rgba(0,0,0,0.5));
+  border-color: rgba(250,204,21,0.8);
+}
+#filtroOrigem label:nth-child(2).ativo {
+  background: radial-gradient(circle at center, rgba(0,160,255,0.3), rgba(0,0,0,0.45));
+  border-color: rgba(0,122,255,0.8);
+}
+#filtroOrigem label:nth-child(3).ativo {
+  background: radial-gradient(circle at center, rgba(255,153,0,0.3), rgba(0,0,0,0.45));
+  border-color: rgba(255,153,0,0.8);
+}
+#filtroOrigem label:nth-child(4).ativo {
+  background: radial-gradient(circle at center, rgba(147,51,234,0.35), rgba(0,0,0,0.45));
+  border-color: rgba(168,85,247,0.9);
 }
 
-/* === Reflexo cruzando suavemente o botão === */
-@keyframes reflexoDourado {
-  0% { transform: translateX(-80%) rotate(25deg); opacity: 0.2; }
-  30% { opacity: 0.45; }
-  50% { transform: translateX(80%) rotate(25deg); opacity: 0.4; }
-  100% { transform: translateX(120%) rotate(25deg); opacity: 0.2; }
-}
-
-/* === Fundos translúcidos coloridos (mais claros) === */
-#filtroOrigem label:nth-child(1).ativo { /* Mercado Livre */
-  background: radial-gradient(circle at center, rgba(250, 204, 21, 0.35), rgba(0,0,0,0.5));
-  border-color: rgba(250, 204, 21, 0.8);
-  box-shadow:
-    0 0 10px rgba(250,204,21,0.4),
-    inset 0 0 10px rgba(250,204,21,0.25);
-}
-#filtroOrigem label:nth-child(2).ativo { /* Magalu */
-  background: radial-gradient(circle at center, rgba(0, 160, 255, 0.3), rgba(0,0,0,0.45));
-  border-color: rgba(0, 122, 255, 0.8);
-  box-shadow:
-    0 0 10px rgba(0,122,255,0.4),
-    inset 0 0 10px rgba(0,122,255,0.25);
-}
-#filtroOrigem label:nth-child(3).ativo { /* Amazon */
-  background: radial-gradient(circle at center, rgba(255, 153, 0, 0.3), rgba(0,0,0,0.45));
-  border-color: rgba(255, 153, 0, 0.8);
-  box-shadow:
-    0 0 10px rgba(255,153,0,0.4),
-    inset 0 0 10px rgba(255,153,0,0.25);
-}
-#filtroOrigem label:nth-child(4).ativo { /* Locais — agora roxo dos cards */
-  background: radial-gradient(circle at center, rgba(147, 51, 234, 0.35), rgba(0,0,0,0.45));
-  border-color: rgba(168, 85, 247, 0.9);
-  box-shadow:
-    0 0 10px rgba(168, 85, 247, 0.5),
-    inset 0 0 10px rgba(168, 85, 247, 0.25);
-}
-
-/* === Ícones animados === */
+/* === Ícones === */
 #filtroOrigem .logo-filtro {
   height: 15px;
   filter: drop-shadow(0 0 2px rgba(255,255,255,0.4));
@@ -736,30 +757,10 @@ body.modo-filtro #listaProdutos {
   opacity: 0.95;
 }
 
-/* Brilho pulsante das logos */
-@keyframes pulseLogo {
-  0%,100% { transform: scale(1); filter: drop-shadow(0 0 1px rgba(255,255,255,0.3)); }
-  50% { transform: scale(1.12); filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)); }
-}
-#filtroOrigem .ml-logo     { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 0s; }
-#filtroOrigem .magalu-logo { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 0.8s; }
-#filtroOrigem .amazon-logo { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 1.6s; }
-#filtroOrigem .local-logo  { animation: pulseLogo 4s infinite ease-in-out; animation-delay: 2.4s; }
-
-/* Efeito bounce ao clicar */
-@keyframes bounceLogo {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.25); }
-  100% { transform: scale(1); }
-}
-#filtroOrigem input[type="checkbox"]:checked + img {
-  animation: bounceLogo 0.4s ease;
-}
-
 /* === Botão “Todos” === */
 #filtroOrigem #selecionarTodos {
   background: linear-gradient(to right, #111, #000);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: 8px;
   color: white;
   font-weight: 700;
@@ -774,80 +775,46 @@ body.modo-filtro #listaProdutos {
   transform: scale(1.05);
 }
 
-/* === RESPONSIVIDADE — MOBILE OPTIMIZADO (DESTAQUE NA BUSCA) === */
+/* ===================== MOBILE — OTIMIZADO ===================== */
 @media (max-width: 640px) {
   #barraFiltros {
-    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    padding: 6px 4px !important;
+    gap: 8px;
+    padding: 8px 6px !important;
   }
 
-  /* 🔍 Destaque da busca */
   #barraFiltros #buscaInput {
     width: 94%;
-    max-width: none;
     font-size: 13px;
-    font-weight: 600;
     padding: 7px 10px 7px 30px;
     border-radius: 10px;
-    background: rgba(255,255,255,0.95)
+    background: rgba(255,255,255,0.1)
       url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 8px center;
     background-size: 14px;
-    border: 1.5px solid #facc15;
-    box-shadow: 0 0 10px rgba(250,204,21,0.25);
-  }
-  #barraFiltros #buscaInput:focus {
-    box-shadow: 0 0 14px rgba(250,204,21,0.45);
   }
 
-  /* 🔘 Compactar selects tipo “botão” */
-  #barraFiltros select {
-    appearance: none;
-    width: auto;
+  .mini-filtros select {
     font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-    border-radius: 9999px;
-    background: linear-gradient(to right, #111, #000);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 6px 10px;
   }
 
-  #barraFiltros select:hover {
-    background: linear-gradient(to right, #1f1f1f, #000);
-  }
-
-  /* Ícone de seta customizada */
-  #barraFiltros select::-ms-expand {
-    display: none;
-  }
-
-  /* 🔽 Ajustar espaçamento */
   #filtroOrigem {
     gap: 4px;
-    padding-top: 3px;
     margin-top: 3px;
   }
-
   #filtroOrigem label {
     padding: 4px 6px;
     font-size: 10.5px;
     border-radius: 7px;
   }
-
-  #filtroOrigem .logo-filtro {
-    height: 12px;
-  }
-
+  #filtroOrigem .logo-filtro { height: 12px; }
   #filtroOrigem #selecionarTodos {
     padding: 3px 8px;
     font-size: 10px;
   }
 }
+
 
 
 
