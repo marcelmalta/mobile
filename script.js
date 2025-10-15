@@ -1483,30 +1483,41 @@ function criarBarraFiltros() {
       <option value="3">+ R$ 4000</option>
     </select>
 
-    <!-- 🏷️ NOVO FILTRO DE ORIGEM -->
-    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold">
-      <label class="flex items-center gap-1 cursor-pointer">
-        <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
-        <span class="text-yellow-400">Mercado Livre</span>
-      </label>
-      <label class="flex items-center gap-1 cursor-pointer">
-        <input type="checkbox" class="origemCheck" value="magalu" checked />
-        <span class="text-blue-400">Magalu</span>
-      </label>
-      <label class="flex items-center gap-1 cursor-pointer">
-        <input type="checkbox" class="origemCheck" value="amazon" checked />
-        <span class="text-orange-400">Amazon</span>
-      </label>
-      <label class="flex items-center gap-1 cursor-pointer">
-        <input type="checkbox" class="origemCheck" value="usuario" checked />
-        <span class="text-green-400">Locais</span>
-      </label>
+    <!-- 🏷️ NOVO FILTRO DE ORIGEM COM ÍCONES -->
+<div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-1">
+  <label class="flex items-center gap-1 cursor-pointer">
+    <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
+    <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
+         class="logo-filtro ml-logo" alt="Mercado Livre" />
+    <span class="text-yellow-400">Mercado Livre</span>
+  </label>
 
-      <button id="selecionarTodos" 
-        class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
-        Todos
-      </button>
-    </div>
+  <label class="flex items-center gap-1 cursor-pointer">
+    <input type="checkbox" class="origemCheck" value="magalu" checked />
+    <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
+         class="logo-filtro magalu-logo" alt="Magalu" />
+    <span class="text-blue-400">Magalu</span>
+  </label>
+
+  <label class="flex items-center gap-1 cursor-pointer">
+    <input type="checkbox" class="origemCheck" value="amazon" checked />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+         class="logo-filtro amazon-logo" alt="Amazon" />
+    <span class="text-orange-400">Amazon</span>
+  </label>
+
+  <label class="flex items-center gap-1 cursor-pointer">
+    <input type="checkbox" class="origemCheck" value="usuario" checked />
+    <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
+         class="logo-filtro local-logo" alt="Locais" />
+    <span class="text-green-400">Locais</span>
+  </label>
+
+  <button id="selecionarTodos" 
+    class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
+    Todos
+  </button>
+</div>
   `;
 
   // 👉 Insere logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
