@@ -774,30 +774,75 @@ body.modo-filtro #listaProdutos {
   transform: scale(1.05);
 }
 
-/* === Responsividade (MOBILE COMPACTO) === */
+/* === RESPONSIVIDADE — MOBILE OPTIMIZADO (DESTAQUE NA BUSCA) === */
 @media (max-width: 640px) {
   #barraFiltros {
-    padding: 8px 6px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 6px;
+    padding: 6px 4px !important;
   }
-  #barraFiltros input,
+
+  /* 🔍 Destaque da busca */
+  #barraFiltros #buscaInput {
+    width: 94%;
+    max-width: none;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 10px 7px 30px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.95)
+      url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat 8px center;
+    background-size: 14px;
+    border: 1.5px solid #facc15;
+    box-shadow: 0 0 10px rgba(250,204,21,0.25);
+  }
+  #barraFiltros #buscaInput:focus {
+    box-shadow: 0 0 14px rgba(250,204,21,0.45);
+  }
+
+  /* 🔘 Compactar selects tipo “botão” */
   #barraFiltros select {
-    padding: 4px 6px;
+    appearance: none;
+    width: auto;
     font-size: 11px;
-    width: 29%;
-    border-radius: 6px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 9999px;
+    background: linear-gradient(to right, #111, #000);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
+
+  #barraFiltros select:hover {
+    background: linear-gradient(to right, #1f1f1f, #000);
+  }
+
+  /* Ícone de seta customizada */
+  #barraFiltros select::-ms-expand {
+    display: none;
+  }
+
+  /* 🔽 Ajustar espaçamento */
   #filtroOrigem {
-    gap: 5px;
+    gap: 4px;
     padding-top: 3px;
     margin-top: 3px;
   }
+
   #filtroOrigem label {
-    padding: 4px 7px;
+    padding: 4px 6px;
     font-size: 10.5px;
     border-radius: 7px;
   }
-  #filtroOrigem .logo-filtro { height: 12px; }
+
+  #filtroOrigem .logo-filtro {
+    height: 12px;
+  }
+
   #filtroOrigem #selecionarTodos {
     padding: 3px 8px;
     font-size: 10px;
