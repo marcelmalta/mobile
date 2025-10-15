@@ -1451,70 +1451,80 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS (atualizada com filtro de origem) =====================
+// ===================== CRIAR BARRA DE FILTROS (compacto + botão filtros mobile) =====================
 function criarBarraFiltros() {
-  const mlSection = document.querySelector(".ml-selo"); // pega a faixa "✅ Ofertas verificadas..."
+  const mlSection = document.querySelector(".ml-selo");
   const barra = document.createElement("div");
   barra.id = "barraFiltros";
   barra.className =
-    "hidden bg-black text-white border border-yellow-400 rounded-lg mt-2 p-2 shadow-md flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto animate-fade-in";
+    "hidden bg-black/90 backdrop-blur-md text-white border border-yellow-400 rounded-xl mt-2 p-3 shadow-md flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto animate-fade-in";
 
   barra.innerHTML = `
-    <!-- 🔍 BUSCA -->
-    <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
-      class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm w-[150px]" />
+    <!-- 🔍 BUSCA + BOTÃO FILTROS -->
+    <div class="flex items-center justify-center w-full sm:w-auto gap-2">
+      <div class="relative flex-1">
+        <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
+          class="w-full bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-300 placeholder-yellow-300/70" />
+        <svg class="absolute left-3 top-2.5 w-4 h-4 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+          d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
+      </div>
+      <button id="btnMiniFiltros"
+        class="sm:hidden bg-yellow-400 text-black font-bold px-3 py-2 rounded-full text-[13px] shadow hover:bg-yellow-300 transition">
+        ⚙️
+      </button>
+    </div>
 
-    <!-- 🏷️ MARCA -->
-    <select id="filtroMarca" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Marca</option>
-      <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
-      <option>Motorola</option><option>Realme</option><option>POCO</option>
-    </select>
+    <!-- 🔘 FILTROS SECUNDÁRIOS -->
+    <div id="miniFiltrosArea" class="w-full flex flex-wrap justify-center gap-2 mt-2 sm:mt-0 hidden sm:flex">
+      <select id="filtroMarca" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
+        <option value="">Marca</option>
+        <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
+        <option>Motorola</option><option>Realme</option><option>POCO</option>
+      </select>
 
-    <!-- 📍 ESTADO -->
-    <select id="filtroEstado" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Estado</option>
-      <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option>
-    </select>
+      <select id="filtroEstado" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
+        <option value="">Estado</option>
+        <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option>
+      </select>
 
-    <!-- 💰 PREÇO -->
-    <select id="filtroPreco" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Preço</option>
-      <option value="0">Até R$ 500</option>
-      <option value="0b">Até R$ 1000</option>
-      <option value="1">Até R$ 2000</option>
-      <option value="2">R$ 2000–R$ 4000</option>
-      <option value="3">+ R$ 4000</option>
-    </select>
+      <select id="filtroPreco" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
+        <option value="">Preço</option>
+        <option value="0">Até R$ 500</option>
+        <option value="0b">Até R$ 1000</option>
+        <option value="1">Até R$ 2000</option>
+        <option value="2">R$ 2000–R$ 4000</option>
+        <option value="3">+ R$ 4000</option>
+      </select>
+    </div>
 
-    <!-- 🏷️ NOVO FILTRO DE ORIGEM COM ÍCONES -->
-    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-1">
-
+    <!-- 🏷️ FILTRO DE ORIGEM COM ÍCONES -->
+    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-2">
       <label class="flex items-center gap-1 cursor-pointer ativo">
         <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
         <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
-             class="logo-filtro ml-logo" alt="Mercado Livre" />
+          class="logo-filtro ml-logo" alt="Mercado Livre" />
         <span>Mercado Livre</span>
       </label>
 
       <label class="flex items-center gap-1 cursor-pointer ativo">
         <input type="checkbox" class="origemCheck" value="magalu" checked />
         <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
-             class="logo-filtro magalu-logo" alt="Magalu" />
+          class="logo-filtro magalu-logo" alt="Magalu" />
         <span>Magalu</span>
       </label>
 
       <label class="flex items-center gap-1 cursor-pointer ativo">
         <input type="checkbox" class="origemCheck" value="amazon" checked />
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-             class="logo-filtro amazon-logo" alt="Amazon" />
+          class="logo-filtro amazon-logo" alt="Amazon" />
         <span>Amazon</span>
       </label>
 
       <label class="flex items-center gap-1 cursor-pointer ativo">
         <input type="checkbox" class="origemCheck" value="usuario" checked />
         <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
-             class="logo-filtro local-logo" alt="Locais" />
+          class="logo-filtro local-logo" alt="Locais" />
         <span>Locais</span>
       </label>
 
@@ -1532,33 +1542,38 @@ function criarBarraFiltros() {
     document.body.insertBefore(barra, document.body.firstChild);
   }
 
-  // ===================== EVENTOS DE FILTROS PRINCIPAIS =====================
+  // ===================== EVENTOS =====================
   ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
     const el = barra.querySelector(`#${id}`);
     ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
   });
 
-  // ===================== CONTROLE VISUAL DOS BOTÕES DE ORIGEM =====================
   barra.querySelectorAll(".origemCheck").forEach((chk) => {
     chk.addEventListener("change", () => {
-      const label = chk.closest("label");
-      label.classList.toggle("ativo", chk.checked);
+      chk.closest("label").classList.toggle("ativo", chk.checked);
       aplicarFiltros();
     });
   });
 
-  // ===================== BOTÃO “TODOS” (selecionar / desmarcar todos) =====================
   const btnTodos = barra.querySelector("#selecionarTodos");
   btnTodos.addEventListener("click", () => {
     const checks = barra.querySelectorAll(".origemCheck");
     const todosAtivos = Array.from(checks).every((c) => c.checked);
     checks.forEach((c) => {
       c.checked = !todosAtivos;
-      const label = c.closest("label");
-      label.classList.toggle("ativo", !todosAtivos);
+      c.closest("label").classList.toggle("ativo", !todosAtivos);
     });
     aplicarFiltros();
   });
+
+  // 🔘 Botão Filtros (mobile)
+  const btnMini = barra.querySelector("#btnMiniFiltros");
+  if (btnMini) {
+    btnMini.addEventListener("click", () => {
+      const miniArea = barra.querySelector("#miniFiltrosArea");
+      miniArea.classList.toggle("hidden");
+    });
+  }
 }
 
 // ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
