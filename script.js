@@ -1460,20 +1460,24 @@ function criarBarraFiltros() {
     "hidden bg-black text-white border border-yellow-400 rounded-lg mt-2 p-2 shadow-md flex flex-wrap items-center justify-center gap-2 max-w-6xl mx-auto animate-fade-in";
 
   barra.innerHTML = `
+    <!-- 🔍 BUSCA -->
     <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
       class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm w-[150px]" />
 
+    <!-- 🏷️ MARCA -->
     <select id="filtroMarca" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
       <option value="">Marca</option>
       <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
       <option>Motorola</option><option>Realme</option><option>POCO</option>
     </select>
 
+    <!-- 📍 ESTADO -->
     <select id="filtroEstado" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
       <option value="">Estado</option>
-      <option>AL</option><option>PE</option>
+      <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option>
     </select>
 
+    <!-- 💰 PREÇO -->
     <select id="filtroPreco" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
       <option value="">Preço</option>
       <option value="0">Até R$ 500</option>
@@ -1484,40 +1488,41 @@ function criarBarraFiltros() {
     </select>
 
     <!-- 🏷️ NOVO FILTRO DE ORIGEM COM ÍCONES -->
-<div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-1">
-  <label class="flex items-center gap-1 cursor-pointer">
-    <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
-    <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
-         class="logo-filtro ml-logo" alt="Mercado Livre" />
-    <span class="text-yellow-400">Mercado Livre</span>
-  </label>
+    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-1">
 
-  <label class="flex items-center gap-1 cursor-pointer">
-    <input type="checkbox" class="origemCheck" value="magalu" checked />
-    <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
-         class="logo-filtro magalu-logo" alt="Magalu" />
-    <span class="text-blue-400">Magalu</span>
-  </label>
+      <label class="flex items-center gap-1 cursor-pointer ativo">
+        <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
+        <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
+             class="logo-filtro ml-logo" alt="Mercado Livre" />
+        <span>Mercado Livre</span>
+      </label>
 
-  <label class="flex items-center gap-1 cursor-pointer">
-    <input type="checkbox" class="origemCheck" value="amazon" checked />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
-         class="logo-filtro amazon-logo" alt="Amazon" />
-    <span class="text-orange-400">Amazon</span>
-  </label>
+      <label class="flex items-center gap-1 cursor-pointer ativo">
+        <input type="checkbox" class="origemCheck" value="magalu" checked />
+        <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
+             class="logo-filtro magalu-logo" alt="Magalu" />
+        <span>Magalu</span>
+      </label>
 
-  <label class="flex items-center gap-1 cursor-pointer">
-    <input type="checkbox" class="origemCheck" value="usuario" checked />
-    <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
-         class="logo-filtro local-logo" alt="Locais" />
-    <span class="text-green-400">Locais</span>
-  </label>
+      <label class="flex items-center gap-1 cursor-pointer ativo">
+        <input type="checkbox" class="origemCheck" value="amazon" checked />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+             class="logo-filtro amazon-logo" alt="Amazon" />
+        <span>Amazon</span>
+      </label>
 
-  <button id="selecionarTodos" 
-    class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
-    Todos
-  </button>
-</div>
+      <label class="flex items-center gap-1 cursor-pointer ativo">
+        <input type="checkbox" class="origemCheck" value="usuario" checked />
+        <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
+             class="logo-filtro local-logo" alt="Locais" />
+        <span>Locais</span>
+      </label>
+
+      <button id="selecionarTodos"
+        class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
+        Todos
+      </button>
+    </div>
   `;
 
   // 👉 Insere logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
@@ -1527,27 +1532,34 @@ function criarBarraFiltros() {
     document.body.insertBefore(barra, document.body.firstChild);
   }
 
-  // Eventos de atualização dos filtros principais
+  // ===================== EVENTOS DE FILTROS PRINCIPAIS =====================
   ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
     const el = barra.querySelector(`#${id}`);
     ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
   });
 
-  // Eventos dos checkboxes de origem
-  barra.querySelectorAll(".origemCheck").forEach(chk =>
-    chk.addEventListener("change", aplicarFiltros)
-  );
+  // ===================== CONTROLE VISUAL DOS BOTÕES DE ORIGEM =====================
+  barra.querySelectorAll(".origemCheck").forEach((chk) => {
+    chk.addEventListener("change", () => {
+      const label = chk.closest("label");
+      label.classList.toggle("ativo", chk.checked);
+      aplicarFiltros();
+    });
+  });
 
-  // Botão "Selecionar Todos"
+  // ===================== BOTÃO “TODOS” (selecionar / desmarcar todos) =====================
   const btnTodos = barra.querySelector("#selecionarTodos");
   btnTodos.addEventListener("click", () => {
     const checks = barra.querySelectorAll(".origemCheck");
-    const tudoMarcado = Array.from(checks).every(c => c.checked);
-    checks.forEach(c => c.checked = !tudoMarcado);
+    const todosAtivos = Array.from(checks).every((c) => c.checked);
+    checks.forEach((c) => {
+      c.checked = !todosAtivos;
+      const label = c.closest("label");
+      label.classList.toggle("ativo", !todosAtivos);
+    });
     aplicarFiltros();
   });
 }
-
 
 // ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
 function ativarModoFiltro(ativo) {
