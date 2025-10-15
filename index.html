@@ -738,6 +738,7 @@ body.modo-filtro #barraFiltros {
 /* 📱 MOBILE — layout empilhado com botões 100% */
 @media (max-width: 640px) {
   #barraFiltros {
+    display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px 8px;
@@ -745,38 +746,44 @@ body.modo-filtro #barraFiltros {
     background: rgba(15,15,15,0.9);
   }
 
+  /* Linha 1 — busca 100% */
   #buscaInput {
     width: 100%;
     font-size: 14px;
     padding-left: 36px;
   }
 
+  /* Linha 3 — selects em grid 3 colunas (ocupando tudo) */
   #miniFiltrosArea {
-    flex-direction: row;
-    justify-content: center;
-    gap: 10px;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
     width: 100%;
   }
-
   #miniFiltrosArea select {
-    flex: 1;
     width: 100%;
     font-size: 13px;
-    padding: 8px 12px;
+    padding: 8px 10px;
   }
 
+  /* Linha 2 — botões de origem em grid 4 colunas (ocupando tudo) */
   #filtroOrigem {
-    flex-direction: column;
-    align-items: stretch;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
     width: 100%;
+    margin-top: 4px;
   }
-
   #filtroOrigem label {
     width: 100%;
     justify-content: center;
-    padding: 10px;
-    font-size: 14px;
+    padding: 10px 8px;
+    font-size: 13px;
     border-radius: 10px;
+  }
+  #filtroOrigem label img {
+    width: 18px;
+    height: auto;
   }
 }
 

@@ -1451,7 +1451,7 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS (DARK GLASS — MOBILE 3 LINHAS) =====================
+// ===================== CRIAR BARRA DE FILTROS (MOBILE: 4 BOTÕES + 3 SELECTS EM UMA LINHA CADA) =====================
 function criarBarraFiltros() {
   const mlSection = document.querySelector(".ml-selo");
   const barra = document.createElement("div");
@@ -1460,7 +1460,7 @@ function criarBarraFiltros() {
     "hidden text-white rounded-xl mt-2 p-3 shadow-md flex flex-col items-center justify-center gap-3 max-w-6xl mx-auto animate-fade-in";
 
   barra.innerHTML = `
-    <!-- 🔍 BUSCA -->
+    <!-- 🔍 BUSCA (Linha 1) -->
     <div class="w-full flex justify-center relative">
       <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
         class="w-full bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[14px]
@@ -1470,14 +1470,8 @@ function criarBarraFiltros() {
         d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
     </div>
 
-    <!-- 🟨 MINI-FILTROS (MARCA / ESTADO / PREÇO) -->
-    <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-3 w-full mt-1">
-      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
-        <option value="">Marca</option>
-        <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
-        <option>Motorola</option><option>Realme</option><option>POCO</option>
-      </select>
-
+    <!-- 🟨 MINI-FILTROS (Linha 3 no mobile — 3 colunas: Estado / Preço / Modelo) -->
+    <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-3 w-full mt-1 sm:flex sm:flex-wrap">
       <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Estado</option>
         <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option><option>CE</option>
@@ -1491,12 +1485,17 @@ function criarBarraFiltros() {
         <option value="2">R$ 2000–R$ 4000</option>
         <option value="3">+ R$ 4000</option>
       </select>
+
+      <!-- Mantive o id 'filtroMarca' para não quebrar sua função aplicarFiltros(); label exibido como "Modelo/Marca" -->
+      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+        <option value="">Modelo/Marca</option>
+        <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
+        <option>Motorola</option><option>Realme</option><option>POCO</option>
+      </select>
     </div>
 
-    <!-- 🏷️ FILTRO DE ORIGEM (3ª LINHA) -->
-    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-3 w-full">
-      
-      <!-- Mercado Livre -->
+    <!-- 🏷️ FILTRO DE ORIGEM (Linha 2 no mobile — 4 colunas) -->
+    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-2 w-full sm:flex sm:flex-wrap">
       <label for="origem-mercadolivre" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-yellow-400/20 to-yellow-400/5 px-3 py-2 rounded-full border border-yellow-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-mercadolivre" class="origemCheck" value="mercadolivre" checked />
         <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
@@ -1504,7 +1503,6 @@ function criarBarraFiltros() {
         <span>Mercado Livre</span>
       </label>
 
-      <!-- Magalu -->
       <label for="origem-magalu" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-blue-400/20 to-blue-400/5 px-3 py-2 rounded-full border border-blue-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-magalu" class="origemCheck" value="magalu" checked />
         <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
@@ -1512,7 +1510,6 @@ function criarBarraFiltros() {
         <span>Magalu</span>
       </label>
 
-      <!-- Amazon -->
       <label for="origem-amazon" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-black/70 to-gray-900 px-3 py-2 rounded-full border border-gray-500/50 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-amazon" class="origemCheck" value="amazon" checked />
         <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
@@ -1520,7 +1517,6 @@ function criarBarraFiltros() {
         <span>Amazon</span>
       </label>
 
-      <!-- Locais -->
       <label for="origem-usuario" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-green-400/20 to-green-400/5 px-3 py-2 rounded-full border border-green-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-usuario" class="origemCheck" value="usuario" checked />
         <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
@@ -1530,20 +1526,20 @@ function criarBarraFiltros() {
     </div>
   `;
 
-  // 👉 Inserir logo abaixo da seção "Ofertas Verificadas"
+  // Inserção
   if (mlSection) {
     mlSection.insertAdjacentElement("afterend", barra);
   } else {
     document.body.insertBefore(barra, document.body.firstChild);
   }
 
-  // === EVENTOS DE FILTROS PRINCIPAIS ===
+  // Eventos dos filtros
   ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
     const el = barra.querySelector(`#${id}`);
     ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
   });
 
-  // === CONTROLE VISUAL DOS BOTÕES DE ORIGEM ===
+  // Toggle visual origem
   barra.querySelectorAll(".origemCheck").forEach((chk) => {
     chk.addEventListener("change", () => {
       const label = chk.closest("label");
