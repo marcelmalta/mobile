@@ -1391,58 +1391,54 @@ function iniciarRolagemAutomaticaMagalu() {
 // 🔹 Inicia após renderizar todos os cards
 window.addEventListener("load", iniciarRolagemAutomaticaML);
 
-// ===================== FILTROS FUNCIONAIS (COM CONTADOR + ANIMAÇÃO) =====================
+// ===================== FILTROS FUNCIONAIS (INCLUINDO FILTRO DE ORIGEM) =====================
 function aplicarFiltros() {
   const busca = (document.getElementById("buscaInput")?.value || "").toLowerCase();
   const marca = (document.getElementById("filtroMarca")?.value || "").toLowerCase();
   const estado = document.getElementById("filtroEstado")?.value || "";
   const preco = document.getElementById("filtroPreco")?.value || "";
 
-  // 🔹 Aplica os filtros
+  // 🔹 Captura as origens selecionadas (mercadolivre, magalu, amazon, usuario)
+  const origensSelecionadas = Array.from(document.querySelectorAll(".origemCheck:checked"))
+    .map(c => c.value);
+
+  // 🔹 Aplica os filtros combinados
   const filtrados = produtos.filter(p => {
+    // Origem (loja)
+    if (origensSelecionadas.length && !origensSelecionadas.includes(p.tipo)) return false;
+
+    // Busca por texto ou marca
     if (busca && !p.nome.toLowerCase().includes(busca)) return false;
     if (marca && !p.nome.toLowerCase().includes(marca)) return false;
+
+    // Estado (somente vendedores locais)
     if (estado && p.tipo === "usuario" && p.estado !== estado) return false;
+
+    // Faixas de preço
     if (preco === "0" && p.precoAtual > 500) return false;
     if (preco === "0b" && p.precoAtual > 1000) return false;
     if (preco === "1" && p.precoAtual > 2000) return false;
     if (preco === "2" && (p.precoAtual < 2000 || p.precoAtual > 4000)) return false;
     if (preco === "3" && p.precoAtual < 4000) return false;
+
     return true;
   });
 
-  // 🔹 Ativa o modo-filtro visual (mantém banners pequenos)
+  // 🔹 Ativa o modo-filtro visual (mantém banners recolhidos e cards subindo)
   ativarModoFiltro(true);
 
-  // 🔹 Renderiza a seção principal com os produtos filtrados
+  // 🔹 Renderiza os produtos filtrados
   renderizarCardsGerais(filtrados);
 
-  // 🔹 Atualiza contador detalhado
-  const contador = document.getElementById("contadorResultados");
-  if (contador) {
-    const total = filtrados.length;
-    const ml = filtrados.filter(p => p.tipo === "mercadolivre").length;
-    const magalu = filtrados.filter(p => p.tipo === "magalu").length;
-    const amazon = filtrados.filter(p => p.tipo === "amazon").length;
-    const usuario = filtrados.filter(p => p.tipo === "usuario").length;
-
-    if (total > 0) {
-      contador.innerHTML = `
-        <span class="total">📱 ${total} produto${total > 1 ? "s" : ""} encontrado${total > 1 ? "s" : ""}</span>
-        <span class="mercadolivre">ML: ${ml}</span>
-        <span class="magalu">Magalu: ${magalu}</span>
-        <span class="amazon">Amazon: ${amazon}</span>
-        <span class="usuario">Vendedores Locais: ${usuario}</span>
-      `;
-    } else {
-      contador.innerHTML = `<span class="total bg-red-600">❌ Nenhum produto encontrado</span>`;
-    }
-
-    // animação suave ao atualizar
-    contador.style.opacity = "0";
-    setTimeout(() => {
-      contador.style.opacity = "1";
-    }, 100);
+  // 🔹 Se nenhum produto for encontrado, mostra aviso simples
+  if (filtrados.length === 0) {
+    const container = document.getElementById("listaProdutos");
+    container.innerHTML = `
+      <div class="text-center text-gray-600 bg-white rounded-md p-4 shadow-sm mt-4 border border-gray-200 w-full">
+        <span class="block text-lg font-semibold">😕 Nenhum produto encontrado</span>
+        <span class="text-sm text-gray-500">Tente alterar os filtros ou limpar a busca.</span>
+      </div>
+    `;
   }
 }
 
@@ -1455,7 +1451,7 @@ btnBusca.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-// ===================== CRIAR BARRA DE FILTROS (abaixo da faixa Mercado Livre) =====================
+// ===================== CRIAR BARRA DE FILTROS (atualizada com filtro de origem) =====================
 function criarBarraFiltros() {
   const mlSection = document.querySelector(".ml-selo"); // pega a faixa "✅ Ofertas verificadas..."
   const barra = document.createElement("div");
@@ -1466,38 +1462,81 @@ function criarBarraFiltros() {
   barra.innerHTML = `
     <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
       class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm w-[150px]" />
+
     <select id="filtroMarca" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
       <option value="">Marca</option>
       <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
       <option>Motorola</option><option>Realme</option><option>POCO</option>
     </select>
+
     <select id="filtroEstado" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-      <option value="">Estado</option><option>AL</option><option>PE</option>
+      <option value="">Estado</option>
+      <option>AL</option><option>PE</option>
     </select>
+
     <select id="filtroPreco" class="bg-white text-gray-800 border border-yellow-300 rounded-md px-2 py-1 text-sm">
-  <option value="">Preço</option>
-  <option value="0">Até R$ 500</option>
-  <option value="0b">Até R$ 1000</option>
-  <option value="1">Até R$ 2000</option>
-  <option value="2">R$ 2000–R$ 4000</option>
-  <option value="3">+ R$ 4000</option>
-</select>
+      <option value="">Preço</option>
+      <option value="0">Até R$ 500</option>
+      <option value="0b">Até R$ 1000</option>
+      <option value="1">Até R$ 2000</option>
+      <option value="2">R$ 2000–R$ 4000</option>
+      <option value="3">+ R$ 4000</option>
+    </select>
+
+    <!-- 🏷️ NOVO FILTRO DE ORIGEM -->
+    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold">
+      <label class="flex items-center gap-1 cursor-pointer">
+        <input type="checkbox" class="origemCheck" value="mercadolivre" checked />
+        <span class="text-yellow-400">Mercado Livre</span>
+      </label>
+      <label class="flex items-center gap-1 cursor-pointer">
+        <input type="checkbox" class="origemCheck" value="magalu" checked />
+        <span class="text-blue-400">Magalu</span>
+      </label>
+      <label class="flex items-center gap-1 cursor-pointer">
+        <input type="checkbox" class="origemCheck" value="amazon" checked />
+        <span class="text-orange-400">Amazon</span>
+      </label>
+      <label class="flex items-center gap-1 cursor-pointer">
+        <input type="checkbox" class="origemCheck" value="usuario" checked />
+        <span class="text-green-400">Locais</span>
+      </label>
+
+      <button id="selecionarTodos" 
+        class="bg-gray-900 text-white px-2 py-1 rounded text-[11px] font-bold hover:bg-gray-700 transition">
+        Todos
+      </button>
+    </div>
   `;
 
   // 👉 Insere logo abaixo da faixa "Ofertas Verificadas no Mercado Livre"
   if (mlSection) {
     mlSection.insertAdjacentElement("afterend", barra);
   } else {
-    // fallback: caso a seção não exista por algum motivo
     document.body.insertBefore(barra, document.body.firstChild);
   }
 
-  // Eventos de atualização dos filtros
+  // Eventos de atualização dos filtros principais
   ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
     const el = barra.querySelector(`#${id}`);
     ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
   });
+
+  // Eventos dos checkboxes de origem
+  barra.querySelectorAll(".origemCheck").forEach(chk =>
+    chk.addEventListener("change", aplicarFiltros)
+  );
+
+  // Botão "Selecionar Todos"
+  const btnTodos = barra.querySelector("#selecionarTodos");
+  btnTodos.addEventListener("click", () => {
+    const checks = barra.querySelectorAll(".origemCheck");
+    const tudoMarcado = Array.from(checks).every(c => c.checked);
+    checks.forEach(c => c.checked = !tudoMarcado);
+    aplicarFiltros();
+  });
 }
+
 
 // ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
 function ativarModoFiltro(ativo) {
@@ -1539,7 +1578,7 @@ function ativarModoFiltro(ativo) {
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
 
     // ✅ Atualizar contador geral novamente
-    if (typeof atualizarContadorResultados === "function") atualizarContadorResultados(produtos);
+    
 
     // ✅ Forçar scroll e estado visual limpo
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1589,7 +1628,6 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
   }
 });
-
 
 
 
