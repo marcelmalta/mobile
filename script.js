@@ -1531,6 +1531,7 @@ function criarBarraFiltros() {
   mlSection.insertAdjacentElement("afterend", barra);
 } else {
   document.body.insertBefore(barra, document.body.firstChild);
+  barra.classList.add("hidden"); // garante invisível no DOM
 }
 
 // 🔹 Garante que o filtro inicie oculto
@@ -1697,23 +1698,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ===================== INIT =====================
+// ===================== INIT =====================
 window.addEventListener("DOMContentLoaded", () => {
-  // 🔹 Renderiza todos os produtos normalmente
   renderizarMercadoLivre(produtos);
   renderizarMagalu(produtos);
   renderizarCardsGerais(produtos);
-  
-  // 🔹 Cria a barra de filtros, mas garante que comece sempre oculta
   criarBarraFiltros();
+
+  // 🔹 Garante que o filtro comece fechado
+  document.body.classList.remove("modo-filtro");
   const barra = document.getElementById("barraFiltros");
   if (barra) barra.classList.add("hidden");
-  document.body.classList.remove("modo-filtro");
 
-  // 🔹 Inicia rolagem automática nos banners
+  // 🔹 Banners e rolagem
   iniciarRolagemAutomaticaML();
   iniciarRolagemAutomaticaMagalu();
 
-  // 🔹 Configura contador de produtos
+  // 🔹 Contador de produtos
   const contador = document.getElementById("contadorResultados");
   if (contador) {
     const total = produtos.length;
@@ -1731,14 +1732,12 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // 🔹 Garante que o botão inicia corretamente desativado
+  // 🔹 Botão
   const btnBusca = document.getElementById("btnBuscaFlutuante");
   if (btnBusca) {
     btnBusca.classList.remove("ativo");
     btnBusca.textContent = "🔍 Buscar / Filtrar";
   }
-
-  console.log("✅ Inicialização concluída — filtro fechado por padrão.");
 });
 
 

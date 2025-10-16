@@ -1330,6 +1330,17 @@ body.modo-filtro #topoPrincipal {
     display: none;
   }
 }
+/* 🚫 Filtro sempre começa oculto (corrige mobile que exibe no load) */
+#barraFiltros {
+  display: none !important;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+body.modo-filtro #barraFiltros {
+  display: flex !important;
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
 
