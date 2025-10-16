@@ -1545,9 +1545,9 @@ barra.classList.add("hidden");
 // === CONTROLE VISUAL DOS BOTÕES DE ORIGEM ===
 barra.querySelectorAll(".origemCheck").forEach((chk) => {
   const label = chk.closest("label");
-  chk.checked = false; // 🟡 Inicia desmarcado
-  label.classList.remove("ativo"); // 🟡 Remove a cor ativa
-  label.classList.add("inativo");  // 🟡 Adiciona estado branco
+  chk.checked = false;                // começa desmarcado
+  label.classList.remove("ativo");    // remove cor ativa
+  label.classList.add("inativo");     // aplica fundo branco
 
   chk.addEventListener("change", () => {
     const ativo = chk.checked;

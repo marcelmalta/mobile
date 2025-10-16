@@ -570,37 +570,6 @@ body.modo-filtro #listaProdutos {
   transition: transform 0.3s ease;
 }
 
-/* Contador */
-#contadorResultados {
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.3px;
-}
-#contadorResultados span {
-  padding: 0 5px;
-  border-radius: 4px;
-  font-weight: 600;
-  color: #fff;
-}
-#contadorResultados .total {
-  background-color: #2563eb;
-}
-#contadorResultados .mercadolivre {
-  background-color: #fff159;
-  color: #333;
-}
-#contadorResultados .magalu {
-  background-color: #007aff;
-}
-#contadorResultados .amazon {
-  background-color: #ff9900;
-}
-#contadorResultados .shopee {
-  background-color: #ee4d2d;
-}
-#contadorResultados .usuario {
-  background-color: #16a34a;
-}
-
 /* ===================== BARRA DE FILTROS — DARK PREMIUM ===================== */
 #barraFiltros {
   backdrop-filter: blur(10px);
@@ -803,48 +772,77 @@ body.modo-filtro #barraFiltros {
   }
 }
 
-/* ================= CORES ATIVAS (DESTAQUE QUANDO CHECKED) ================= */
 /* ================= CORES INATIVAS (PADRÃO DESMARCADO) ================= */
 #filtroOrigem label.inativo {
-  background: #fff !important;
+  background: #ffffff !important;
   color: #222 !important;
-  border: 1px solid #d1d5db !important; /* borda cinza suave */
+  border: 1.5px solid #d1d5db !important;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
-  opacity: 0.95;
-  transition: all 0.3s ease;
+  opacity: 1;
+  transition: all 0.25s ease-in-out;
 }
-
 #filtroOrigem label.inativo:hover {
   background: #f9fafb !important;
   border-color: #e5e7eb !important;
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
+/* ================= CORES INATIVAS (PADRÃO DESMARCADO) ================= */
+#filtroOrigem label.inativo {
+  background: #ffffff !important;
+  color: #222 !important;
+  border: 1.5px solid #d1d5db !important;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  opacity: 1;
+  transition: all 0.25s ease-in-out;
+}
+#filtroOrigem label.inativo:hover {
+  background: #f9fafb !important;
+  border-color: #e5e7eb !important;
+  transform: scale(1.03);
+}
+
+/* ================== FILTROS ATIVOS - VISUAL OFICIAL ================== */
+
+/* 🟡 Mercado Livre */
 #filtroOrigem label.ativo[for="origem-mercadolivre"] {
-  background: linear-gradient(to right, #facc15, #fbbf24);
-  color: #000;
-  border-color: #facc15;
-}
-#filtroOrigem label.ativo[for="origem-magalu"] {
-  background: linear-gradient(to right, #3b82f6, #2563eb);
-  color: #fff;
-  border-color: #3b82f6;
-}
-#filtroOrigem label.ativo[for="origem-amazon"] {
-  background: linear-gradient(to right, #111, #222);
-  color: #fbbf24;
-  border-color: #444;
-}
-#filtroOrigem label.ativo[for="origem-usuario"] {
-  background: linear-gradient(to right, #22c55e, #16a34a);
-  color: #fff;
-  border-color: #22c55e;
+  background: linear-gradient(180deg, #fff159 0%, #ffec3d 100%) !important;
+  color: #222 !important;
+  border: 1.5px solid #fdd835 !important;
+  box-shadow: 0 0 10px rgba(255, 235, 59, 0.4);
 }
 
-/* Suave no desktop também */
-#filtroOrigem label:hover {
-  transform: scale(1.04);
-  transition: 0.2s ease;
+/* 🔵 Magalu - agora com brilho e profundidade */
+#filtroOrigem label.ativo[for="origem-magalu"] {
+  background: linear-gradient(145deg, #00a1ff 0%, #0073ff 45%, #004eff 100%) !important;
+  color: #fff !important;
+  border: 1.5px solid #006aff !important;
+  box-shadow:
+    inset 0 0 4px rgba(255, 255, 255, 0.3),
+    0 0 10px rgba(0, 115, 255, 0.5);
+}
+
+/* ⚫ Amazon - fundo claro com tom original da marca */
+#filtroOrigem label.ativo[for="origem-amazon"] {
+  background: linear-gradient(145deg, #ff9900 0%, #232f3e 40%, #111 100%) !important;
+  color: #fff !important;
+  border: 1.5px solid #232f3e !important;
+  box-shadow: 0 0 12px rgba(255, 153, 0, 0.45);
+}
+
+/* 🟣 Locais (Roxo vibrante e moderno) */
+#filtroOrigem label.ativo[for="origem-usuario"] {
+  background: linear-gradient(145deg, #a855f7 0%, #7e22ce 100%) !important;
+  color: #fff !important;
+  border: 1.5px solid #8b5cf6 !important;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
+}
+
+/* Hover ativo - brilho controlado e leve elevação */
+#filtroOrigem label.ativo:hover {
+  transform: scale(1.05);
+  filter: brightness(1.12);
+  transition: all 0.25s ease;
 }
 
 /* ===================== DESKTOP AJUSTADO ===================== */
