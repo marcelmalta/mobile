@@ -928,6 +928,7 @@ body.modo-filtro #barraFiltros {
   }
 }
 
+
 /* ===================== MOBILE — CENTRALIZAR E COMPACTAR ===================== */
 @media (max-width: 640px) {
   #barraFiltros {
@@ -1363,6 +1364,86 @@ body.modo-filtro #barraFiltros {
 }
 #barraFiltros {
   margin-top: 0 !important;
+}
+/* ===================== NOVO VISUAL DO FILTRO — GOLD LIGHT ===================== */
+#barraFiltros {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border-left: none !important;
+  border-right: none !important;
+  backdrop-filter: blur(10px) brightness(1.1);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 249, 200, 0.95) 0%,   /* dourado claro */
+    rgba(255, 255, 255, 0.95) 40%,  /* branco suave */
+    rgba(245, 245, 245, 0.9) 100%   /* base neutra */
+  );
+  border-top: 1px solid rgba(255, 230, 150, 0.5);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.3);
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.3),
+    0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #222;
+  transition: all 0.4s ease;
+}
+
+/* ✨ Efeito de reflexo suave no topo */
+#barraFiltros::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 215, 0, 0.35),
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 215, 0, 0.35)
+  );
+  opacity: 0.8;
+}
+
+/* 🎚️ Ajustes dos selects no tema claro */
+#miniFiltrosArea select {
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  border: 1px solid rgba(180, 180, 180, 0.6);
+  border-radius: 9999px;
+  font-weight: 600;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+#miniFiltrosArea select:hover {
+  background: #fff;
+  border-color: #facc15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.25);
+  transform: scale(1.03);
+}
+
+/* 🔍 Campo de busca no tema claro */
+#buscaInput {
+  background: rgba(255, 255, 255, 0.85);
+  color: #222;
+  border: 1.5px solid rgba(230, 200, 0, 0.5);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+#buscaInput::placeholder {
+  color: rgba(120, 120, 120, 0.6);
+}
+#buscaInput:focus {
+  background: #fff;
+  border-color: #facc15;
+  box-shadow: 0 0 10px rgba(250, 204, 21, 0.3);
+}
+
+/* 💻 Desktop — leve espaçamento lateral */
+@media (min-width: 1024px) {
+  #barraFiltros {
+    padding: 10px 4vw;
+  }
 }
 
 
