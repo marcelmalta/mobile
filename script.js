@@ -1556,7 +1556,48 @@ barra.querySelectorAll(".origemCheck").forEach((chk) => {
     aplicarFiltros();
   });
 });
+// ===================== PREENCHER CAMPOS FIXOS COM BASE NO PRODUTO PRINCIPAL =====================
+setTimeout(() => {
+  try {
+    // Verifica se existe o array de produtos e se há ao menos um item
+    if (window.produtos && window.produtos.length > 0) {
+      const produto = window.produtos[0]; // usa o primeiro produto como referência
+      const buscaInput = barra.querySelector("#buscaInput");
+      const filtroMarca = barra.querySelector("#filtroMarca");
+
+      if (buscaInput && filtroMarca) {
+        // Nome completo do produto, ex: "Motorola Moto G05 128GB 12GB RAM"
+        const nomeCompleto = produto.nome || "";
+
+        // 🟡 Preenche o campo de busca com o nome completo
+        buscaInput.value = nomeCompleto;
+        buscaInput.placeholder = nomeCompleto; // mantém visível como label
+
+        // 🔹 Extrai marca + modelo (remove parte técnica GB/RAM)
+        const marcaModelo = nomeCompleto
+          .replace(/\s*\d+GB.*$/i, "") // remove armazenamento e RAM
+          .trim();
+
+        // Cria opção única e fixa no select de Marca/Modelo
+        const opt = document.createElement("option");
+        opt.value = marcaModelo;
+        opt.textContent = marcaModelo;
+
+        // Adiciona no topo e seleciona
+        filtroMarca.insertBefore(opt, filtroMarca.firstChild);
+        filtroMarca.value = marcaModelo;
+
+        console.log(`✅ Filtro preenchido: "${marcaModelo}"`);
+      }
+    } else {
+      console.warn("⚠️ Nenhum produto encontrado para preencher o filtro inicial.");
+    }
+  } catch (err) {
+    console.error("Erro ao preencher modelo fixo na barra de filtros:", err);
+  }
+}, 400);
 }
+
 
 // ===================== ATIVAR / DESATIVAR MODO FILTRO =====================
 function ativarModoFiltro(ativo) {
@@ -1634,6 +1675,7 @@ function ativarModoFiltro(ativo) {
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
   }
 }
+
 
 
 
