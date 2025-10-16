@@ -804,6 +804,22 @@ body.modo-filtro #barraFiltros {
 }
 
 /* ================= CORES ATIVAS (DESTAQUE QUANDO CHECKED) ================= */
+/* ================= CORES INATIVAS (PADRÃO DESMARCADO) ================= */
+#filtroOrigem label.inativo {
+  background: #fff !important;
+  color: #222 !important;
+  border: 1px solid #d1d5db !important; /* borda cinza suave */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+  opacity: 0.95;
+  transition: all 0.3s ease;
+}
+
+#filtroOrigem label.inativo:hover {
+  background: #f9fafb !important;
+  border-color: #e5e7eb !important;
+  transform: scale(1.02);
+}
+
 #filtroOrigem label.ativo[for="origem-mercadolivre"] {
   background: linear-gradient(to right, #facc15, #fbbf24);
   color: #000;

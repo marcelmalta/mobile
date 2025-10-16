@@ -1528,25 +1528,34 @@ function criarBarraFiltros() {
 
   // Inserção
   if (mlSection) {
-    mlSection.insertAdjacentElement("afterend", barra);
-  } else {
-    document.body.insertBefore(barra, document.body.firstChild);
-  }
+  mlSection.insertAdjacentElement("afterend", barra);
+} else {
+  document.body.insertBefore(barra, document.body.firstChild);
+}
 
-  // Eventos dos filtros
-  ["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
-    const el = barra.querySelector(`#${id}`);
-    ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
-  });
+// 🔹 Garante que o filtro inicie oculto
+barra.classList.add("hidden");
 
-  // Toggle visual origem
-  barra.querySelectorAll(".origemCheck").forEach((chk) => {
-    chk.addEventListener("change", () => {
-      const label = chk.closest("label");
-      label.classList.toggle("ativo", chk.checked);
-      aplicarFiltros();
-    });
+// === EVENTOS DE FILTROS PRINCIPAIS ===
+["buscaInput", "filtroMarca", "filtroEstado", "filtroPreco"].forEach((id) => {
+  const el = barra.querySelector(`#${id}`);
+  ["input", "change"].forEach((evt) => el.addEventListener(evt, aplicarFiltros));
+});
+
+// === CONTROLE VISUAL DOS BOTÕES DE ORIGEM ===
+barra.querySelectorAll(".origemCheck").forEach((chk) => {
+  const label = chk.closest("label");
+  chk.checked = false; // 🟡 Inicia desmarcado
+  label.classList.remove("ativo"); // 🟡 Remove a cor ativa
+  label.classList.add("inativo");  // 🟡 Adiciona estado branco
+
+  chk.addEventListener("change", () => {
+    const ativo = chk.checked;
+    label.classList.toggle("ativo", ativo);
+    label.classList.toggle("inativo", !ativo);
+    aplicarFiltros();
   });
+});
 }
 
 // ===================== ATIVAR / DESATIVAR MODO FILTRO =====================
