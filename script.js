@@ -1694,53 +1694,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ===================== AUTO ATIVAR FILTRO NO MOBILE =====================
-window.addEventListener("load", () => {
-  const barra = document.getElementById("barraFiltros");
-  const btn = document.getElementById("btnBuscaFlutuante");
-  const body = document.body;
 
-  if (!barra || !btn) return;
-
-  // Detecta se está em mobile (<= 640px)
-  const isMobile = window.matchMedia("(max-width: 640px)").matches;
-
-  if (isMobile) {
-    // 🟢 Modo filtro ativo automaticamente
-    body.classList.add("modo-filtro");
-    barra.classList.remove("hidden");
-    btn.classList.add("ativo");
-    btn.textContent = "⨯ Fechar Filtro";
-
-    // Exibe suavemente a barra
-    barra.style.opacity = "0";
-    barra.style.transform = "translateY(-10px)";
-    requestAnimationFrame(() => {
-      barra.style.transition = "all 0.4s ease";
-      barra.style.opacity = "1";
-      barra.style.transform = "translateY(0)";
-    });
-
-    console.log("📱 Filtro iniciado automaticamente no mobile");
-  } else {
-    // 🔵 No desktop ele permanece oculto
-    body.classList.remove("modo-filtro");
-    barra.classList.add("hidden");
-    btn.classList.remove("ativo");
-    btn.textContent = "🔍 Buscar / Filtrar";
-  }
-});
 
 // ===================== INIT =====================
 window.addEventListener("DOMContentLoaded", () => {
+  // 🔹 Renderiza todos os produtos normalmente
   renderizarMercadoLivre(produtos);
   renderizarMagalu(produtos);
-  renderizarCardsGerais(produtos); // ✅ substitui renderizarProdutosUsuarios()
+  renderizarCardsGerais(produtos);
+  
+  // 🔹 Cria a barra de filtros, mas garante que comece sempre oculta
   criarBarraFiltros();
+  const barra = document.getElementById("barraFiltros");
+  if (barra) barra.classList.add("hidden");
+  document.body.classList.remove("modo-filtro");
+
+  // 🔹 Inicia rolagem automática nos banners
   iniciarRolagemAutomaticaML();
   iniciarRolagemAutomaticaMagalu();
 
-  // ✅ Exibir contador inicial profissional
+  // 🔹 Configura contador de produtos
   const contador = document.getElementById("contadorResultados");
   if (contador) {
     const total = produtos.length;
@@ -1757,6 +1730,15 @@ window.addEventListener("DOMContentLoaded", () => {
       <span class="usuario">Vendedores Locais: ${usuario}</span>
     `;
   }
+
+  // 🔹 Garante que o botão inicia corretamente desativado
+  const btnBusca = document.getElementById("btnBuscaFlutuante");
+  if (btnBusca) {
+    btnBusca.classList.remove("ativo");
+    btnBusca.textContent = "🔍 Buscar / Filtrar";
+  }
+
+  console.log("✅ Inicialização concluída — filtro fechado por padrão.");
 });
 
 
