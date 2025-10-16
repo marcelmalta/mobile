@@ -1445,58 +1445,62 @@ body.modo-filtro #barraFiltros {
     padding: 10px 4vw;
   }
 }
-/* ===================== BARRA DE FILTROS — GOLD CONTINUUM ===================== */
+/* ===================== BARRA DE FILTROS — GOLD CONTINUUM REFLEX ===================== */
 #barraFiltros {
+  position: relative;
   width: 100% !important;
   max-width: none !important;
   margin: 0 !important;
   border-radius: 0 !important;
   border-left: none !important;
   border-right: none !important;
-  backdrop-filter: blur(10px) brightness(1.1);
+  backdrop-filter: blur(10px) brightness(1.05);
   background: linear-gradient(
     180deg,
-    #fff159 0%,       /* mesmo início da .ml-selo */
-    #fff9db 30%,
-    #fffef6 60%,
+    #fff159 0%,      /* mesmo amarelo da faixa de lojas */
+    #fff8d1 25%,
+    #fffef8 60%,
     #ffffff 100%
   );
-  border-top: 1px solid rgba(255, 230, 100, 0.5);
+  border-top: 1px solid rgba(255, 230, 150, 0.5);
   border-bottom: 1px solid rgba(200, 200, 200, 0.4);
   box-shadow:
-    inset 0 2px 8px rgba(255, 255, 255, 0.4),
-    0 3px 15px rgba(0, 0, 0, 0.08);
+    inset 0 2px 8px rgba(255, 255, 255, 0.5),
+    0 2px 14px rgba(0, 0, 0, 0.08);
   color: #222;
+  overflow: hidden;
   transition: all 0.4s ease;
 }
 
-/* ✨ Reflexo suave percorrendo o topo */
+/* ✨ Reflexo metálico suave se movendo lateralmente */
 #barraFiltros::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -60%;
-  width: 220%;
-  height: 4px;
+  left: -50%;
+  width: 200%;
+  height: 100%;
   background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 215, 0, 0.6),
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 215, 0, 0.6),
-    transparent
+    120deg,
+    rgba(255, 255, 255, 0.0) 0%,
+    rgba(255, 255, 255, 0.25) 40%,
+    rgba(255, 230, 100, 0.35) 50%,
+    rgba(255, 255, 255, 0.25) 60%,
+    rgba(255, 255, 255, 0.0) 100%
   );
-  animation: reflexoGold 7s linear infinite;
-  opacity: 0.7;
-}
-@keyframes reflexoGold {
-  0% { left: -60%; }
-  100% { left: 100%; }
+  opacity: 0.6;
+  animation: brilhoGoldLateral 9s linear infinite;
 }
 
-/* 🔍 Campo de busca */
+@keyframes brilhoGoldLateral {
+  0% { left: -60%; opacity: 0.3; }
+  50% { left: 10%; opacity: 0.7; }
+  100% { left: 100%; opacity: 0.3; }
+}
+
+/* 🔍 Campo de busca (tema claro) */
 #buscaInput {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   color: #222;
   border: 1.5px solid rgba(230, 200, 0, 0.5);
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
@@ -1524,53 +1528,50 @@ body.modo-filtro #barraFiltros {
   padding: 10px 14px;
   border-radius: 10px;
   font-weight: 700;
-  color: #111;
   border: 1.5px solid transparent;
+  color: #111;
   position: relative;
   overflow: hidden;
   transition: all 0.35s ease;
-  background: #fff;
   box-shadow:
-    0 1px 5px rgba(0,0,0,0.2),
-    inset 0 0 8px rgba(255,255,255,0.3);
+    0 1px 4px rgba(0, 0, 0, 0.15),
+    inset 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-/* ✨ Reflexo animado suave */
+/* 💡 Reflexo metálico animado nos botões */
 #filtroOrigem label::after {
   content: "";
   position: absolute;
   top: 0;
-  left: -80%;
+  left: -75%;
   width: 50%;
   height: 100%;
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.5),
     transparent
   );
   opacity: 0;
-  transition: opacity 0.3s ease;
 }
 #filtroOrigem label:hover::after {
-  animation: reflexoBotaoLojas 2.5s linear infinite;
+  animation: reflexoBotaoPremium 2.8s linear infinite;
   opacity: 1;
 }
-@keyframes reflexoBotaoLojas {
+@keyframes reflexoBotaoPremium {
   0% { left: -80%; opacity: 0.2; }
-  50% { left: 100%; opacity: 0.8; }
+  50% { left: 90%; opacity: 0.8; }
   100% { left: 120%; opacity: 0; }
 }
 
 /* 🟡 Mercado Livre */
 #filtroOrigem label[for="origem-mercadolivre"] {
-  background: linear-gradient(145deg, #fff159, #ffec3d);
+  background: linear-gradient(145deg, #fff159, #ffe600);
   border-color: #fdd835;
   color: #111;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
 }
 
-/* 🔵 Magalu */
+/* 🔵 Magalu (azul metálico) */
 #filtroOrigem label[for="origem-magalu"] {
   background: linear-gradient(145deg, #66ccff, #1e90ff, #0066ff);
   border-color: #1e90ff;
@@ -1586,12 +1587,12 @@ body.modo-filtro #barraFiltros {
 
 /* 🟣 Locais */
 #filtroOrigem label[for="origem-usuario"] {
-  background: linear-gradient(145deg, #a855f7, #7e22ce);
+  background: linear-gradient(145deg, #b983ff, #7e22ce);
   border-color: #8b5cf6;
   color: #fff;
 }
 
-/* Hover - brilho metálico */
+/* Hover — brilho e leve aumento */
 #filtroOrigem label:hover {
   transform: scale(1.05);
   filter: brightness(1.15);
