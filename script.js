@@ -1505,14 +1505,14 @@ function criarBarraFiltros() {
 
       <label for="origem-magalu" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-blue-400/20 to-blue-400/5 px-3 py-2 rounded-full border border-blue-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-magalu" class="origemCheck" value="magalu" checked />
-        <img src="https://mvc.mlcdn.com.br/magazinevoce/img/common/influenciador-magalu-logo-blue.svg"
+        <img src="https://wx.mlcdn.com.br/site/shared/services/influenciador-magalu-logo.png"
           class="logo-filtro magalu-logo w-5 h-5" alt="Magalu" />
         <span>Magalu</span>
       </label>
 
       <label for="origem-amazon" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-black/70 to-gray-900 px-3 py-2 rounded-full border border-gray-500/50 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-amazon" class="origemCheck" value="amazon" checked />
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Amazon_icon.png"
           class="logo-filtro amazon-logo w-6 h-4" alt="Amazon" />
         <span>Amazon</span>
       </label>

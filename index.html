@@ -1341,6 +1341,29 @@ body.modo-filtro #barraFiltros {
   opacity: 1;
   transform: translateY(0);
 }
+/* ===================== AJUSTE DE LARGURA DO FILTRO ===================== */
+#barraFiltros {
+  width: 100% !important;        /* ocupa toda a largura da tela */
+  max-width: none !important;    /* remove limite de 6xl */
+  margin: 0 !important;          /* remove centralização forçada */
+  border-radius: 0 !important;   /* alinha perfeitamente com as bordas laterais */
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* 💻 Somente no desktop mantém proporção bonita */
+@media (min-width: 1024px) {
+  #barraFiltros {
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+}
+.ml-selo {
+  margin-bottom: 0 !important;
+}
+#barraFiltros {
+  margin-top: 0 !important;
+}
 
 
 
