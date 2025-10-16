@@ -570,74 +570,95 @@ body.modo-filtro #listaProdutos {
   transition: transform 0.3s ease;
 }
 
-/* ===================== BARRA DE FILTROS — DARK PREMIUM ===================== */
+/* ===================== BARRA DE FILTROS — DARK NEUTRO PREMIUM ===================== */
 #barraFiltros {
   backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(25, 25, 25, 0.9); /* fundo neutro escuro */
   border-radius: 14px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
   transition: all 0.4s ease;
 }
 
 /* 🔍 Campo de busca */
 #buscaInput {
-  color: #facc15;
+  color: #f5f5f5;
   font-weight: 600;
-  background: rgba(0, 0, 0, 0.85);
-  border: 1.5px solid rgba(250, 204, 21, 0.7);
+  background: rgba(15, 15, 15, 0.95);
+  border: 1.5px solid rgba(70, 70, 70, 0.8);
   border-radius: 9999px;
-  box-shadow: inset 0 0 5px rgba(250, 204, 21, 0.2);
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
 }
 #buscaInput::placeholder {
-  color: rgba(250, 204, 21, 0.6);
+  color: rgba(200, 200, 200, 0.6);
 }
 #buscaInput:focus {
-  box-shadow: 0 0 12px rgba(250, 204, 21, 0.4);
-  border-color: #fde047;
-  background: rgba(30, 30, 30, 0.9);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  border-color: #999;
+  background: rgba(20, 20, 20, 0.95);
 }
 
 /* ===================== MINI-FILTROS (MARCA / ESTADO / PREÇO) ===================== */
 #miniFiltrosArea {
   background: rgba(15, 15, 15, 0.85);
-  border: 1px solid rgba(255, 215, 0, 0.25);
+  border: 1px solid rgba(70, 70, 70, 0.6);
   border-radius: 12px;
-  backdrop-filter: blur(10px) brightness(1.05);
-  box-shadow:
-    0 0 12px rgba(255, 215, 0, 0.15),
-    inset 0 0 6px rgba(255, 255, 255, 0.05);
   padding: 8px 10px;
+  box-shadow:
+    0 0 12px rgba(0, 0, 0, 0.3),
+    inset 0 0 6px rgba(255, 255, 255, 0.03);
   animation: fadeIn 0.3s ease;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
 }
 
+/* 🎚️ Selects internos — preto elegante */
 #miniFiltrosArea select {
-  background: rgba(255, 255, 255, 0.08);
-  color: #facc15;
-  border: 1px solid rgba(250, 204, 21, 0.4);
+  background: linear-gradient(180deg, #111, #1a1a1a);
+  color: #f5f5f5;
+  border: 1px solid #333;
   border-radius: 9999px;
   font-size: 13px;
   padding: 7px 14px;
   font-weight: 600;
-  box-shadow:
-    0 0 8px rgba(250, 204, 21, 0.15),
-    inset 0 0 4px rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
+  box-shadow:
+    0 0 4px rgba(255, 255, 255, 0.05),
+    inset 0 0 3px rgba(0, 0, 0, 0.3);
 }
+
 #miniFiltrosArea select:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(250, 204, 21, 0.7);
-  transform: scale(1.05);
+  background: linear-gradient(180deg, #181818, #111);
+  border-color: #555;
+  transform: scale(1.03);
 }
 #miniFiltrosArea select:focus {
   outline: none;
-  border-color: #fde047;
-  box-shadow: 0 0 14px rgba(250, 204, 21, 0.4);
+  border-color: #777;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+}
+
+/* ✨ Fade-in animation suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 MOBILE — mantém o estilo escuro limpo */
+@media (max-width: 640px) {
+  #miniFiltrosArea {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  #miniFiltrosArea::-webkit-scrollbar { display: none; }
+  #miniFiltrosArea select {
+    flex: 0 0 auto;
+    font-size: 12px;
+  }
 }
 
 /* ===================== BOTÕES DE ORIGEM (LOJAS / LOCAIS) ===================== */
@@ -812,14 +833,20 @@ body.modo-filtro #barraFiltros {
   box-shadow: 0 0 10px rgba(255, 235, 59, 0.4);
 }
 
-/* 🔵 Magalu - agora com brilho e profundidade */
+/* 🔵 Magalu - azul metálico com reflexo */
 #filtroOrigem label.ativo[for="origem-magalu"] {
-  background: linear-gradient(145deg, #00a1ff 0%, #0073ff 45%, #004eff 100%) !important;
+  background: linear-gradient(
+    145deg,
+    #66ccff 0%,   /* azul claro brilhante */
+    #1e90ff 30%,  /* azul digital médio */
+    #0066ff 70%,  /* azul profundo */
+    #0040cc 100%  /* toque metálico escuro */
+  ) !important;
   color: #fff !important;
-  border: 1.5px solid #006aff !important;
+  border: 1.5px solid #1e90ff !important;
   box-shadow:
-    inset 0 0 4px rgba(255, 255, 255, 0.3),
-    0 0 10px rgba(0, 115, 255, 0.5);
+    inset 0 0 8px rgba(255, 255, 255, 0.35),
+    0 0 14px rgba(102, 204, 255, 0.5);
 }
 
 /* ⚫ Amazon - fundo claro com tom original da marca */
