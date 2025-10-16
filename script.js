@@ -1465,10 +1465,7 @@ function criarBarraFiltros() {
       <input id="buscaInput" type="text" placeholder="Buscar modelo ou marca..."
         class="w-full bg-gray-900/90 text-yellow-200 border border-yellow-400 rounded-full pl-9 pr-3 py-2 text-[14px]
         focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-300 placeholder-yellow-300/70 shadow-inner" />
-      <svg class="absolute left-7 top-2.5 w-4 h-4 text-yellow-300" fill="none" stroke="currentColor" stroke-width="2"
-        viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
-        d="M21 21l-5.2-5.2M11 18a7 7 0 100-14 7 7 0 000 14z" /></svg>
-    </div>
+          </div>
 
     <!-- 🟨 MINI-FILTROS (Linha 3 no mobile — 3 colunas: Estado / Preço / Modelo) -->
     <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-3 w-full mt-1 sm:flex sm:flex-wrap">
