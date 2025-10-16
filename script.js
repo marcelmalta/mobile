@@ -1549,33 +1549,39 @@ function criarBarraFiltros() {
   });
 }
 
-// ===================== MODO FILTRO (com botão dinâmico, reset e rolagem total) =====================
+// ===================== ATIVAR / DESATIVAR MODO FILTRO =====================
 function ativarModoFiltro(ativo) {
   const body = document.body;
   const btn = document.getElementById("btnBuscaFlutuante");
   const barra = document.getElementById("barraFiltros");
 
-  // 🔹 Cabeçalho principal (logo/topo)
-  const headerTopo = document.querySelector("header, .topo-site, #topoPrincipal");
+  // Elementos que somem no modo filtro
+  const selo = document.querySelector("#seloConfianca, .selo-multimarcas, .selo-topo");
+  const banners = ["bannerOfertas", "bannerMagalu"];
+  const faixas = [
+    "faixaOfertasVerificadas",  // 🔥 Ofertas Verificadas e Confiáveis
+    "faixaTodosProdutos"        // 📦 Todos os Produtos Anunciados
+  ];
 
   if (ativo) {
     // === MODO FILTRO ATIVADO ===
     body.classList.add("modo-filtro");
-    btn.classList.add("ativo");
-    btn.textContent = "⨯ Fechar Filtro";
+    if (btn) {
+      btn.classList.add("ativo");
+      btn.textContent = "⨯ Fechar Filtro";
+    }
 
-    // 🔹 Esconde o topo principal (logo, menu, etc.)
-    if (headerTopo) headerTopo.classList.add("hidden");
+    // Esconde selo e banners
+    if (selo) selo.classList.add("hidden");
+    banners.forEach(id => document.getElementById(id)?.classList.add("hidden"));
 
-    // 🔹 Esconde banners (Mercado Livre e Magalu)
-    ["bannerOfertas", "bannerMagalu"].forEach(id => {
+    // Esconde também as faixas principais
+    faixas.forEach(id => {
       const el = document.getElementById(id);
-      if (!el) return;
-      el.classList.add("hidden");
-      if (el.parentElement) el.parentElement.classList.add("hidden");
+      if (el) el.classList.add("hidden");
     });
 
-    // 🔹 Animação suave da barra de filtros (fade + slide)
+    // Mostra barra
     if (barra) {
       barra.classList.remove("hidden");
       barra.style.opacity = "0";
@@ -1588,51 +1594,38 @@ function ativarModoFiltro(ativo) {
     }
 
     window.scrollTo({ top: 0, behavior: "smooth" });
+
   } else {
     // === MODO FILTRO DESATIVADO ===
     body.classList.remove("modo-filtro");
-    btn.classList.remove("ativo");
-    btn.textContent = "🔍 Buscar / Filtrar";
+    if (btn) {
+      btn.classList.remove("ativo");
+      btn.textContent = "🔍 Buscar / Filtrar";
+    }
 
-    // 🔹 Reexibe o topo principal
-    if (headerTopo) headerTopo.classList.remove("hidden");
+    // Reexibe selo, banners e faixas
+    if (selo) selo.classList.remove("hidden");
+    banners.forEach(id => document.getElementById(id)?.classList.remove("hidden"));
+    faixas.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("hidden");
+    });
 
-    // 🔹 Resetar campos do filtro
+    // Esconde a barra
     if (barra) {
-      const inputs = barra.querySelectorAll("input, select");
-      inputs.forEach(el => {
-        if (el.type === "checkbox") el.checked = true;
-        else el.value = "";
-      });
-      barra.querySelectorAll("label").forEach(l => l.classList.add("ativo"));
-
-      // 🔹 Esconde com transição suave
       barra.style.transition = "all 0.35s ease";
       barra.style.opacity = "0";
       barra.style.transform = "translateY(-10px)";
       setTimeout(() => barra.classList.add("hidden"), 350);
     }
 
-    // 🔹 Reexibir banners
-    ["bannerOfertas", "bannerMagalu"].forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.classList.remove("hidden");
-      if (el.parentElement) el.parentElement.classList.remove("hidden");
-    });
-
-    // 🔹 Re-renderiza todos os produtos
+    // Re-renderiza produtos
     if (typeof renderizarMercadoLivre === "function") renderizarMercadoLivre(produtos);
     if (typeof renderizarMagalu === "function") renderizarMagalu(produtos);
     if (typeof renderizarCardsGerais === "function") renderizarCardsGerais(produtos);
-
-    // 🔹 Reinicia rolagem automática
-    if (typeof iniciarRolagemAutomaticaML === "function") iniciarRolagemAutomaticaML();
-    if (typeof iniciarRolagemAutomaticaMagalu === "function") iniciarRolagemAutomaticaMagalu();
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
+
 
 
 // ===================== EVENTO DO BOTÃO 🔍 / ⨯ =====================
@@ -1677,6 +1670,5 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
   }
 });
-
 
 
