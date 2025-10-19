@@ -1618,6 +1618,9 @@ function ativarModoFiltro(ativo) {
       btn.textContent = "⨯ Fechar Filtro";
     }
 
+    if (header) header.classList.add("hidden");
+    if (seloMultimarcas) seloMultimarcas.classList.add("hidden");
+
     // Esconde selo e banners
     if (selo) selo.classList.add("hidden");
     banners.forEach(id => document.getElementById(id)?.classList.add("hidden"));
@@ -1649,6 +1652,9 @@ function ativarModoFiltro(ativo) {
       btn.classList.remove("ativo");
       btn.textContent = "🔍 Buscar / Filtrar";
     }
+
+    if (header) header.classList.remove("hidden");
+    if (seloMultimarcas) seloMultimarcas.classList.remove("hidden");
 
     // Reexibe selo, banners e faixas
     if (selo) selo.classList.remove("hidden");
