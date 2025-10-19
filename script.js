@@ -1599,9 +1599,11 @@ function ativarModoFiltro(ativo) {
   const body = document.body;
   const btn = document.getElementById("btnBuscaFlutuante");
   const barra = document.getElementById("barraFiltros");
+  const header = document.querySelector("header.sticky");
+  const seloMultimarcas = document.querySelector(".ml-selo");
 
   // Elementos que somem no modo filtro
-  const selo = document.querySelector("#seloConfianca, .selo-multimarcas, .selo-topo");
+  const selo = document.querySelector("#seloConfianca, .selo-multimarcas, .ml-selo, .selo-topo");
   const banners = ["bannerOfertas", "bannerMagalu"];
   const faixas = [
     "faixaOfertasVerificadas",  // 🔥 Ofertas Verificadas e Confiáveis
