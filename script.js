@@ -1457,7 +1457,7 @@ function criarBarraFiltros() {
   const barra = document.createElement("div");
   barra.id = "barraFiltros";
   barra.className =
-    "hidden text-white rounded-xl mt-2 p-3 shadow-md flex flex-col items-center justify-center gap-3 max-w-6xl mx-auto animate-fade-in";
+    "hidden text-white rounded-xl mt-1.5 p-2 shadow-md flex flex-col items-center justify-center gap-2 max-w-6xl mx-auto animate-fade-in";
 
   barra.innerHTML = `
     <!-- 🔍 BUSCA (Linha 1) -->
@@ -1468,13 +1468,13 @@ function criarBarraFiltros() {
           </div>
 
     <!-- 🟨 MINI-FILTROS (Linha 3 no mobile — 3 colunas: Estado / Preço / Modelo) -->
-    <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-3 w-full mt-1 sm:flex sm:flex-wrap">
-      <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+    <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-2 w-full mt-1 sm:flex sm:flex-wrap">
+      <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Estado</option>
         <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option><option>CE</option>
       </select>
 
-      <select id="filtroPreco" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+      <select id="filtroPreco" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Preço</option>
         <option value="0">Até R$ 500</option>
         <option value="0b">Até R$ 1000</option>
@@ -1484,7 +1484,7 @@ function criarBarraFiltros() {
       </select>
 
       <!-- Mantive o id 'filtroMarca' para não quebrar sua função aplicarFiltros(); label exibido como "Modelo/Marca" -->
-      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-4 py-2 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
         <option value="">Modelo/Marca</option>
         <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
         <option>Motorola</option><option>Realme</option><option>POCO</option>
@@ -1492,29 +1492,29 @@ function criarBarraFiltros() {
     </div>
 
     <!-- 🏷️ FILTRO DE ORIGEM (Linha 2 no mobile — 4 colunas) -->
-    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-2 w-full sm:flex sm:flex-wrap">
-      <label for="origem-mercadolivre" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-yellow-400/20 to-yellow-400/5 px-3 py-2 rounded-full border border-yellow-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
+    <div id="filtroOrigem" class="flex flex-wrap gap-2 justify-center items-center text-xs font-semibold mt-1 w-full sm:flex sm:flex-wrap">
+      <label for="origem-mercadolivre" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-yellow-400/20 to-yellow-400/5 px-3 py-1.5 rounded-full border border-yellow-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-mercadolivre" class="origemCheck" value="mercadolivre" checked />
         <img src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.23.1/mercadolibre/logo__small.png"
           class="logo-filtro ml-logo w-5 h-5" alt="Mercado Livre" />
         <span>Mercado Livre</span>
       </label>
 
-      <label for="origem-magalu" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-blue-400/20 to-blue-400/5 px-3 py-2 rounded-full border border-blue-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
+      <label for="origem-magalu" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-blue-400/20 to-blue-400/5 px-3 py-1.5 rounded-full border border-blue-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-magalu" class="origemCheck" value="magalu" checked />
         <img src="https://wx.mlcdn.com.br/site/shared/services/influenciador-magalu-logo.png"
           class="logo-filtro magalu-logo w-5 h-5" alt="Magalu" />
         <span>Magalu</span>
       </label>
 
-      <label for="origem-amazon" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-black/70 to-gray-900 px-3 py-2 rounded-full border border-gray-500/50 hover:scale-105 transition w-full sm:w-auto justify-center">
+      <label for="origem-amazon" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-black/70 to-gray-900 px-3 py-1.5 rounded-full border border-gray-500/50 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-amazon" class="origemCheck" value="amazon" checked />
         <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Amazon_icon.png"
           class="logo-filtro amazon-logo w-6 h-4" alt="Amazon" />
         <span>Amazon</span>
       </label>
 
-      <label for="origem-usuario" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-green-400/20 to-green-400/5 px-3 py-2 rounded-full border border-green-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
+      <label for="origem-usuario" class="flex items-center gap-2 cursor-pointer ativo bg-gradient-to-r from-green-400/20 to-green-400/5 px-3 py-1.5 rounded-full border border-green-400/40 hover:scale-105 transition w-full sm:w-auto justify-center">
         <input type="checkbox" id="origem-usuario" class="origemCheck" value="usuario" checked />
         <img src="https://cdn-icons-png.flaticon.com/512/681/681494.png"
           class="logo-filtro local-logo w-5 h-5" alt="Locais" />

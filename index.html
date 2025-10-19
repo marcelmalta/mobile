@@ -128,6 +128,7 @@ body.modo-filtro #contadorResultados, body.modo-filtro #listaProdutos{
   border-top:1px solid rgba(255,230,150,.5); border-bottom:1px solid rgba(200,200,200,.4);
   box-shadow: inset 0 2px 8px rgba(255,255,255,.5), 0 2px 14px rgba(0,0,0,.08);
   color:#222; overflow:hidden; transition: all .4s ease;
+  padding:6px 12px;
 }
 #barraFiltros::before{
   content:""; position:absolute; top:0; left:-50%; width:200%; height:100%;
@@ -136,7 +137,7 @@ body.modo-filtro #contadorResultados, body.modo-filtro #listaProdutos{
   opacity:.6; animation: brilhoGoldLateral 9s linear infinite;
 }
 body.modo-filtro #barraFiltros{ display:flex !important; opacity:1; transform: translateY(0); }
-@media (min-width:1024px){ #barraFiltros{ padding:10px 4vw; } }
+@media (min-width:1024px){ #barraFiltros{ padding:8px 4vw; } }
 
 /* =============== BUSCA + MINI-FILTROS (tema claro) =============== */
 #buscaInput{
@@ -148,27 +149,27 @@ body.modo-filtro #barraFiltros{ display:flex !important; opacity:1; transform: t
 #buscaInput:focus{ background:#fff; border-color:#facc15; box-shadow:0 0 10px rgba(250,204,21,.3); }
 
 #miniFiltrosArea{
-  width:100%; background: rgba(255,255,255,.65);
+  width:100%; background: rgba(255,255,255,.6);
   border:1px solid rgba(230,200,0,.25);
-  border-radius:12px; padding:8px 10px; transition:.3s;
+  border-radius:12px; padding:6px 8px; transition:.3s;
 }
 #miniFiltrosArea select{
   background:#fff; color:#333; border:1px solid rgba(180,180,180,.7);
-  border-radius:9999px; font-weight:600; padding:7px 14px; font-size:13px;
-  box-shadow: inset 0 0 5px rgba(0,0,0,.05); transition:.25s;
+  border-radius:9999px; font-weight:600; padding:6px 12px; font-size:13px;
+  box-shadow: inset 0 0 4px rgba(0,0,0,.05); transition:.25s;
 }
-#miniFiltrosArea select:hover{ border-color:#facc15; box-shadow:0 0 8px rgba(250,204,21,.25); transform:scale(1.02); }
+#miniFiltrosArea select:hover{ border-color:#facc15; box-shadow:0 0 6px rgba(250,204,21,.25); transform:scale(1.01); }
 
 /* =============== BOTÕES DE ORIGEM (LOJAS) =============== */
 #filtroOrigem{
   display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr));
-  gap:10px; width:100%; margin-top:8px;
+  gap:8px; width:100%; margin-top:6px;
 }
 #filtroOrigem label{
-  display:flex; align-items:center; justify-content:center; gap:8px;
-  padding:8px 12px; border-radius:10px; font-weight:700; position:relative;
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  padding:7px 10px; border-radius:10px; font-weight:700; position:relative;
   transition: all .35s ease; overflow:hidden;
-  border:1.5px solid transparent; box-shadow:0 1px 4px rgba(0,0,0,.15), inset 0 0 8px rgba(255,255,255,.3);
+  border:1.5px solid transparent; box-shadow:0 1px 4px rgba(0,0,0,.12), inset 0 0 6px rgba(255,255,255,.25);
   font-size:13px; text-align:center;
 }
 #filtroOrigem .origemCheck{
@@ -222,13 +223,13 @@ body.modo-filtro #barraFiltros{ display:flex !important; opacity:1; transform: t
   }
   #miniFiltrosArea{
     display:grid !important; grid-template-columns: repeat(3, minmax(0,1fr));
-    gap:8px; width:100%;
+    gap:6px; width:100%;
   }
-  #miniFiltrosArea select{ width:100%; font-size:13px; padding:8px 10px; }
+  #miniFiltrosArea select{ width:100%; font-size:13px; padding:6px 10px; }
   #filtroOrigem{
-    grid-template-columns: repeat(4, minmax(0,1fr)); gap:8px; width:100%;
+    grid-template-columns: repeat(4, minmax(0,1fr)); gap:6px; width:100%;
   }
-  #filtroOrigem label{ gap:5px; font-size:12px; padding:7px 8px; border-radius:10px; white-space:normal; text-align:center; }
+  #filtroOrigem label{ gap:4px; font-size:12px; padding:6px 7px; border-radius:9px; white-space:normal; text-align:center; }
   #filtroOrigem label[for="origem-mercadolivre"] span{ font-size:11px; }
   #filtroOrigem label img{ width:16px; }
 }
@@ -236,13 +237,13 @@ body.modo-filtro #barraFiltros{ display:flex !important; opacity:1; transform: t
 @media (max-width:460px){
   #filtroOrigem{
     grid-template-columns: repeat(2, minmax(0,1fr));
-    gap:12px;
+    gap:10px;
   }
   #filtroOrigem label{
     width:100%;
     justify-self:stretch;
     font-size:13px;
-    padding:9px 14px;
+    padding:8px 12px;
   }
   #filtroOrigem label span{
     line-height:1.1;
@@ -253,7 +254,7 @@ body.modo-filtro #barraFiltros{ display:flex !important; opacity:1; transform: t
 }
 
 /* =============== “TODOS OS PRODUTOS” BARRA =============== */
-.todos-selo{ transition: background .3s, transform .3s; }
+.todos-selo{ transition: background .3s, transform .3s; margin-top:8px !important; margin-bottom:8px !important; }
 .todos-selo:hover{ background:linear-gradient(to right,#2563eb,#16a34a,#2563eb); transform:scale(1.02); }
 </style>
 
