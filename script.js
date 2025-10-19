@@ -1469,12 +1469,12 @@ function criarBarraFiltros() {
 
     <!-- 🟨 MINI-FILTROS (Linha 3 no mobile — 3 colunas: Estado / Preço / Modelo) -->
     <div id="miniFiltrosArea" class="flex flex-wrap justify-center items-center gap-2 w-full mt-1 sm:flex sm:flex-wrap">
-      <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+      <select id="filtroEstado" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow focus:outline-none focus:ring-2 focus:ring-yellow-400/40 focus:border-yellow-300 transition-colors w-full sm:w-auto">
         <option value="">Estado</option>
         <option>AL</option><option>PE</option><option>BA</option><option>SE</option><option>PB</option><option>CE</option>
       </select>
 
-      <select id="filtroPreco" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+      <select id="filtroPreco" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow focus:outline-none focus:ring-2 focus:ring-yellow-400/40 focus:border-yellow-300 transition-colors w-full sm:w-auto">
         <option value="">Preço</option>
         <option value="0">Até R$ 500</option>
         <option value="0b">Até R$ 1000</option>
@@ -1484,7 +1484,7 @@ function criarBarraFiltros() {
       </select>
 
       <!-- Mantive o id 'filtroMarca' para não quebrar sua função aplicarFiltros(); label exibido como "Modelo/Marca" -->
-      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow hover:scale-105 transition w-full sm:w-auto">
+      <select id="filtroMarca" class="bg-black/70 text-yellow-300 border border-yellow-400/40 rounded-full px-3 py-1.5 text-sm font-semibold shadow focus:outline-none focus:ring-2 focus:ring-yellow-400/40 focus:border-yellow-300 transition-colors w-full sm:w-auto">
         <option value="">Modelo/Marca</option>
         <option>Apple</option><option>Samsung</option><option>Xiaomi</option>
         <option>Motorola</option><option>Realme</option><option>POCO</option>
